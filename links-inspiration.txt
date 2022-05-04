@@ -1,0 +1,12 @@
+# Some web sites for concept ideas 
+# theme: music databases
+
+-- https://www.el-recodo.com/
+
+-- https://music.apple.com/
+
+-- https://freeplaymusic.com/
+
+-- https://rateyourmusic.com/
+
+-- https://musicbrainz.org/doc/MusicBrainz_Database/Schema 
