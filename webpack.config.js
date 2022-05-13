@@ -10,7 +10,7 @@ module.exports = {
     devServer: {
         static: "./dist",
     },
-    devtool: "source-map",
+    devtool: "source-map", 
     // Babel setup
     module: {
         rules: [
