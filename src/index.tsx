@@ -1,10 +1,10 @@
-import ReactDOM from "react-dom/client";
+// import ReactDOM from "react-dom/client";
+import { render } from "react-dom";
+// import React from "react";
 
 import App from "./components/App";
 
-const root = ReactDOM.createRoot(document.getElementById("root")!);
-root.render(<App />);
+// const root = ReactDOM.createRoot(document.getElementById("root")!);
+// root.render(<App />);
 
-// import { render } from "react-dom";
-
-// render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById("root"));

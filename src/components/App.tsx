@@ -1,17 +1,9 @@
-import CardItem from "./CardItem";
-
-const App = () => {
+function App() {
   return (
-    <>
-      <section></section>
-      <main>
-        <section>
-          <h1>Oh Helloooo from hell, ...React.</h1>
-          <CardItem />
-        </section>
-      </main>
-    </>
+    <div>
+      <h1>Hell world, not hello.</h1>
+    </div>
   );
-};
+}
 
 export default App;

@@ -31,7 +31,7 @@ module.exports = {
 
   // This is unnecessary in Webpack 5, because it's the default.
   // However, react-refresh-webpack-plugin can't find the entry without it.
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
 
   output: {
     // output path is required for `clean-webpack-plugin`
@@ -80,7 +80,7 @@ module.exports = {
         // },
       },
       {
-        test: /\.jsx?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: {
           // without additional settings, this will reference .babelrc
@@ -106,7 +106,7 @@ module.exports = {
   devtool: "source-map",
 
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
 
   // required if using webpack-dev-server
