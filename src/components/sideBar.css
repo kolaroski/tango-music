@@ -1,0 +1,10 @@
+.sideBarBox {
+  border: 1px solid purple;
+  height: 80vh;
+  width: 25vw;
+  padding: 5px;
+}
+
+.fontColorTest {
+  color: rgb(23, 35, 90);
+}
