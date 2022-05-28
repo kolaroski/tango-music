@@ -1,14 +1,5 @@
-const hello_world = {
-    h: 1,
-    b: 2
-}
+import { render } from "react-dom";
 
-const example_2 = {
-    a: 3,
-    c: 4
-}
+import App from "./components/App";
 
-
-console.log(hello_world)
-
-console.log(example_2)
+render(<App />, document.getElementById("root"));
