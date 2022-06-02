@@ -5,9 +5,11 @@
   "scripts": {
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
-    "build": "webpack --progress --mode=production",
-    "start": "webpack s --config ./webpack.config.js --mode=development",
-    "start:prod": "npm run build && http-server dist -p 9999 -o"
+    "start": "cross-env SERVE=true webpack serve",
+    "watch": "webpack --watch",
+    "build": "cross-env NODE_ENV=production webpack",
+    "build-dev": "webpack",
+    "clean": "rm -rf ./dist"
   },
   "repository": {
     "type": "git",
@@ -25,7 +27,10 @@
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "github:pmmmwh/react-refresh-webpack-plugin",
     "babel-loader": "8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "fork-ts-checker-webpack-plugin": "7.2.1",
     "html-webpack-plugin": "5.5.0",

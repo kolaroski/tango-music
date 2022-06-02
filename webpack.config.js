@@ -1,14 +1,42 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const APP_PATH = path.resolve(__dirname, "src");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+
+let mode = "development";
+let target = "web";
+const plugins = [
+  new CleanWebpackPlugin(),
+  new MiniCssExtractPlugin(),
+  new HtmlWebpackPlugin({
+    inject: true,
+    template: path.join(APP_PATH, "index.html"),
+  }),
+];
+
+if (process.env.NODE_ENV === "production") {
+  mode = "production";
+  // Temporary workaround for 'browserslist' bug that is being patched in the near future
+  target = "browserslist";
+}
+
+if (process.env.SERVE) {
+  // We only want React Hot Reloading in serve mode
+  plugins.push(new ReactRefreshWebpackPlugin());
+}
 
 module.exports = {
   entry: APP_PATH,
 
+  mode: mode,
+
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
+    // this places all images processed in an image folder
+    assetModuleFilename: "images/[hash][ext][query]",
   },
 
   resolve: {
@@ -17,7 +45,20 @@ module.exports = {
 
   module: {
     rules: [
-      { test: /\.(ts|js)x?$/, loader: "babel-loader", exclude: /node_modules/ },
+      {
+        test: /\.(ts|js)x?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+        options: {
+          /**
+           * From the docs: When set, the given directory will be used
+           * to cache the results of the loader. Future webpack builds
+           * will attempt to read from the cache to avoid needing to run
+           * the potentially expensive Babel recompilation process on each run.
+           */
+          cacheDirectory: true,
+        },
+      },
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
@@ -54,13 +95,9 @@ module.exports = {
     ],
   },
 
-  plugins: [
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: path.join(APP_PATH, "index.html"),
-    }),
-    new MiniCssExtractPlugin(),
-  ],
+  plugins: plugins,
+
+  target: target,
 
   performance: {
     hints: false,
@@ -68,5 +105,9 @@ module.exports = {
 
   devServer: {
     open: true,
+    static: "./dist",
+    hot: true,
   },
+
+  devtool: "source-map",
 };
