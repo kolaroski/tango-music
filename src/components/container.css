@@ -1,7 +1,9 @@
 .borderBox {
-  border: 1px solid purple;
+  border: 3px solid purple;
+  border-radius: 20px;
   padding: 30px;
-  width: 80vw;
+  width: 40vw;
+  margin: 10px;
 }
 
 .blaBla {

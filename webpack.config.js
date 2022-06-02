@@ -1,47 +1,23 @@
-const path = require("path");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-
-let mode = "development";
-let target = "web";
-const plugins = [
-  new CleanWebpackPlugin(),
-  new MiniCssExtractPlugin(),
-  new HtmlWebpackPlugin({
-    template: "./src/index.html",
-  }),
-];
-
-if (process.env.NODE_ENV === "production") {
-  mode = "production";
-  // Temporary workaround for 'browserslist' bug that is being patched in the near future
-  target = "browserslist";
-}
-
-if (process.env.SERVE) {
-  // We only want React Hot Reloading in serve mode
-  plugins.push(new ReactRefreshWebpackPlugin());
-}
+const path = require("path");
+const APP_PATH = path.resolve(__dirname, "src");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  // mode defaults to 'production' if not set
-  mode: mode,
-
-  // This is unnecessary in Webpack 5, because it's the default.
-  // However, react-refresh-webpack-plugin can't find the entry without it.
-  entry: "./src/index.tsx",
+  entry: APP_PATH,
 
   output: {
-    // output path is required for `clean-webpack-plugin`
+    filename: "main.js",
     path: path.resolve(__dirname, "dist"),
-    // this places all images processed in an image folder
-    assetModuleFilename: "images/[hash][ext][query]",
+  },
+
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"],
   },
 
   module: {
     rules: [
+      { test: /\.(ts|js)x?$/, loader: "babel-loader", exclude: /node_modules/ },
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
@@ -51,10 +27,6 @@ module.exports = {
             options: { publicPath: "" },
           },
           "css-loader",
-          "postcss-loader",
-          // according to the docs, sass-loader should be at the bottom, which
-          // loads it first to avoid prefixes in your sourcemaps and other issues.
-          "sass-loader",
         ],
       },
       {
@@ -79,39 +51,22 @@ module.exports = {
         //   },
         // },
       },
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: {
-          // without additional settings, this will reference .babelrc
-          loader: "babel-loader",
-          options: {
-            /**
-             * From the docs: When set, the given directory will be used
-             * to cache the results of the loader. Future webpack builds
-             * will attempt to read from the cache to avoid needing to run
-             * the potentially expensive Babel recompilation process on each run.
-             */
-            cacheDirectory: true,
-          },
-        },
-      },
     ],
   },
 
-  plugins: plugins,
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(APP_PATH, "index.html"),
+    }),
+    new MiniCssExtractPlugin(),
+  ],
 
-  target: target,
-
-  devtool: "source-map",
-
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
+  performance: {
+    hints: false,
   },
 
-  // required if using webpack-dev-server
   devServer: {
-    static: "./dist",
-    hot: true,
+    open: true,
   },
 };
