@@ -47,17 +47,8 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        loader: "babel-loader",
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/,
-        options: {
-          /**
-           * From the docs: When set, the given directory will be used
-           * to cache the results of the loader. Future webpack builds
-           * will attempt to read from the cache to avoid needing to run
-           * the potentially expensive Babel recompilation process on each run.
-           */
-          cacheDirectory: true,
-        },
       },
       {
         test: /\.(s[ac]|c)ss$/i,
@@ -108,6 +99,6 @@ module.exports = {
     static: "./dist",
     hot: true,
   },
-
+  
   devtool: "source-map",
 };

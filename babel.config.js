@@ -11,8 +11,7 @@ module.exports = {
   presets: [
     "@babel/preset-env",
     "@babel/react",
-    "@babel/typescript",
-    // "@babel/preset-typescript",
+    "@babel/preset-typescript",
     // [
     //   // Runtime automatic with React 17+ allows not importing React
     //   // in files only using JSX (no state or React methods)

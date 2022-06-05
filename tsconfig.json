@@ -1,17 +1,12 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "noUnusedLocals": true,
+    "outDir": "./dist/",
     "noImplicitAny": true,
-    "target": "ESNext",
-    "module": "ESNext",
-    "strict": true,
-    "jsx": "react"
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "allowJs": true ,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
