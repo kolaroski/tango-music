@@ -17,8 +17,8 @@ export const CardList: React.FC<CardListProps> = ({titles}): JSX.Element => {
         }
     }
     let cards: Array<JSX.Element> = []
-    for (const title of currentTitles) {
-        cards.push(<Card title={title}/>)
+    for (const index in currentTitles) {
+        cards.push(<Card key={index} title={currentTitles[index]}/>)
     }
     return <div className="CardList"> {cards} <button onClick={ () => {
         if ((start + 3) < titles.length){
