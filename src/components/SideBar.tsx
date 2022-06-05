@@ -5,7 +5,7 @@ function SideBar() {
     <div className="sideBarBox fontColorTest">
       <h1>side bar</h1>
       <ul>
-        <li style={{ color: "green" }}>option</li>
+        <li style={{ color: "green" }}>option green</li>
         <li className="fontColorTest">option</li>
         <li>option</li>
         <li>option</li>

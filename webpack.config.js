@@ -1,8 +1,9 @@
 const path = require("path");
-const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
+const APP_PATH = path.resolve(__dirname, "src");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 let mode = "development";
 let target = "web";
@@ -10,7 +11,8 @@ const plugins = [
   new CleanWebpackPlugin(),
   new MiniCssExtractPlugin(),
   new HtmlWebpackPlugin({
-    template: "./src/index.html",
+    inject: true,
+    template: path.join(APP_PATH, "index.html"),
   }),
 ];
 
@@ -26,22 +28,28 @@ if (process.env.SERVE) {
 }
 
 module.exports = {
-  // mode defaults to 'production' if not set
+  entry: APP_PATH,
+
   mode: mode,
 
-  // This is unnecessary in Webpack 5, because it's the default.
-  // However, react-refresh-webpack-plugin can't find the entry without it.
-  entry: "./src/index.tsx",
-
   output: {
-    // output path is required for `clean-webpack-plugin`
+    filename: "main.js",
     path: path.resolve(__dirname, "dist"),
     // this places all images processed in an image folder
     assetModuleFilename: "images/[hash][ext][query]",
   },
 
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".json"],
+  },
+
   module: {
     rules: [
+      {
+        test: /\.(ts|js)x?$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: /node_modules/,
+      },
       {
         test: /\.(s[ac]|c)ss$/i,
         use: [
@@ -51,10 +59,6 @@ module.exports = {
             options: { publicPath: "" },
           },
           "css-loader",
-          "postcss-loader",
-          // according to the docs, sass-loader should be at the bottom, which
-          // loads it first to avoid prefixes in your sourcemaps and other issues.
-          "sass-loader",
         ],
       },
       {
@@ -79,23 +83,6 @@ module.exports = {
         //   },
         // },
       },
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: {
-          // without additional settings, this will reference .babelrc
-          loader: "babel-loader",
-          options: {
-            /**
-             * From the docs: When set, the given directory will be used
-             * to cache the results of the loader. Future webpack builds
-             * will attempt to read from the cache to avoid needing to run
-             * the potentially expensive Babel recompilation process on each run.
-             */
-            cacheDirectory: true,
-          },
-        },
-      },
     ],
   },
 
@@ -103,15 +90,15 @@ module.exports = {
 
   target: target,
 
-  devtool: "source-map",
-
-  resolve: {
-    extensions: [".tsx", ".ts", ".js", ".jsx"],
+  performance: {
+    hints: false,
   },
 
-  // required if using webpack-dev-server
   devServer: {
+    open: true,
     static: "./dist",
     hot: true,
   },
+  
+  devtool: "source-map",
 };
