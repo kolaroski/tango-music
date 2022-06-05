@@ -1,0 +1,11 @@
+.Card {
+    font-size: 1.5em;
+    border: 1px solid;
+    width: 50px;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    
+}
