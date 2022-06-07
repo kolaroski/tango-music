@@ -1,0 +1,41 @@
+.btn {
+  padding: 10px;
+  font-size: 1.2em;
+  width: 75%;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+
+.iconBtn {
+  width: 30px;
+  color: grey;
+  padding-left: 15px;
+  padding-right: 20px;
+}
+
+.toggleBtn {
+  padding: 10px;
+  font-size: 1.2em;
+  color: #7b7878;
+  border: none;
+}
+
+.searchBtn {
+  background-color: rgb(252, 175, 92);
+  color: white;
+  border: none;
+}
+
+.searchBtn:hover {
+  background-color: rgb(241, 129, 9);
+}
+
+.searchBtn:active {
+  background-color: rgb(193, 102, 6);
+}
+
+.resetBtn {
+  color: #7b7878;
+  border: none;
+}

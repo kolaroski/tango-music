@@ -1,15 +1,31 @@
-import "./App.css"
-import {CardList} from "./containers/CardList"
+import "./App.css";
+import { CardList } from "./containers/CardList";
+import SideBar from "./containers/SideBar";
 
 function App() {
   return (
     <div>
       <div>
-        <h1 className="testColor">Go to hell(o) world.</h1>
         <h2>tango-music-project</h2>
       </div>
+      <SideBar />
       <div className="displayStyle">
-        <CardList titles={["Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane"]} />
+        <CardList
+          titles={[
+            "Kire",
+            "Ana",
+            "Bane",
+            "Kire",
+            "Ana",
+            "Bane",
+            "Kire",
+            "Ana",
+            "Bane",
+            "Kire",
+            "Ana",
+            "Bane",
+          ]}
+        />
       </div>
     </div>
   );
