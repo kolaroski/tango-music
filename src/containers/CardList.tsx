@@ -20,7 +20,15 @@ export const CardList: React.FC<CardListProps> = ({titles}): JSX.Element => {
     for (const index in currentTitles) {
         cards.push(<Card key={index} title={currentTitles[index]}/>)
     }
-    return <div className="CardList"> {cards} <button onClick={ () => {
+    return <div className="CardList"> <button onClick={ () => {
+        if (start > 0){
+            setStart(start - 1);
+        }
+        if (end > 3)
+        {
+            setEnd(end - 1)
+        }
+    }}></button>{cards} <button onClick={ () => {
         if ((start + 3) < titles.length){
             setStart(start + 1);
         }
@@ -28,5 +36,5 @@ export const CardList: React.FC<CardListProps> = ({titles}): JSX.Element => {
         {
             setEnd(end + 1)
         }
-    }}> Next cards</button> </div>
+    }}></button> </div>
 }
