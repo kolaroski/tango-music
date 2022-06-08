@@ -8,9 +8,11 @@ function App() {
         <h1 className="testColor">Go to hell(o) world.</h1>
         <h2>tango-music-project</h2>
       </div>
-      <div className="displayStyle">
+        <main id="browser">
+        <h2 className="rubric">BROWSE BY CATEGORIES</h2>
+        <h2 className="Orchestras">Orchestras</h2>
         <CardList titles={["Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane"]} />
-      </div>
+        </main>
     </div>
   );
 }
