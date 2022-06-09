@@ -10,21 +10,6 @@
   font-size: 25px;
 }
 
-#browser{
-  padding-top: 1rem;
-  margin-left: 25rem;
-  border: 0.1rem solid;
-  padding-left: 3rem;
-  overflow-y: scroll;
-  height: 100%;
-}
-
-.rubric{
-  color: rgb(233, 132, 8);
-  padding-bottom: 3rem;
-  font-style: italic;
-}
-
-.Orchestras{
-  color: darkgray;
+.redText {
+  color: rgb(192, 50, 15);
 }

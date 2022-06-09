@@ -8,9 +8,7 @@ export interface CardProps {
 
 export const Card: React.FC<CardProps> = ({title}): JSX.Element => {
     return <div className="Card">
-      <div className="caption">
-        {title}
-      </div>
+      {title}
     </div>
 };
 
