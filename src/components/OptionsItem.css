@@ -1,0 +1,51 @@
+.OptionsItemBox {
+  border: 1px solid #bdbdbd;
+  padding: 10px;
+  height: 10vh;
+  /* height: 60px; */
+  font-size: 1.1em;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  align-items: center;
+  background-color: #f5f5f5;
+  /* width: 100%; */
+}
+
+.OptionsItemBox:hover {
+  background-color: #009688;
+}
+
+.emoji {
+  padding: 10px;
+  font-size: 25px;
+  box-sizing: border-box;
+  width: 60px;
+  text-align: center;
+}
+
+.optionHeading {
+  margin-left: 20px;
+  width: 12rem;
+}
+
+.arrowDown {
+  border: solid #514f4f;
+  background-color: transparent;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* .advancedOptions {
+  background-color: #009688;
+} */
