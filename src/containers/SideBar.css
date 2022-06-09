@@ -13,10 +13,11 @@
   justify-content: space-between;
   align-items: center;
   font-family: "Roboto Condensed", sans-serif;
-  height: 80vh;
+  height: 82vh;
+  /* height: 600px; */
   /* width: 25vw; */
   /* width: 350px; */
-  transition: ease-in 0.5s;
+  transition: width ease-in 0.5s;
 }
 
 .collapsed {

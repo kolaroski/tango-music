@@ -2,7 +2,8 @@
   border: 1px solid #bdbdbd;
   padding: 10px;
   height: 10vh;
-  font-size: 1.2em;
+  /* height: 60px; */
+  font-size: 1.1em;
   display: flex;
   box-sizing: border-box;
   width: 100%;
@@ -21,13 +22,13 @@
   padding: 10px;
   font-size: 25px;
   box-sizing: border-box;
-  width: 4rem;
+  width: 60px;
   text-align: center;
 }
 
 .optionHeading {
   margin-left: 20px;
-  width: 13rem;
+  width: 12rem;
 }
 
 .arrowDown {
@@ -38,8 +39,13 @@
   padding: 3px;
   transform: rotate(45deg);
   margin-right: 15px;
+  margin-left: 15px;
 }
 
 .hidden {
   display: none;
 }
+
+/* .advancedOptions {
+  background-color: #009688;
+} */

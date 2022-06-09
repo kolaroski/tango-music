@@ -11,6 +11,9 @@ const SideBar: React.FC = (): JSX.Element => {
   const toggleCollapsedClass = inactive ? "collapsed" : "";
   const toggleHiddenClass = inactive ? "hidden" : "";
 
+  // const [open, setOpen] = useState(false);
+  // const toggleAdvancedOptions = open ? "hidden" : "";
+
   const optionsInput: Array<{ emoji: string; heading: string }> = [
     {
       emoji: "🎻 ",
@@ -37,15 +40,20 @@ const SideBar: React.FC = (): JSX.Element => {
           {inactive ? "🔍" : "🔍 Advanced Search"}
         </h3>
 
-        {optionsInput.map((option, index) => (
-          <OptionsItem
-            key={index}
-            emoji={option.emoji}
-            heading={option.heading}
-            hidden={toggleHiddenClass}
-          />
-        ))}
+        {optionsInput.map(
+          (option: { emoji: string; heading: string }, index: number) => (
+            <OptionsItem
+              key={index}
+              emoji={option.emoji}
+              heading={option.heading}
+              hidden={toggleHiddenClass}
+            />
+          )
+        )}
       </div>
+
+      {/* <button onClick={() => setOpen(!open)}>show/hide</button>
+      <div className={toggleAdvancedOptions}>Lorem ipsum</div> */}
 
       <Button
         buttonName={`${inactive ? "" : "Search"}`}

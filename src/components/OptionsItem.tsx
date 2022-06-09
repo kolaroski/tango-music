@@ -12,11 +12,26 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   hidden,
 }): JSX.Element => {
   return (
-    <div className="OptionsItemBox">
-      <div className="emoji">{emoji}</div>
-      <div className={`optionHeading ${hidden}`}>{heading}</div>
-      <button className={`arrowDown ${hidden}`}></button>
-    </div>
+    <>
+      <div className="OptionsItemBox">
+        <div className="emoji">{emoji}</div>
+        <div className={`optionHeading ${hidden}`}>{heading}</div>
+        <button className={`arrowDown ${hidden}`}></button>
+        <br />
+      </div>
+      {/* <div className="advancedOptions">
+        <ul>
+          <li>
+            <input type="checkbox" />
+            Option 1
+          </li>
+          <li>
+            <input type="checkbox" />
+            Option 2
+          </li>
+        </ul>
+      </div> */}
+    </>
   );
 };
 
