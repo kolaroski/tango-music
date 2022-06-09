@@ -1,0 +1,15 @@
+.testColor {
+  color: rgb(45, 45, 91);
+}
+
+.displayStyle {
+  display: flex;
+}
+
+.setBiggerTextTest {
+  font-size: 25px;
+}
+
+.redText {
+  color: rgb(192, 50, 15);
+}
