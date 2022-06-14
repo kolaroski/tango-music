@@ -1,9 +1,10 @@
 .CardList {
-    border: 0.1rem solid black;
-    display: flex;
-    width: 98%;
-    height: 20rem;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
+  border: 0.1rem solid black;
+  display: flex;
+  height: 20rem;
+  margin-left: 400px;
+  margin-right: 70px;
+  align-items: center;
+  margin-bottom: 2rem;
+  justify-content: space-between;
 }

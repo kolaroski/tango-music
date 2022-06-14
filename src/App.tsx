@@ -1,18 +1,17 @@
-import "./App.css"
-import {CardList} from "./containers/CardList"
+import "./App.css";
+import { NavBar } from "./components/NavBar";
+import { CardList } from "./containers/CardList";
+import SideBar from "./containers/SideBar";
 
 function App() {
   return (
     <div>
+      <NavBar />
+      <SideBar />
       <div>
-        <h1 className="testColor">Go to hell(o) world.</h1>
-        <h2>tango-music-project</h2>
+        <h3 className="cardlistHeading">Orchestras</h3>
+        <CardList titles={["001", "002", "003", "004", "005", "006"]} />
       </div>
-        <main id="browser">
-        <h2 className="rubric">BROWSE BY CATEGORIES</h2>
-        <h2 className="Orchestras">Orchestras</h2>
-        <CardList titles={["Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane", "Kire", "Ana", "Bane"]} />
-        </main>
     </div>
   );
 }
