@@ -54,8 +54,11 @@
 
 .nav-links {
   display: flex;
-
   box-sizing: border-box;
+}
+
+.nav-links a:active {
+  background-color: #04675d;
 }
 
 /* Style the search box inside the navigation bar */

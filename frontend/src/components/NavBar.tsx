@@ -10,7 +10,7 @@ export const NavBar: React.FC<{}> = ({}): JSX.Element => {
           <a>Orchestras</a>
           <a>Singers</a>
           <a>Style</a>
-          <a>Decade</a>
+          <a>Period</a>
         </div>
         <input type="text" placeholder="Search.."></input>
       </div>
