@@ -21,7 +21,7 @@ const SideBar: React.FC = (): JSX.Element => {
     },
     {
       emoji: "🎞 ",
-      heading: "Select decade",
+      heading: "Select period",
     },
     {
       emoji: "🎶 ",
