@@ -1,0 +1,5 @@
+# Virtual env modules
+venv
+.venv
+__pycache__
+.vscode

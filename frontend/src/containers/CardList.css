@@ -1,4 +1,5 @@
 .CardList {
+<<<<<<< HEAD
   border: 0.1rem solid black;
   display: flex;
   height: 20rem;
@@ -8,3 +9,9 @@
   margin-bottom: 2rem;
   justify-content: space-between;
 }
+=======
+    border: 5px solid;
+    margin: 10px;
+    display: inline-flex;
+}
+>>>>>>> backend

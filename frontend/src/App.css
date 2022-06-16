@@ -1,7 +1,23 @@
+<<<<<<< HEAD
+=======
+.testColor {
+  color: rgb(45, 45, 91);
+}
+
+>>>>>>> backend
 .displayStyle {
   display: flex;
 }
 
+<<<<<<< HEAD
 .cardlistHeading {
   margin-left: 400px;
+=======
+.setBiggerTextTest {
+  font-size: 25px;
+}
+
+.redText {
+  color: rgb(192, 50, 15);
+>>>>>>> backend
 }

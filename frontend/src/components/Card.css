@@ -1,4 +1,5 @@
 .Card {
+<<<<<<< HEAD
     display: flex;
     font-size: 1.5em;
     border: 0.5px solid;
@@ -17,4 +18,15 @@
 
 .caption{
     background: #fff;
+=======
+    font-size: 1.5em;
+    border: 1px solid;
+    width: 50px;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    
+>>>>>>> backend
 }
