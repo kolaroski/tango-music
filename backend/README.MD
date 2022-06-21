@@ -3,6 +3,7 @@
 ## Installation
 
 - Install Python3 latest version
+- Install build essentials in ubuntu: `sudo apt-get install build-essential`
 - Run the terminal command `python -m venv venv`
 - Run `source ./venv/bin/activate`
 - Run `pip install -r requirements.txt`
