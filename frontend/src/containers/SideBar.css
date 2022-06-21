@@ -21,6 +21,8 @@
   transition: width ease-in 0.3s;
   overflow-y: auto;
   overflow-x: hidden;
+  scrollbar-color: rgb(252, 175, 92) #e0e0e0;
+  scrollbar-width: thin;
 }
 
 .collapsed {
