@@ -19,6 +19,8 @@
   /* width: 25vw; */
   width: 330px;
   transition: width ease-in 0.3s;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .collapsed {

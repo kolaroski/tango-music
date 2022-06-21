@@ -11,11 +11,11 @@ const SideBar: React.FC = (): JSX.Element => {
   const toggleCollapsedClass = inactive ? "collapsed" : "";
   const toggleHiddenClass = inactive ? "hidden" : "";
 
-  const [open, setOpen] = useState(false);
-  const toggleAdvancedOptions = open ? "" : "hidden";
-  const toggleAdvancedHandler = (index: number) => {
-    setOpen(!open);
-  };
+  // const [open, setOpen] = useState(false);
+  // const toggleAdvancedOptions = open ? "" : "hidden";
+  // const toggleAdvancedHandler = (index: number) => {
+  //   setOpen(!open);
+  // };
 
   const optionsInput: Array<{
     emoji: string;
@@ -62,9 +62,9 @@ const SideBar: React.FC = (): JSX.Element => {
               heading={option.heading}
               options={option.options}
               hidden={toggleHiddenClass}
-              advancedHidden={toggleAdvancedOptions}
+              // advancedHidden={toggleAdvancedOptions}
               // toggleAdvancedHandler={toggleAdvancedHandler}
-              toggleAdvancedHandler={() => toggleAdvancedHandler(index)}
+              // toggleAdvancedHandler={() => toggleAdvancedHandler(index)}
             />
           )
         )}

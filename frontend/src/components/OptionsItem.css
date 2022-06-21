@@ -49,3 +49,19 @@
 /* .advancedOptions {
   background-color: #009688;
 } */
+
+/* #checkBoxes {
+  border: 1px #8df5e4 solid;
+} */
+
+#checkBoxes label {
+  display: block;
+  box-sizing: border-box;
+  font-weight: 100;
+  font-size: 15px;
+  padding: 5px;
+}
+
+#checkBoxes label:hover {
+  background-color: #009688;
+}

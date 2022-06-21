@@ -1,4 +1,5 @@
 import "./OptionsItem.css";
+import { useState } from "react";
 
 export interface OptionsItemProps {
   // key: number;
@@ -6,35 +7,43 @@ export interface OptionsItemProps {
   emoji: string;
   options: string;
   hidden: string;
-  advancedHidden: string;
-  toggleAdvancedHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
+  // advancedHidden: string;
+  // toggleAdvancedHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const OptionsItem: React.FC<OptionsItemProps> = ({
-  // key,
   heading,
   emoji,
   options,
   hidden,
-  advancedHidden,
-  toggleAdvancedHandler,
+  // advancedHidden,
+  // toggleAdvancedHandler,
 }): JSX.Element => {
+  const [openSubOptions, setOpenSubOptions] = useState(false);
   return (
     <>
-      <div className="OptionsItemBox" onClick={toggleAdvancedHandler}>
+      {/* <div className="OptionsItemBox" onClick={toggleAdvancedHandler}> */}
+
+      <div
+        className="OptionsItemBox"
+        onClick={() => setOpenSubOptions(!openSubOptions)}
+      >
         <div className="emoji">{emoji}</div>
         <div className={`optionHeading ${hidden}`}>{heading}</div>
         <button className={`arrowDown ${hidden}`}></button>
         <br />
       </div>
-      <div>
-        <p className={advancedHidden}>{options}</p>
-      </div>
       {/* <div>
+        <p className={openSubOptions ? "" : "hidden"}>{options}</p>
+        <p className={advancedHidden}>{options}</p>
+      </div> */}
+      <div>
         <div
           // id={`option{key}`}
           // id="options2"
-          className={`multipleSelection ${advancedHidden}`}
+          className={
+            openSubOptions ? "multipleSelection" : "multipleSelection hidden"
+          }
         >
           <div id="checkBoxes">
             <label htmlFor="first">
@@ -55,7 +64,7 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
             </label>
           </div>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };
