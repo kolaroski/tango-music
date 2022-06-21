@@ -11,25 +11,36 @@ const SideBar: React.FC = (): JSX.Element => {
   const toggleCollapsedClass = inactive ? "collapsed" : "";
   const toggleHiddenClass = inactive ? "hidden" : "";
 
-  // const [open, setOpen] = useState(false);
-  // const toggleAdvancedOptions = open ? "hidden" : "";
+  const [open, setOpen] = useState(false);
+  const toggleAdvancedOptions = open ? "" : "hidden";
+  const toggleAdvancedHandler = (index: number) => {
+    setOpen(!open);
+  };
 
-  const optionsInput: Array<{ emoji: string; heading: string }> = [
+  const optionsInput: Array<{
+    emoji: string;
+    heading: string;
+    options: string;
+  }> = [
     {
       emoji: "🎻 ",
       heading: "Select orchestra",
+      options: "Di Sarli",
     },
     {
       emoji: "🎞 ",
       heading: "Select period",
+      options: "Golden era",
     },
     {
       emoji: "🎶 ",
       heading: "Select style",
+      options: "Vals",
     },
     {
       emoji: "🎙 ",
       heading: "Select singer/s",
+      options: "Rufino",
     },
   ];
 
@@ -41,19 +52,23 @@ const SideBar: React.FC = (): JSX.Element => {
         </h3>
 
         {optionsInput.map(
-          (option: { emoji: string; heading: string }, index: number) => (
+          (
+            option: { emoji: string; heading: string; options: string },
+            index: number
+          ) => (
             <OptionsItem
               key={index}
               emoji={option.emoji}
               heading={option.heading}
+              options={option.options}
               hidden={toggleHiddenClass}
+              advancedHidden={toggleAdvancedOptions}
+              // toggleAdvancedHandler={toggleAdvancedHandler}
+              toggleAdvancedHandler={() => toggleAdvancedHandler(index)}
             />
           )
         )}
       </div>
-
-      {/* <button onClick={() => setOpen(!open)}>show/hide</button>
-      <div className={toggleAdvancedOptions}>Lorem ipsum</div> */}
 
       <Button
         buttonName={`${inactive ? "" : "Search"}`}
