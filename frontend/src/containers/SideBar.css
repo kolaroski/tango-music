@@ -6,7 +6,7 @@
   left: 0;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
   border: 1px solid #e0e0e0;
   border-radius: 5px 5px 0 0;
   display: flex;
@@ -19,10 +19,11 @@
   /* width: 25vw; */
   width: 330px;
   transition: width ease-in 0.3s;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
-  scrollbar-color: rgb(252, 175, 92) #e0e0e0;
+  scrollbar-color: #009688 #ffffff;
   scrollbar-width: thin;
+  scrollbar-gutter: stable;
 }
 
 .collapsed {
@@ -40,12 +41,12 @@
   height: 50px;
   text-align: center;
   margin: 0 auto 0 auto;
-  border: 1px solid #bdbdbd;
+  /* border: 1px solid #bdbdbd; */
   box-sizing: border-box;
   border-radius: 5px 5px 0 0;
   padding-top: 12px;
   padding-bottom: 8px;
-  background-color: #dcd9d9;
+  /* background-color: #dcd9d9; */
   font-weight: 100;
   /* font-style: italic; */
   font-size: 1em;

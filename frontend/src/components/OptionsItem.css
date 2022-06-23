@@ -1,5 +1,5 @@
 .OptionsItemBox {
-  border: 1px solid #bdbdbd;
+  /* border: 1px solid #bdbdbd; */
   padding: 10px;
   height: 10vh;
   /* height: 60px; */
@@ -10,7 +10,7 @@
   /* flex-direction: row; */
   /* justify-content: space-between; */
   align-items: center;
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
   /* width: 100%; */
 }
 
@@ -54,14 +54,16 @@
   border: 1px #8df5e4 solid;
 } */
 
-#checkBoxes label {
+/* s */
+
+.checkBox {
   display: block;
   box-sizing: border-box;
   font-weight: 100;
   font-size: 15px;
-  padding: 5px;
+  padding-left: 15px;
 }
 
-#checkBoxes label:hover {
+.checkbox:hover {
   background-color: #009688;
 }
