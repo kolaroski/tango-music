@@ -20,7 +20,14 @@ export const CardList: React.FC<CardListProps> = ({ titles }): JSX.Element => {
     cards.push(<Card key={index} title={currentTitles[index]} />);
   }
   return (
-    <div className="CardList">
+    <div className="CardList" onWheel={(event) => {
+      if (start + 6 < titles.length) {
+        setStart(start + 1);
+      }
+      if (end < titles.length) {
+        setEnd(end + 1);
+      }
+    }}>
       {" "}
       <button
         className="arrows prev"
