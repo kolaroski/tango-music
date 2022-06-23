@@ -40,7 +40,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <SideBar />
+      <SideBar allOrchestras={all_orquestras} allSingers={all_singers} />
       <div className="main-content">
         <div>
           <h3 className="cardlistHeading">Orchestras</h3>

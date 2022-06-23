@@ -5,9 +5,8 @@ export interface OptionsItemProps {
   // key: number;
   heading: string;
   emoji: string;
-  options: string;
+  options: Array<string>;
   hidden: string;
-  // advancedHidden: string;
   // toggleAdvancedHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
@@ -16,14 +15,25 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   emoji,
   options,
   hidden,
-  // advancedHidden,
-  // toggleAdvancedHandler,
 }): JSX.Element => {
   const [openSubOptions, setOpenSubOptions] = useState(false);
+  let optionsArr: Array<string> = [];
+  for (let index = 0; index < options.length; index++) {
+    if (index < options.length) {
+      optionsArr.push(options[index]);
+    }
+  }
+
+  let optionsView: Array<JSX.Element> = [];
+  for (const index in optionsArr) {
+    optionsView.push(<p className="checkBox">{optionsArr[index]}</p>);
+
+    let optionsArrTest: Array<JSX.Element> = [];
+    options.forEach((option) => optionsArrTest.push(<p>{option}</p>));
+  }
+
   return (
     <>
-      {/* <div className="OptionsItemBox" onClick={toggleAdvancedHandler}> */}
-
       <div
         className="OptionsItemBox"
         onClick={() => setOpenSubOptions(!openSubOptions)}
@@ -33,35 +43,24 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
         <button className={`arrowDown ${hidden}`}></button>
         <br />
       </div>
-      {/* <div>
-        <p className={openSubOptions ? "" : "hidden"}>{options}</p>
-        <p className={advancedHidden}>{options}</p>
-      </div> */}
+
       <div>
         <div
-          // id={`option{key}`}
-          // id="options2"
           className={
             openSubOptions ? "multipleSelection" : "multipleSelection hidden"
           }
         >
-          <div id="checkBoxes">
-            <label htmlFor="first">
+          <div className="checkBoxes">
+            <div>{optionsView}</div>
+
+            {/* <label htmlFor="first">
               <input type="checkbox" id="first" />
-              checkBox1
+              {optionsView}
             </label>
             <label htmlFor="second">
               <input type="checkbox" id="second" />
               checkBox2
-            </label>
-            <label htmlFor="third">
-              <input type="checkbox" id="third" />
-              checkBox3
-            </label>
-            <label htmlFor="fourth">
-              <input type="checkbox" id="fourth" />
-              checkBox4
-            </label>
+            </label> */}
           </div>
         </div>
       </div>

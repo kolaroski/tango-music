@@ -4,43 +4,45 @@ import Button from "../components/Button";
 import SideBarToggle from "../components/SideBarToggle";
 import "./SideBar.css";
 
-const SideBar: React.FC = (): JSX.Element => {
+export interface SideBarProps {
+  allOrchestras: Array<string>;
+  allSingers: Array<string>;
+}
+
+const SideBar: React.FC<SideBarProps> = ({
+  allOrchestras,
+  allSingers,
+}): JSX.Element => {
   const [inactive, setInactive] = useState(false);
   const toggleHandler = () => setInactive(!inactive);
 
   const toggleCollapsedClass = inactive ? "collapsed" : "";
   const toggleHiddenClass = inactive ? "hidden" : "";
 
-  // const [open, setOpen] = useState(false);
-  // const toggleAdvancedOptions = open ? "" : "hidden";
-  // const toggleAdvancedHandler = (index: number) => {
-  //   setOpen(!open);
-  // };
-
   const optionsInput: Array<{
     emoji: string;
     heading: string;
-    options: string;
+    options: Array<string>;
   }> = [
     {
       emoji: "🎻 ",
       heading: "Select orchestra",
-      options: "Di Sarli",
+      options: [allOrchestras[10], allOrchestras[27], allOrchestras[39]],
     },
     {
       emoji: "🎞 ",
       heading: "Select period",
-      options: "Golden era",
+      options: ["Guardia vieja", "Golden era", "Contemporary"],
     },
     {
       emoji: "🎶 ",
       heading: "Select style",
-      options: "Vals",
+      options: ["Vals", "Tango", "Milonga"],
     },
     {
       emoji: "🎙 ",
       heading: "Select singer/s",
-      options: "Rufino",
+      options: [allSingers[190], allSingers[199], allSingers[280]],
     },
   ];
 
@@ -48,12 +50,12 @@ const SideBar: React.FC = (): JSX.Element => {
     <div className={`sideBarBox ${toggleCollapsedClass}`}>
       <div className={`optionsContainer ${toggleCollapsedClass}`}>
         <h3 className="sideBarHeading">
-          {inactive ? "🔍" : "🔍 Advanced Search"}
+          {inactive ? "🔍" : "Advanced Search"}
         </h3>
 
         {optionsInput.map(
           (
-            option: { emoji: string; heading: string; options: string },
+            option: { emoji: string; heading: string; options: Array<string> },
             index: number
           ) => (
             <OptionsItem
@@ -62,9 +64,6 @@ const SideBar: React.FC = (): JSX.Element => {
               heading={option.heading}
               options={option.options}
               hidden={toggleHiddenClass}
-              // advancedHidden={toggleAdvancedOptions}
-              // toggleAdvancedHandler={toggleAdvancedHandler}
-              // toggleAdvancedHandler={() => toggleAdvancedHandler(index)}
             />
           )
         )}
@@ -73,13 +72,13 @@ const SideBar: React.FC = (): JSX.Element => {
       <Button
         buttonName={`${inactive ? "" : "Search"}`}
         className={`btn searchBtn ${toggleCollapsedClass}`}
-        imgSrc={require("../utils/searchImg.svg")}
+        imgSrc={require("../assets/searchImg.svg")}
       />
 
       <Button
         buttonName={`${inactive ? "" : "Reset all filters"}`}
         className={`btn resetBtn ${toggleCollapsedClass}`}
-        imgSrc={require("../utils/reloadImg.svg")}
+        imgSrc={require("../assets/reloadImg.svg")}
       />
 
       <SideBarToggle
