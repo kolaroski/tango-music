@@ -1,11 +1,31 @@
 .Card {
-    font-size: 1.5em;
-    border: 1px solid;
-    width: 50px;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    vertical-align: middle;
-    
+  display: flex;
+  font-size: 1.5em;
+  margin: 10px;
+  width: 150px;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #009688;
+  border-radius: 4px;
+  /* background-color: #009688; */
+  background: rgb(26, 182, 168);
+  background: linear-gradient(
+    120deg,
+    rgba(26, 182, 168, 1) 0%,
+    rgba(0, 150, 136, 1) 50%,
+    rgba(11, 126, 114, 1) 100%
+  );
+}
+
+.card:hover {
+  background-color: #009688;
+}
+
+.caption {
+  color: #fff;
+  font-size: 0.8em;
+  margin: 10px;
+  text-align: center;
+  vertical-align: middle;
 }

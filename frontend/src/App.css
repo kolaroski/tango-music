@@ -1,15 +1,18 @@
-.testColor {
-  color: rgb(45, 45, 91);
+.main-content {
+  position: absolute;
+  margin-left: 345px;
+  margin-right: 50px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .displayStyle {
   display: flex;
 }
 
-.setBiggerTextTest {
-  font-size: 25px;
-}
-
-.redText {
-  color: rgb(192, 50, 15);
+.cardlistHeading {
+  margin-left: 50px;
+  margin-bottom: 0;
+  font-weight: 100;
+  color: #009688;
 }

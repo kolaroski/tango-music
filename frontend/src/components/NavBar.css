@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+/* Add a background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #f5f5f5;
+  font-family: "Roboto Condensed", sans-serif;
+  border: 1px solid #bdbdbd;
+  height: 10vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style the title inside the navigation bar */
+.topnav .title {
+  font-weight: bold;
+  box-sizing: border-box;
+  margin-left: 0;
+  text-decoration: none;
+  font-size: 23px;
+  width: 330px;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+  box-sizing: border-box;
+  color: #2da89e;
+  padding: 12px 14px;
+  margin: 3px;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+/* Change the color of element on hover */
+.topnav a:hover {
+  background-color: #009688;
+  color: white;
+}
+
+.nav-container-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  box-sizing: border-box;
+}
+
+.nav-links {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.nav-links a:active {
+  background-color: #04675d;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type="text"] {
+  padding: 6px;
+  border-radius: 25px;
+  border: 2px solid #959990;
+  margin-left: 50px;
+  margin-right: 45px;
+  font-size: 17px;
+  height: 35px;
+  box-sizing: border-box;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a,
+  .topnav input[type="text"] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
+}

@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap");
+
+.footer-container {
+  border: 1px solid grey;
+  background-color: #f5f5f5;
+  position: fixed;
+  width: 100%;
+  height: 10vh;
+  bottom: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Condensed", sans-serif;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.contact-link {
+  margin-right: 45px;
+  box-sizing: border-box;
+  padding: 10px;
+  text-decoration: none;
+  color: #009688;
+  font-size: 1.1rem;
+  border: 1px dashed #009688;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.contact-link:hover {
+  background-color: #009688;
+  color: white;
+}
