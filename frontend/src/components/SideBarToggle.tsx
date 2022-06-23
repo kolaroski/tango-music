@@ -14,7 +14,7 @@ const SideBarToggle: React.FC<ToggleProps> = ({
   return (
     <button className="toggleBtn" onClick={toggleHandler}>
       <img
-        src={require(`../utils/${imgSrc}Img.svg`)}
+        src={require(`../assets/${imgSrc}Img.svg`)}
         alt="toggle"
         className="iconToggle"
       />
