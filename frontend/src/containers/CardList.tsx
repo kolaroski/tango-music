@@ -19,37 +19,45 @@ export const CardList: React.FC<CardListProps> = ({ titles }): JSX.Element => {
   for (const index in currentTitles) {
     cards.push(<Card key={index} title={currentTitles[index]} />);
   }
+
+  function Next(){
+    if (start + 6 < titles.length) {
+      setStart(start + 1);
+    }
+    if (end < titles.length) {
+      setEnd(end + 1);
+    }
+  }
+
+  function Previous(){
+    if (start > 0) {
+      setStart(start - 1);
+    }
+    if (end > 6) {
+      setEnd(end - 1);
+    }
+  }
   return (
     <div className="CardList" onWheel={(event) => {
-      if (start + 6 < titles.length) {
-        setStart(start + 1);
+      if (event.deltaY == 100) {
+        Next();
       }
-      if (end < titles.length) {
-        setEnd(end + 1);
+      if (event.deltaY == -100) {
+        Previous();
       }
     }}>
       {" "}
       <button
         className="arrows prev"
         onClick={() => {
-          if (start > 0) {
-            setStart(start - 1);
-          }
-          if (end > 6) {
-            setEnd(end - 1);
-          }
+          Previous();
         }}
       ></button>
       {cards}{" "}
       <button
         className="arrows next"
         onClick={() => {
-          if (start + 6 < titles.length) {
-            setStart(start + 1);
-          }
-          if (end < titles.length) {
-            setEnd(end + 1);
-          }
+          Next();
         }}
       ></button>{" "}
     </div>
