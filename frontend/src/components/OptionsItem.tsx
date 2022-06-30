@@ -17,13 +17,13 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   hidden,
 }): JSX.Element => {
   const [openSubOptions, setOpenSubOptions] = useState(false);
-  let optionsArr: Array<string> = [];
-  for (let index = 0; index < options.length; index++) {
-    optionsArr.push(options[index]);
-  }
+  const [searchText, setSearchText] = useState<string>("");
 
   let optionsView: Array<JSX.Element> = [];
   for (const option of options) {
+    if (!option.toLocaleLowerCase().includes(searchText.toLowerCase())) {
+      continue;
+    }
     optionsView.push(
       <div>
         <label>
@@ -59,6 +59,10 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
           }
         >
           <div className="checkBoxes">
+            <input type="text" onChange={(e)=>{
+            const target: HTMLInputElement = e.target as HTMLInputElement
+            setSearchText(target.value)
+          }}/>
             <div>{optionsView}</div>
           </div>
         </div>
