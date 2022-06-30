@@ -2,31 +2,39 @@ import "./OptionsItem.css";
 import { useState } from "react";
 
 export interface OptionsItemProps {
-  // key: number;
   heading: string;
   emoji: string;
   options: Array<string>;
+  optionsSetter: (key: string, value: boolean) => void;
   hidden: string;
-  // toggleAdvancedHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const OptionsItem: React.FC<OptionsItemProps> = ({
   heading,
   emoji,
   options,
+  optionsSetter,
   hidden,
 }): JSX.Element => {
   const [openSubOptions, setOpenSubOptions] = useState(false);
   let optionsArr: Array<string> = [];
   for (let index = 0; index < options.length; index++) {
-    if (index < options.length) {
-      optionsArr.push(options[index]);
-    }
+    optionsArr.push(options[index]);
   }
 
   let optionsView: Array<JSX.Element> = [];
-  for (const index in optionsArr) {
-    optionsView.push(<p className="checkBox">{optionsArr[index]}</p>);
+  for (const option of options) {
+    optionsView.push(
+      <div>
+        <label>
+          <input type="checkbox" name={option} onClick={(e)=>{
+            const target: HTMLInputElement = e.target as HTMLInputElement
+            optionsSetter(target.name, target.checked)
+          }}/>
+          {option}
+        </label>
+      </div>
+    );
 
     let optionsArrTest: Array<JSX.Element> = [];
     options.forEach((option) => optionsArrTest.push(<p>{option}</p>));
@@ -52,15 +60,6 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
         >
           <div className="checkBoxes">
             <div>{optionsView}</div>
-
-            {/* <label htmlFor="first">
-              <input type="checkbox" id="first" />
-              {optionsView}
-            </label>
-            <label htmlFor="second">
-              <input type="checkbox" id="second" />
-              checkBox2
-            </label> */}
           </div>
         </div>
       </div>

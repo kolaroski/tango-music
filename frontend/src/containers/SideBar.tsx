@@ -4,14 +4,23 @@ import Button from "../components/Button";
 import SideBarToggle from "../components/SideBarToggle";
 import "./SideBar.css";
 
+interface OptionsCoreItem {
+  options: Array<string>;
+  optionsSetter: (key: string, value: boolean) => void;
+}
+
 export interface SideBarProps {
-  allOrchestras: Array<string>;
-  allSingers: Array<string>;
+  orchestrasOptions: OptionsCoreItem;
+  singersOptions: OptionsCoreItem;
+  stylesOptions: OptionsCoreItem;
+  periodsOptions: OptionsCoreItem;
 }
 
 const SideBar: React.FC<SideBarProps> = ({
-  allOrchestras,
-  allSingers,
+  orchestrasOptions,
+  singersOptions,
+  stylesOptions,
+  periodsOptions,
 }): JSX.Element => {
   const [inactive, setInactive] = useState(false);
   const toggleHandler = () => setInactive(!inactive);
@@ -22,27 +31,28 @@ const SideBar: React.FC<SideBarProps> = ({
   const optionsInput: Array<{
     emoji: string;
     heading: string;
-    options: Array<string>;
+    optionsCoreItem: OptionsCoreItem;
+
   }> = [
     {
       emoji: "🎻 ",
       heading: "Select orchestra",
-      options: [allOrchestras[10], allOrchestras[27], allOrchestras[39]],
-    },
-    {
-      emoji: "🎞 ",
-      heading: "Select period",
-      options: ["Guardia vieja", "Golden era", "Contemporary"],
-    },
-    {
-      emoji: "🎶 ",
-      heading: "Select style",
-      options: ["Vals", "Tango", "Milonga"],
+      optionsCoreItem: orchestrasOptions
     },
     {
       emoji: "🎙 ",
       heading: "Select singer/s",
-      options: [allSingers[190], allSingers[199], allSingers[280]],
+      optionsCoreItem: singersOptions
+    },
+    {
+      emoji: "🎶 ",
+      heading: "Select style",
+      optionsCoreItem: stylesOptions
+    },
+    {
+      emoji: "🎞 ",
+      heading: "Select period",
+      optionsCoreItem: periodsOptions
     },
   ];
 
@@ -55,14 +65,15 @@ const SideBar: React.FC<SideBarProps> = ({
 
         {optionsInput.map(
           (
-            option: { emoji: string; heading: string; options: Array<string> },
+            option: { emoji: string; heading: string; optionsCoreItem: OptionsCoreItem},
             index: number
           ) => (
             <OptionsItem
               key={index}
               emoji={option.emoji}
               heading={option.heading}
-              options={option.options}
+              options={option.optionsCoreItem.options}
+              optionsSetter={option.optionsCoreItem.optionsSetter}
               hidden={toggleHiddenClass}
             />
           )
