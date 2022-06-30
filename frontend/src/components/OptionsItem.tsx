@@ -21,7 +21,7 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
 
   let optionsView: Array<JSX.Element> = [];
   for (const option of options) {
-    if (!option.toLocaleLowerCase().includes(searchText.toLowerCase())) {
+    if (!option.toLowerCase().includes(searchText.toLowerCase())) {
       continue;
     }
     optionsView.push(
