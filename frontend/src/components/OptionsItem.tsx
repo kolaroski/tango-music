@@ -1,9 +1,11 @@
 import "./OptionsItem.css";
 import { useState } from "react";
+import SingersIcon from "../assets/SingersIcon";
+import StyleIcon from "../assets/StyleIcon";
 
 export interface OptionsItemProps {
   heading: string;
-  emoji: string;
+  icon: JSX.Element;
   options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
   hidden: string;
@@ -11,7 +13,7 @@ export interface OptionsItemProps {
 
 const OptionsItem: React.FC<OptionsItemProps> = ({
   heading,
-  emoji,
+  icon,
   options,
   optionsSetter,
   hidden,
@@ -22,20 +24,24 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
 
   // Instantiate options view
   let optionsView: Array<JSX.Element> = [];
-  
+
   // Populate options View
   for (const option of options) {
-    let option_hidden_state: boolean = false
+    let option_hidden_state: boolean = false;
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
-      option_hidden_state = true
+      option_hidden_state = true;
     }
     optionsView.push(
       <div hidden={option_hidden_state}>
         <label>
-          <input type="checkbox" name={option} onClick={(e)=>{
-            const target: HTMLInputElement = e.target as HTMLInputElement
-            optionsSetter(target.name, target.checked)
-          }}/>
+          <input
+            type="checkbox"
+            name={option}
+            onClick={(e) => {
+              const target: HTMLInputElement = e.target as HTMLInputElement;
+              optionsSetter(target.name, target.checked);
+            }}
+          />
           {option}
         </label>
       </div>
@@ -48,7 +54,8 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
         className="OptionsItemBox"
         onClick={() => setOpenSubOptions(!openSubOptions)}
       >
-        <div className="emoji">{emoji}</div>
+        <div className="emoji">{icon}</div>
+
         <div className={`optionHeading ${hidden}`}>{heading}</div>
         <button className={`arrowDown ${hidden}`}></button>
         <br />
@@ -61,10 +68,13 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
           }
         >
           <div className="checkBoxes">
-            <input type="text" onChange={(e)=>{
-            const target: HTMLInputElement = e.target as HTMLInputElement
-            setSearchText(target.value)
-          }}/>
+            <input
+              type="text"
+              onChange={(e) => {
+                const target: HTMLInputElement = e.target as HTMLInputElement;
+                setSearchText(target.value);
+              }}
+            />
             <div>{optionsView}</div>
           </div>
         </div>

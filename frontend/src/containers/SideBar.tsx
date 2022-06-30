@@ -2,6 +2,10 @@ import { useState } from "react";
 import OptionsItem from "../components/OptionsItem";
 import Button from "../components/Button";
 import SideBarToggle from "../components/SideBarToggle";
+import OrchestraIcon from "../assets/OrchestraIcon";
+import SingersIcon from "../assets/SingersIcon";
+import StyleIcon from "../assets/StyleIcon";
+import PeriodIcon from "../assets/PeriodIcon";
 import "./SideBar.css";
 
 interface OptionsCoreItem {
@@ -29,30 +33,29 @@ const SideBar: React.FC<SideBarProps> = ({
   const toggleHiddenClass = inactive ? "hidden" : "";
 
   const optionsInput: Array<{
-    emoji: string;
+    icon: JSX.Element;
     heading: string;
     optionsCoreItem: OptionsCoreItem;
-
   }> = [
     {
-      emoji: "🎻 ",
+      icon: <OrchestraIcon color="#055a5f" size={25} />,
       heading: "Select orchestra",
-      optionsCoreItem: orchestrasOptions
+      optionsCoreItem: orchestrasOptions,
     },
     {
-      emoji: "🎙 ",
+      icon: <SingersIcon color="#055a5f" size={25} />,
       heading: "Select singer/s",
-      optionsCoreItem: singersOptions
+      optionsCoreItem: singersOptions,
     },
     {
-      emoji: "🎶 ",
+      icon: <StyleIcon color="#055a5f" size={25} />,
       heading: "Select style",
-      optionsCoreItem: stylesOptions
+      optionsCoreItem: stylesOptions,
     },
     {
-      emoji: "🎞 ",
+      icon: <PeriodIcon color="#055a5f" size={25} />,
       heading: "Select period",
-      optionsCoreItem: periodsOptions
+      optionsCoreItem: periodsOptions,
     },
   ];
 
@@ -65,12 +68,16 @@ const SideBar: React.FC<SideBarProps> = ({
 
         {optionsInput.map(
           (
-            option: { emoji: string; heading: string; optionsCoreItem: OptionsCoreItem},
+            option: {
+              icon: JSX.Element;
+              heading: string;
+              optionsCoreItem: OptionsCoreItem;
+            },
             index: number
           ) => (
             <OptionsItem
               key={index}
-              emoji={option.emoji}
+              icon={option.icon}
               heading={option.heading}
               options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
