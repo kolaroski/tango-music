@@ -25,11 +25,12 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   
   // Populate options View
   for (const option of options) {
+    let option_hidden_state: boolean = false
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
-      continue;
+      option_hidden_state = true
     }
     optionsView.push(
-      <div>
+      <div hidden={option_hidden_state}>
         <label>
           <input type="checkbox" name={option} onClick={(e)=>{
             const target: HTMLInputElement = e.target as HTMLInputElement
