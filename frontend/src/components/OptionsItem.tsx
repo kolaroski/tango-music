@@ -16,10 +16,14 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   optionsSetter,
   hidden,
 }): JSX.Element => {
+  // Setup states
   const [openSubOptions, setOpenSubOptions] = useState(false);
   const [searchText, setSearchText] = useState<string>("");
 
+  // Instantiate options view
   let optionsView: Array<JSX.Element> = [];
+  
+  // Populate options View
   for (const option of options) {
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
       continue;
@@ -35,9 +39,6 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
         </label>
       </div>
     );
-
-    let optionsArrTest: Array<JSX.Element> = [];
-    options.forEach((option) => optionsArrTest.push(<p>{option}</p>));
   }
 
   return (
