@@ -1,7 +1,5 @@
 import "./OptionsItem.css";
 import { useState } from "react";
-import SingersIcon from "../assets/SingersIcon";
-import StyleIcon from "../assets/StyleIcon";
 
 export interface OptionsItemProps {
   heading: string;
@@ -27,12 +25,13 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
 
   // Populate options View
   for (const option of options) {
+    console.log(option);
     let option_hidden_state: boolean = false;
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
       option_hidden_state = true;
     }
     optionsView.push(
-      <div hidden={option_hidden_state}>
+      <div hidden={option_hidden_state} key={option}>
         <label>
           <input
             type="checkbox"
