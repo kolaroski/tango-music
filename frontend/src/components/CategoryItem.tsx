@@ -1,7 +1,8 @@
-import "./OptionsItem.css";
+import "./CategoryItem.css";
+import "../variables.css";
 import { useState } from "react";
 
-export interface OptionsItemProps {
+export interface CategoryItemProps {
   heading: string;
   icon: JSX.Element;
   options: Array<string>;
@@ -9,7 +10,7 @@ export interface OptionsItemProps {
   hidden: string;
 }
 
-const OptionsItem: React.FC<OptionsItemProps> = ({
+const CategoryItem: React.FC<CategoryItemProps> = ({
   heading,
   icon,
   options,
@@ -17,22 +18,25 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   hidden,
 }): JSX.Element => {
   // Setup states
-  const [openSubOptions, setOpenSubOptions] = useState(false);
+  const [displaySubOptions, setDisplaySubOptions] = useState(false);
   const [searchText, setSearchText] = useState<string>("");
 
   // Instantiate options view
-  let optionsView: Array<JSX.Element> = [];
+  let viewOptions: Array<JSX.Element> = [];
 
-  // Populate options View
+  // Populate 'view options'
   for (const option of options) {
-    console.log(option);
     let option_hidden_state: boolean = false;
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
       option_hidden_state = true;
     }
-    optionsView.push(
-      <div hidden={option_hidden_state} key={option}>
-        <label>
+    viewOptions.push(
+      <div
+        hidden={option_hidden_state}
+        className="checkbox-single_submenu"
+        key={option}
+      >
+        <label className="custom-checkmark">
           <input
             type="checkbox"
             name={option}
@@ -50,10 +54,10 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   return (
     <>
       <div
-        className="OptionsItemBox"
-        onClick={() => setOpenSubOptions(!openSubOptions)}
+        className="CategoryItemBox"
+        onClick={() => setDisplaySubOptions(!displaySubOptions)}
       >
-        <div className="emoji">{icon}</div>
+        <div className="icon-categories">{icon}</div>
 
         <div className={`optionHeading ${hidden}`}>{heading}</div>
         <button className={`arrowDown ${hidden}`}></button>
@@ -62,19 +66,20 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
 
       <div>
         <div
-          className={
-            openSubOptions ? "multipleSelection" : "multipleSelection hidden"
-          }
+          className={displaySubOptions ? "box_submenu" : "box_submenu hidden"}
         >
-          <div className="checkBoxes">
+          <div>
             <input
               type="text"
+              className="search-input_submenu"
+              value={searchText}
               onChange={(e) => {
                 const target: HTMLInputElement = e.target as HTMLInputElement;
                 setSearchText(target.value);
               }}
+              placeholder=" Start typing for more options..."
             />
-            <div>{optionsView}</div>
+            <div className="checkboxes_submenu">{viewOptions}</div>
           </div>
         </div>
       </div>
@@ -82,4 +87,4 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
   );
 };
 
-export default OptionsItem;
+export default CategoryItem;

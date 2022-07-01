@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OptionsItem from "../components/OptionsItem";
+import CategoryItem from "../components/CategoryItem";
 import Button from "../components/Button";
 import SideBarToggle from "../components/SideBarToggle";
 import {
@@ -34,7 +34,7 @@ const SideBar: React.FC<SideBarProps> = ({
   const toggleCollapsedClass = inactive ? "collapsed" : "";
   const toggleHiddenClass = inactive ? "hidden" : "";
 
-  const optionsInput: Array<{
+  const categoriesArr: Array<{
     icon: JSX.Element;
     heading: string;
     optionsCoreItem: OptionsCoreItem;
@@ -63,12 +63,12 @@ const SideBar: React.FC<SideBarProps> = ({
 
   return (
     <div className={`sideBarBox ${toggleCollapsedClass}`}>
-      <div className={`optionsContainer ${toggleCollapsedClass}`}>
+      <div className={`categoriesContainer ${toggleCollapsedClass}`}>
         <h3 className="sideBarHeading">
           {inactive ? "🔍" : "Advanced Search"}
         </h3>
 
-        {optionsInput.map(
+        {categoriesArr.map(
           (
             option: {
               icon: JSX.Element;
@@ -77,7 +77,7 @@ const SideBar: React.FC<SideBarProps> = ({
             },
             index: number
           ) => (
-            <OptionsItem
+            <CategoryItem
               key={index}
               icon={option.icon}
               heading={option.heading}
