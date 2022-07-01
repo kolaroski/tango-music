@@ -28,11 +28,11 @@ const SideBar: React.FC<SideBarProps> = ({
   stylesOptions,
   periodsOptions,
 }): JSX.Element => {
-  const [inactive, setInactive] = useState(false);
-  const toggleHandler = () => setInactive(!inactive);
+  // const [inactive, setInactive] = useState(false);
+  // const toggleHandler = () => setInactive(!inactive);
 
-  const toggleCollapsedClass = inactive ? "collapsed" : "";
-  const toggleHiddenClass = inactive ? "hidden" : "";
+  // const toggleCollapsedClass = inactive ? "collapsed" : "";
+  // const toggleHiddenClass = inactive ? "hidden" : "";
 
   const categoriesArr: Array<{
     icon: JSX.Element;
@@ -62,11 +62,15 @@ const SideBar: React.FC<SideBarProps> = ({
   ];
 
   return (
-    <div className={`sideBarBox ${toggleCollapsedClass}`}>
+    <div className={`sideBarBox`}>
+      <div className={`categoriesContainer`}>
+        <h3 className="sideBarHeading">Advanced Search</h3>
+
+        {/* <div className={`sideBarBox ${toggleCollapsedClass}`}>
       <div className={`categoriesContainer ${toggleCollapsedClass}`}>
         <h3 className="sideBarHeading">
           {inactive ? "🔍" : "Advanced Search"}
-        </h3>
+        </h3> */}
 
         {categoriesArr.map(
           (
@@ -83,28 +87,21 @@ const SideBar: React.FC<SideBarProps> = ({
               heading={option.heading}
               options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
-              hidden={toggleHiddenClass}
             />
           )
         )}
       </div>
 
       <Button
-        buttonName={`${inactive ? "" : "Search"}`}
-        className={`btn searchBtn ${toggleCollapsedClass}`}
+        buttonName="Search"
+        className="btn searchBtn"
         imgSrc={require("../assets/searchImg.svg")}
       />
 
       <Button
-        buttonName={`${inactive ? "" : "Reset all filters"}`}
-        className={`btn resetBtn ${toggleCollapsedClass}`}
+        buttonName="Reset all filters"
+        className="btn resetBtn"
         imgSrc={require("../assets/reloadImg.svg")}
-      />
-
-      <SideBarToggle
-        toggleHandler={toggleHandler}
-        imgSrc={`${inactive ? "arrowRight" : "arrowLeft"}`}
-        textToggle={`${inactive ? "" : "Hide sidebar"}`}
       />
     </div>
   );

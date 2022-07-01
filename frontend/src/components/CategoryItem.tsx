@@ -7,7 +7,6 @@ export interface CategoryItemProps {
   icon: JSX.Element;
   options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
-  hidden: string;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
@@ -15,7 +14,6 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   icon,
   options,
   optionsSetter,
-  hidden,
 }): JSX.Element => {
   // Setup states
   const [displaySubOptions, setDisplaySubOptions] = useState(false);
@@ -59,8 +57,8 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
       >
         <div className="icon-categories">{icon}</div>
 
-        <div className={`optionHeading ${hidden}`}>{heading}</div>
-        <button className={`arrowDown ${hidden}`}></button>
+        <div className={`optionHeading`}>{heading}</div>
+        <button className={`arrowDown`}></button>
         <br />
       </div>
 
