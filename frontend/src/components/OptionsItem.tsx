@@ -2,34 +2,44 @@ import "./OptionsItem.css";
 import { useState } from "react";
 
 export interface OptionsItemProps {
-  // key: number;
   heading: string;
   emoji: string;
   options: Array<string>;
+  optionsSetter: (key: string, value: boolean) => void;
   hidden: string;
-  // toggleAdvancedHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const OptionsItem: React.FC<OptionsItemProps> = ({
   heading,
   emoji,
   options,
+  optionsSetter,
   hidden,
 }): JSX.Element => {
+  // Setup states
   const [openSubOptions, setOpenSubOptions] = useState(false);
-  let optionsArr: Array<string> = [];
-  for (let index = 0; index < options.length; index++) {
-    if (index < options.length) {
-      optionsArr.push(options[index]);
-    }
-  }
+  const [searchText, setSearchText] = useState<string>("");
 
+  // Instantiate options view
   let optionsView: Array<JSX.Element> = [];
-  for (const index in optionsArr) {
-    optionsView.push(<p className="checkBox">{optionsArr[index]}</p>);
-
-    let optionsArrTest: Array<JSX.Element> = [];
-    options.forEach((option) => optionsArrTest.push(<p>{option}</p>));
+  
+  // Populate options View
+  for (const option of options) {
+    let option_hidden_state: boolean = false
+    if (!option.toLowerCase().includes(searchText.toLowerCase())) {
+      option_hidden_state = true
+    }
+    optionsView.push(
+      <div hidden={option_hidden_state}>
+        <label>
+          <input type="checkbox" name={option} onClick={(e)=>{
+            const target: HTMLInputElement = e.target as HTMLInputElement
+            optionsSetter(target.name, target.checked)
+          }}/>
+          {option}
+        </label>
+      </div>
+    );
   }
 
   return (
@@ -51,16 +61,11 @@ const OptionsItem: React.FC<OptionsItemProps> = ({
           }
         >
           <div className="checkBoxes">
+            <input type="text" onChange={(e)=>{
+            const target: HTMLInputElement = e.target as HTMLInputElement
+            setSearchText(target.value)
+          }}/>
             <div>{optionsView}</div>
-
-            {/* <label htmlFor="first">
-              <input type="checkbox" id="first" />
-              {optionsView}
-            </label>
-            <label htmlFor="second">
-              <input type="checkbox" id="second" />
-              checkBox2
-            </label> */}
           </div>
         </div>
       </div>
