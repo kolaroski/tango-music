@@ -2,10 +2,12 @@ import { useState } from "react";
 import OptionsItem from "../components/OptionsItem";
 import Button from "../components/Button";
 import SideBarToggle from "../components/SideBarToggle";
-import OrchestraIcon from "../assets/OrchestraIcon";
-import SingersIcon from "../assets/SingersIcon";
-import StyleIcon from "../assets/StyleIcon";
-import PeriodIcon from "../assets/PeriodIcon";
+import {
+  OrchestraIcon,
+  SingersIcon,
+  StyleIcon,
+  PeriodIcon,
+} from "../assets/SideBarIcons";
 import "./SideBar.css";
 
 interface OptionsCoreItem {
