@@ -3,18 +3,27 @@
 
 .CategoryItemBox {
   padding: 10px;
-  height: 10vh;
-  font-size: 1.1em;
+  height: 8vh;
+  font-size: 1em;
   display: flex;
   box-sizing: border-box;
   width: 100%;
   align-items: center;
-  background-color: #f5f5f5;
   width: 100%;
+  border-top: 2px solid var(--secondary);
 }
 
 .CategoryItemBox:hover {
-  background-color: #009688;
+  background-color: var(--secondary-lighter);
+}
+
+.CategoryItemBox.open {
+  background-color: var(--secondary-light);
+  border-bottom: none;
+}
+
+.CategoryItemBox.open:hover {
+  background-color: var(--secondary-light2);
 }
 
 .icon-categories {
@@ -28,7 +37,7 @@
 }
 
 .arrowDown {
-  border: solid #514f4f;
+  border: solid var(--neutral-dark);
   background-color: transparent;
   border-width: 0 3px 3px 0;
   display: inline-block;
@@ -46,27 +55,32 @@
 
 .box_submenu {
   box-sizing: border-box;
-  margin: auto 15px;
+  margin-left: 15px;
   width: 90%;
+  padding-bottom: 15px;
 }
 
 .search-input_submenu {
   box-sizing: border-box;
   padding: 8px;
   width: 100%;
-  border-radius: 18px;
-  border: 1px solid rgb(252, 175, 92);
-  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid var(--secondary);
+  margin: 15px 0 5px 0;
 }
 
 .search-input_submenu:focus {
   outline: none;
-  border: 1px solid rgb(252, 175, 92);
-  box-shadow: 0 0 7px #719ece;
+  border: 1px solid var(--secondary);
+  box-shadow: 0 0 7px var(--secondary-light);
 }
 
 .search-input_submenu::placeholder {
-  color: rgb(251, 98, 2);
+  color: var(--secondary-dark);
+}
+
+.search-input_submenu:focus::placeholder {
+  color: var(--secondary);
 }
 
 .checkboxes_submenu {
@@ -88,13 +102,16 @@
   cursor: pointer;
 }
 
+.checkbox-single_submenu label:hover {
+  background-color: var(--neutral-lighter);
+}
+
 .checkbox-single_submenu input {
   margin-right: 10px;
   cursor: pointer;
 }
 
 /* custom checkmark */
-
 input[type="checkbox"] {
   appearance: none;
   background-color: white;
@@ -102,7 +119,7 @@ input[type="checkbox"] {
   font: inherit;
   width: 1.1em;
   height: 1.1em;
-  border: 0.1em solid rgb(136, 133, 133);
+  border: 0.1em solid var(--neutral-dark);
   /* OPTION 1) border radius to form a circle: */
   border-radius: 0.5em;
   /* OPTION 2) border radius to form a rounded square: */
@@ -120,7 +137,7 @@ input[type="checkbox"]::before {
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em #0c554d;
+  box-shadow: inset 1em 1em var(--neutral-dark);
 }
 
 input[type="checkbox"]:checked::before {

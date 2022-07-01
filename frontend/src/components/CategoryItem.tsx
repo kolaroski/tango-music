@@ -52,7 +52,9 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   return (
     <>
       <div
-        className="CategoryItemBox"
+        className={
+          displaySubOptions ? `CategoryItemBox open` : `CategoryItemBox`
+        }
         onClick={() => setDisplaySubOptions(!displaySubOptions)}
       >
         <div className="icon-categories">{icon}</div>
