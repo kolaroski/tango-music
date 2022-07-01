@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CategoryItem from "../components/CategoryItem";
 import Button from "../components/Button";
-import SideBarToggle from "../components/SideBarToggle";
 import {
   OrchestraIcon,
   SingersIcon,
@@ -28,12 +27,6 @@ const SideBar: React.FC<SideBarProps> = ({
   stylesOptions,
   periodsOptions,
 }): JSX.Element => {
-  // const [inactive, setInactive] = useState(false);
-  // const toggleHandler = () => setInactive(!inactive);
-
-  // const toggleCollapsedClass = inactive ? "collapsed" : "";
-  // const toggleHiddenClass = inactive ? "hidden" : "";
-
   const categoriesArr: Array<{
     icon: JSX.Element;
     heading: string;
@@ -66,12 +59,6 @@ const SideBar: React.FC<SideBarProps> = ({
       <div className={`categoriesContainer`}>
         <h3 className="sideBarHeading">Advanced Search</h3>
 
-        {/* <div className={`sideBarBox ${toggleCollapsedClass}`}>
-      <div className={`categoriesContainer ${toggleCollapsedClass}`}>
-        <h3 className="sideBarHeading">
-          {inactive ? "🔍" : "Advanced Search"}
-        </h3> */}
-
         {categoriesArr.map(
           (
             option: {
@@ -91,18 +78,19 @@ const SideBar: React.FC<SideBarProps> = ({
           )
         )}
       </div>
+      <div className="buttons_sidebar">
+        <Button
+          buttonName="Search"
+          className="btn searchBtn"
+          imgSrc={require("../assets/searchImg.svg")}
+        />
 
-      <Button
-        buttonName="Search"
-        className="btn searchBtn"
-        imgSrc={require("../assets/searchImg.svg")}
-      />
-
-      <Button
-        buttonName="Reset all filters"
-        className="btn resetBtn"
-        imgSrc={require("../assets/reloadImg.svg")}
-      />
+        <Button
+          buttonName="Reset all filters"
+          className="btn resetBtn"
+          imgSrc={require("../assets/reloadImg.svg")}
+        />
+      </div>
     </div>
   );
 };
