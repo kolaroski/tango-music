@@ -41,11 +41,11 @@ function App() {
   // Fetch and set all the orquestras and all the singers
   useEffect(() => {
     getAllOrquestras().then(function (orquestras: Array<string>) {
-      setAllOrquestras(orquestras.slice(0, 3));
+      setAllOrquestras(orquestras);
     });
 
     getAllSingers().then(function (singers: Array<string>) {
-      setAllSingers(singers.slice(0, 3));
+      setAllSingers(singers);
     });
   }, []);
 
@@ -80,7 +80,7 @@ function App() {
   const [filterPeriodMap, filterPeriodActions] = useMap<string, boolean>(
     initialFPMap
   );
-  console.log(filterStyleMap)
+  
   return (
     <div>
       <NavBar />
