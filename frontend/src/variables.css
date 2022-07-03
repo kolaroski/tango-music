@@ -1,0 +1,13 @@
+body {
+  --neutral-dark: #514f4f;
+  --neutral-light: #aca9a9;
+  --neutral-lighter: #f1f1f1;
+  --primary-light: #bee3db;
+  --primary: #89b0ae;
+  --primary-dark: #5a8381;
+  --secondary-lighter: #fff7f2;
+  --secondary-light: #f9e3d5;
+  --secondary-light2: #f4cfb8;
+  --secondary: #fcaf5c;
+  --secondary-dark: #fb6202;
+}
