@@ -1,7 +1,12 @@
 import { useState } from "react";
-import OptionsItem from "../components/OptionsItem";
+import CategoryItem from "../components/CategoryItem";
 import Button from "../components/Button";
-import SideBarToggle from "../components/SideBarToggle";
+import {
+  OrchestraIcon,
+  SingersIcon,
+  StyleIcon,
+  PeriodIcon,
+} from "../assets/SideBarIcons";
 import "./SideBar.css";
 
 interface OptionsCoreItem {
@@ -22,81 +27,70 @@ const SideBar: React.FC<SideBarProps> = ({
   stylesOptions,
   periodsOptions,
 }): JSX.Element => {
-  const [inactive, setInactive] = useState(false);
-  const toggleHandler = () => setInactive(!inactive);
-
-  const toggleCollapsedClass = inactive ? "collapsed" : "";
-  const toggleHiddenClass = inactive ? "hidden" : "";
-
-  const optionsInput: Array<{
-    emoji: string;
+  const categoriesArr: Array<{
+    icon: JSX.Element;
     heading: string;
     optionsCoreItem: OptionsCoreItem;
-
   }> = [
     {
-      emoji: "🎻 ",
+      icon: <OrchestraIcon color="#055a5f" size={25} />,
       heading: "Select orchestra",
-      optionsCoreItem: orchestrasOptions
+      optionsCoreItem: orchestrasOptions,
     },
     {
-      emoji: "🎙 ",
+      icon: <SingersIcon color="#055a5f" size={25} />,
       heading: "Select singer/s",
-      optionsCoreItem: singersOptions
+      optionsCoreItem: singersOptions,
     },
     {
-      emoji: "🎶 ",
+      icon: <StyleIcon color="#055a5f" size={25} />,
       heading: "Select style",
-      optionsCoreItem: stylesOptions
+      optionsCoreItem: stylesOptions,
     },
     {
-      emoji: "🎞 ",
+      icon: <PeriodIcon color="#055a5f" size={25} />,
       heading: "Select period",
-      optionsCoreItem: periodsOptions
+      optionsCoreItem: periodsOptions,
     },
   ];
 
   return (
-    <div className={`sideBarBox ${toggleCollapsedClass}`}>
-      <div className={`optionsContainer ${toggleCollapsedClass}`}>
-        <h3 className="sideBarHeading">
-          {inactive ? "🔍" : "Advanced Search"}
-        </h3>
+    <div className={`sideBarBox`}>
+      <div className={`categoriesContainer`}>
+        <h3 className="sideBarHeading">Advanced Search</h3>
 
-        {optionsInput.map(
+        {categoriesArr.map(
           (
-            option: { emoji: string; heading: string; optionsCoreItem: OptionsCoreItem},
+            option: {
+              icon: JSX.Element;
+              heading: string;
+              optionsCoreItem: OptionsCoreItem;
+            },
             index: number
           ) => (
-            <OptionsItem
+            <CategoryItem
               key={index}
-              emoji={option.emoji}
+              icon={option.icon}
               heading={option.heading}
               options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
-              hidden={toggleHiddenClass}
             />
           )
         )}
       </div>
+      <div className="buttons_sidebar">
+        <Button
+          buttonName="Search"
+          className="btn searchBtn"
+          imgSrc={require("../assets/searchImg.svg")}
+        />
 
-      <Button
-        buttonName={`${inactive ? "" : "Search"}`}
-        className={`btn searchBtn ${toggleCollapsedClass}`}
-        imgSrc={require("../assets/searchImg.svg")}
-      />
-
-      <Button
-        buttonName={`${inactive ? "" : "Reset all filters"}`}
-        className={`btn resetBtn ${toggleCollapsedClass}`}
-        imgSrc={require("../assets/reloadImg.svg")}
-      />
-
-      <SideBarToggle
-        toggleHandler={toggleHandler}
-        imgSrc={`${inactive ? "arrowRight" : "arrowLeft"}`}
-        textToggle={`${inactive ? "" : "Hide sidebar"}`}
-      />
+        <Button
+          buttonName="Reset all filters"
+          className="btn resetBtn"
+          imgSrc={require("../assets/reloadImg.svg")}
+        />
+      </div>
     </div>
   );
 };
