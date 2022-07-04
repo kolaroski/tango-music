@@ -19,6 +19,7 @@ export interface SideBarProps {
   singersOptions: OptionsCoreItem;
   stylesOptions: OptionsCoreItem;
   periodsOptions: OptionsCoreItem;
+  resetAllFilters: () => void;
 }
 
 const SideBar: React.FC<SideBarProps> = ({
@@ -26,6 +27,7 @@ const SideBar: React.FC<SideBarProps> = ({
   singersOptions,
   stylesOptions,
   periodsOptions,
+  resetAllFilters,
 }): JSX.Element => {
   const categoriesArr: Array<{
     icon: JSX.Element;
@@ -89,6 +91,7 @@ const SideBar: React.FC<SideBarProps> = ({
           buttonName="Reset all filters"
           className="btn resetBtn"
           imgSrc={require("../assets/reloadImg.svg")}
+          onClick={resetAllFilters}
         />
       </div>
     </div>

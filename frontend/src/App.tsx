@@ -80,7 +80,21 @@ function App() {
   const [filterPeriodMap, filterPeriodActions] = useMap<string, boolean>(
     initialFPMap
   );
-  
+
+  // checking the maps:
+  console.log("orchestras", filterOrquestrasMap);
+  console.log("singers", filterSingersMap);
+  console.log("style", filterStyleMap);
+  console.log("period", filterPeriodMap);
+
+  // RESET ALL MAPS:
+  const onResetAllFilters = () => {
+    filterOrquestrasActions.reset();
+    filterSingersActions.reset();
+    filterStyleActions.reset();
+    filterPeriodActions.reset();
+  };
+
   return (
     <div>
       <NavBar />
@@ -101,6 +115,7 @@ function App() {
           options: allPeriods,
           optionsSetter: filterPeriodActions.set,
         }}
+        resetAllFilters={onResetAllFilters}
       />
       <div className="main-content">
         <div>
