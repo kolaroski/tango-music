@@ -81,11 +81,13 @@ function App() {
     initialFPMap
   );
 
-  // checking the maps:
+  // pomosno: ZA PROVERKA NA MAPITE
+  // -----------delete below---------------------
   console.log("orchestras", filterOrquestrasMap);
   console.log("singers", filterSingersMap);
   console.log("style", filterStyleMap);
   console.log("period", filterPeriodMap);
+  // -----------delete above---------------------
 
   // RESET ALL MAPS:
   const onResetAllFilters = () => {
@@ -102,18 +104,22 @@ function App() {
         orchestrasOptions={{
           options: allOrquestras,
           optionsSetter: filterOrquestrasActions.set,
+          checkedFilters: filterOrquestrasMap,
         }}
         singersOptions={{
           options: allSingers,
           optionsSetter: filterSingersActions.set,
+          checkedFilters: filterSingersMap,
         }}
         stylesOptions={{
           options: allStyles,
           optionsSetter: filterStyleActions.set,
+          checkedFilters: filterStyleMap,
         }}
         periodsOptions={{
           options: allPeriods,
           optionsSetter: filterPeriodActions.set,
+          checkedFilters: filterPeriodMap,
         }}
         resetAllFilters={onResetAllFilters}
       />

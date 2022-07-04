@@ -12,6 +12,7 @@ import "./SideBar.css";
 interface OptionsCoreItem {
   options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
+  checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
 
 export interface SideBarProps {
@@ -76,6 +77,7 @@ const SideBar: React.FC<SideBarProps> = ({
               heading={option.heading}
               options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
+              isChecked={option.optionsCoreItem.checkedFilters}
             />
           )
         )}

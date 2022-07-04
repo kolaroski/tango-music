@@ -7,6 +7,7 @@ export interface CategoryItemProps {
   icon: JSX.Element;
   options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
+  isChecked: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
@@ -14,6 +15,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   icon,
   options,
   optionsSetter,
+  isChecked,
 }): JSX.Element => {
   // Setup states
   const [displaySubOptions, setDisplaySubOptions] = useState(false);
@@ -25,6 +27,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   // Populate 'view options'
   for (const option of options) {
     let option_hidden_state: boolean = false;
+
     if (!option.toLowerCase().includes(searchText.toLowerCase())) {
       option_hidden_state = true;
     }
@@ -38,10 +41,11 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
           <input
             type="checkbox"
             name={option}
-            onClick={(e) => {
+            onChange={(e) => {
               const target: HTMLInputElement = e.target as HTMLInputElement;
               optionsSetter(target.name, target.checked);
             }}
+            checked={isChecked.has(option) && isChecked.get(option)}
           />
           {option}
         </label>
