@@ -55,8 +55,8 @@
 
 .box_submenu {
   box-sizing: border-box;
-  margin-left: 15px;
-  width: 90%;
+  margin-left: 1rem;
+  width: 85%;
   padding-bottom: 15px;
 }
 
@@ -87,6 +87,11 @@
   box-sizing: border-box;
   font-weight: 100;
   font-size: 15px;
+  max-height: 200px;
+  overflow-y: scroll;
+  scrollbar-color: var(--secondary) var(--neutral-lighter);
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
 }
 
 .checkbox-single_submenu {
