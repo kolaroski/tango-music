@@ -10,7 +10,7 @@ export const CardList: React.FC<CardListProps> = ({ titles }): JSX.Element => {
   const [start, setStart] = React.useState(0);
   const [end, setEnd] = React.useState(6);
   let currentTitles: Array<string> = [];
-  for (let index = start; index < end; index++) {
+  for (let index = start; index < titles.length; index++) {
     if (index < titles.length) {
       currentTitles.push(titles[index]);
     }
@@ -47,19 +47,19 @@ export const CardList: React.FC<CardListProps> = ({ titles }): JSX.Element => {
       }
     }}>
       {" "}
-      <button
+      <div><button
         className="arrows prev"
         onClick={() => {
           Previous();
         }}
-      ></button>
-      {cards}{" "}
-      <button
+      ></button></div>
+      <div className="CardListInside">{cards}{" "}</div>
+      <div><button
         className="arrows next"
         onClick={() => {
           Next();
         }}
-      ></button>{" "}
+      ></button>{" "}</div>
     </div>
   );
 };
