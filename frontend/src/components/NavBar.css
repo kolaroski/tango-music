@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
@@ -8,8 +8,6 @@
     url('../fonts/RobotoCondensed.woff') format('woff');
 }
 
-=======
->>>>>>> f86e41c3a598a6a86b1c24e0100af12ffbd19c3d
 /* Add a background color to the top navigation bar */
 .topnav {
   overflow: hidden;
