@@ -12,5 +12,5 @@
   margin-left: 50px;
   margin-bottom: 0;
   font-weight: 100;
-  color: #009688;
+  color: var(--primary);
 }

@@ -1,9 +1,13 @@
 .CardList {
   display: flex;
+<<<<<<< HEAD
   /* width: 1100px; */
   height: 12rem;
   /* margin-left: 345px;
   margin-right: 50px; */
+=======
+  height: 10rem;
+>>>>>>> f86e41c3a598a6a86b1c24e0100af12ffbd19c3d
   align-items: center;
   margin-bottom: 2rem;
   padding: 10px;
@@ -58,21 +62,18 @@
 .arrows {
   width: 25px;
   height: 25px;
-  color: #04675d;
+  color: var(--primary-dark);
   background-color: white;
   border: none;
-  /* border-color: #009688;; */
-  /* position: absolute; */
   top: 50%;
-  /* margin-top: -31px; */
 }
 
 .arrows:hover {
-  color: #009688;
+  color: var(--primary);
 }
 
 .arrows:active {
-  color: #65a5a1;
+  color: var(--primary-light);
 }
 
 .prev {
