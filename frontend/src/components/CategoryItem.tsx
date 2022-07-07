@@ -25,33 +25,33 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   let viewOptions: Array<JSX.Element> = [];
 
   // Populate 'view options'
-  for (const option of options) {
+  isChecked.forEach((value, key) => {
     let option_hidden_state: boolean = false;
 
-    if (!option.toLowerCase().includes(searchText.toLowerCase())) {
+    if (!key.toLowerCase().includes(searchText.toLowerCase())) {
       option_hidden_state = true;
     }
     viewOptions.push(
       <div
         hidden={option_hidden_state}
         className="checkbox-single_submenu"
-        key={option}
+        key={key}
       >
         <label className="custom-checkmark">
           <input
             type="checkbox"
-            name={option}
+            name={key}
             onChange={(e) => {
               const target: HTMLInputElement = e.target as HTMLInputElement;
               optionsSetter(target.name, target.checked);
             }}
-            checked={isChecked.has(option) && isChecked.get(option)}
+            checked={value}
           />
-          {option}
+          {key}
         </label>
       </div>
     );
-  }
+  })
 
   return (
     <>

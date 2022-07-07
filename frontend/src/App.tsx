@@ -22,7 +22,7 @@ function getAllSingers(): Promise<Array<string>> {
   });
 }
 
-function intializeMap(
+function initializeMap(
   array: Array<string>,
   default_value: boolean = false
 ): Map<string, boolean> {
@@ -32,6 +32,14 @@ function intializeMap(
   }
   return map;
 }
+
+function setMapFalse(map: Omit<Map<string, boolean>, 'set' | 'clear' | 'delete'>, action: (map: Map<string, boolean>) => void): void {
+  const entries = new Map(map)
+  entries.forEach((value, key) => {
+    entries.set(key, false)
+  })
+  action(entries)
+};
 
 function App() {
   // Define states for API queries
@@ -61,10 +69,10 @@ function App() {
   ]);
 
   // Maps initial values
-  const initialFOMap = intializeMap(allOrquestras);
-  const initialFSMap = intializeMap(allSingers);
-  const initialFStyleMap = intializeMap(allStyles);
-  const initialFPMap = intializeMap(allPeriods);
+  let initialFOMap = initializeMap(allOrquestras);
+  let initialFSMap = initializeMap(allSingers);
+  const initialFStyleMap = initializeMap(allStyles);
+  const initialFPMap = initializeMap(allPeriods);
 
   // Map hooks
   const [filterOrquestrasMap, filterOrquestrasActions] = useMap<
@@ -81,22 +89,25 @@ function App() {
     initialFPMap
   );
 
-  // pomosno: ZA PROVERKA NA MAPITE
-  // -----------delete below---------------------
-  console.log("orchestras", filterOrquestrasMap);
-  console.log("singers", filterSingersMap);
-  console.log("style", filterStyleMap);
-  console.log("period", filterPeriodMap);
-  // -----------delete above---------------------
 
-  // RESET ALL MAPS:
+  useEffect(() => {
+    initialFOMap = initializeMap(allOrquestras)
+    filterOrquestrasActions.setAll(initialFOMap)
+  }, [allOrquestras]);
+
+  useEffect(() => {
+    initialFSMap = initializeMap(allSingers)
+    filterSingersActions.setAll(initialFSMap)
+  }, [allSingers]);
+
+  // RESET ALL MAPS
   const onResetAllFilters = () => {
-    filterOrquestrasActions.reset();
-    filterSingersActions.reset();
-    filterStyleActions.reset();
-    filterPeriodActions.reset();
+    setMapFalse(filterOrquestrasMap, filterOrquestrasActions.setAll);
+    setMapFalse(filterSingersMap, filterSingersActions.setAll);
+    setMapFalse(filterStyleMap, filterStyleActions.setAll);
+    setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
   };
-
+  console.log(filterStyleMap)
   return (
     <div>
       <NavBar />
