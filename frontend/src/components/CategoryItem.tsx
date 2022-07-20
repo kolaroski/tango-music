@@ -5,17 +5,15 @@ import { useState } from "react";
 export interface CategoryItemProps {
   heading: string;
   icon: JSX.Element;
-  options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
-  isChecked: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
+  checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
   heading,
   icon,
-  options,
   optionsSetter,
-  isChecked,
+  checkedFilters,
 }): JSX.Element => {
   // Setup states
   const [displaySubOptions, setDisplaySubOptions] = useState(false);
@@ -25,7 +23,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   let viewOptions: Array<JSX.Element> = [];
 
   // Populate 'view options'
-  isChecked.forEach((value, key) => {
+  checkedFilters.forEach((value, key) => {
     let option_hidden_state: boolean = false;
 
     if (!key.toLowerCase().includes(searchText.toLowerCase())) {
@@ -51,7 +49,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         </label>
       </div>
     );
-  })
+  });
 
   return (
     <>

@@ -10,7 +10,7 @@ import {
 import "./SideBar.css";
 
 interface OptionsCoreItem {
-  options: Array<string>;
+  // options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
   checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
@@ -75,9 +75,8 @@ const SideBar: React.FC<SideBarProps> = ({
               key={index}
               icon={option.icon}
               heading={option.heading}
-              options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
-              isChecked={option.optionsCoreItem.checkedFilters}
+              checkedFilters={option.optionsCoreItem.checkedFilters}
             />
           )
         )}

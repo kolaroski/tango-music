@@ -33,13 +33,16 @@ function initializeMap(
   return map;
 }
 
-function setMapFalse(map: Omit<Map<string, boolean>, 'set' | 'clear' | 'delete'>, action: (map: Map<string, boolean>) => void): void {
-  const entries = new Map(map)
+function setMapFalse(
+  map: Omit<Map<string, boolean>, "set" | "clear" | "delete">,
+  action: (map: Map<string, boolean>) => void
+): void {
+  const entries = new Map(map);
   entries.forEach((value, key) => {
-    entries.set(key, false)
-  })
-  action(entries)
-};
+    entries.set(key, false);
+  });
+  action(entries);
+}
 
 function App() {
   // Define states for API queries
@@ -89,15 +92,14 @@ function App() {
     initialFPMap
   );
 
-
   useEffect(() => {
-    initialFOMap = initializeMap(allOrquestras)
-    filterOrquestrasActions.setAll(initialFOMap)
+    initialFOMap = initializeMap(allOrquestras);
+    filterOrquestrasActions.setAll(initialFOMap);
   }, [allOrquestras]);
 
   useEffect(() => {
-    initialFSMap = initializeMap(allSingers)
-    filterSingersActions.setAll(initialFSMap)
+    initialFSMap = initializeMap(allSingers);
+    filterSingersActions.setAll(initialFSMap);
   }, [allSingers]);
 
   // RESET ALL MAPS
@@ -107,28 +109,24 @@ function App() {
     setMapFalse(filterStyleMap, filterStyleActions.setAll);
     setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
   };
-  console.log(filterStyleMap)
+
   return (
     <div>
       <NavBar />
       <SideBar
         orchestrasOptions={{
-          options: allOrquestras,
           optionsSetter: filterOrquestrasActions.set,
           checkedFilters: filterOrquestrasMap,
         }}
         singersOptions={{
-          options: allSingers,
           optionsSetter: filterSingersActions.set,
           checkedFilters: filterSingersMap,
         }}
         stylesOptions={{
-          options: allStyles,
           optionsSetter: filterStyleActions.set,
           checkedFilters: filterStyleMap,
         }}
         periodsOptions={{
-          options: allPeriods,
           optionsSetter: filterPeriodActions.set,
           checkedFilters: filterPeriodMap,
         }}
