@@ -2,6 +2,9 @@ body {
   --neutral-dark: #514f4f;
   --neutral-light: #aca9a9;
   --neutral-lighter: #f1f1f1;
+  --neutral-button: #d3d3d3;
+  --neutral-hover: #aca9a9;
+  --neutral-active: #8f8f8f;
   --primary-light: #bee3db;
   --primary: #89b0ae;
   --primary-dark: #5a8381;
@@ -9,5 +12,7 @@ body {
   --secondary-light: #f9e3d5;
   --secondary-light2: #f4cfb8;
   --secondary: #fcaf5c;
+  --secondary-hover: rgb(241, 129, 9);
+  --secondary-active: rgb(193, 102, 6);
   --secondary-dark: #fb6202;
 }
