@@ -10,7 +10,6 @@ import {
 import "./SideBar.css";
 
 interface OptionsCoreItem {
-  // options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
   checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
