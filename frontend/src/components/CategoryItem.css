@@ -47,6 +47,10 @@
   margin-left: 15px;
 }
 
+.arrowDown.expanded {
+  transform: rotate(135deg);
+}
+
 /* SUBMENU STYLES: -------------- */
 
 .hidden {

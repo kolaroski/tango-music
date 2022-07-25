@@ -62,7 +62,9 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         <div className="icon-categories">{icon}</div>
 
         <div className={`optionHeading`}>{heading}</div>
-        <button className={`arrowDown`}></button>
+        <button
+          className={displaySubOptions ? `arrowDown expanded` : `arrowDown`}
+        ></button>
         <br />
       </div>
 
