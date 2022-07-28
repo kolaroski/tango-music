@@ -1,9 +1,6 @@
-import { useState } from "react";
 import CategoryItem from "../components/CategoryItem";
 import Button from "../components/Button";
 import {
-  OrchestraIcon,
-  SingersIcon,
   StyleIcon,
   PeriodIcon,
 } from "../assets/SideBarIcons";
@@ -15,16 +12,12 @@ interface OptionsCoreItem {
 }
 
 export interface SideBarProps {
-  orchestrasOptions: OptionsCoreItem;
-  singersOptions: OptionsCoreItem;
   stylesOptions: OptionsCoreItem;
   periodsOptions: OptionsCoreItem;
   resetAllFilters: () => void;
 }
 
 const SideBar: React.FC<SideBarProps> = ({
-  orchestrasOptions,
-  singersOptions,
   stylesOptions,
   periodsOptions,
   resetAllFilters,
@@ -34,16 +27,6 @@ const SideBar: React.FC<SideBarProps> = ({
     heading: string;
     optionsCoreItem: OptionsCoreItem;
   }> = [
-    {
-      icon: <OrchestraIcon color="#055a5f" size={25} />,
-      heading: "Select orchestra",
-      optionsCoreItem: orchestrasOptions,
-    },
-    {
-      icon: <SingersIcon color="#055a5f" size={25} />,
-      heading: "Select singer/s",
-      optionsCoreItem: singersOptions,
-    },
     {
       icon: <StyleIcon color="#055a5f" size={25} />,
       heading: "Select style",

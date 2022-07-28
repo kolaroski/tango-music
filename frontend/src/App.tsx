@@ -72,19 +72,10 @@ function App() {
   ]);
 
   // Maps initial values
-  let initialFOMap = initializeMap(allOrquestras);
-  let initialFSMap = initializeMap(allSingers);
   const initialFStyleMap = initializeMap(allStyles);
   const initialFPMap = initializeMap(allPeriods);
 
   // Map hooks
-  const [filterOrquestrasMap, filterOrquestrasActions] = useMap<
-    string,
-    boolean
-  >(initialFOMap);
-  const [filterSingersMap, filterSingersActions] = useMap<string, boolean>(
-    initialFSMap
-  );
   const [filterStyleMap, filterStyleActions] = useMap<string, boolean>(
     initialFStyleMap
   );
@@ -92,20 +83,8 @@ function App() {
     initialFPMap
   );
 
-  useEffect(() => {
-    initialFOMap = initializeMap(allOrquestras);
-    filterOrquestrasActions.setAll(initialFOMap);
-  }, [allOrquestras]);
-
-  useEffect(() => {
-    initialFSMap = initializeMap(allSingers);
-    filterSingersActions.setAll(initialFSMap);
-  }, [allSingers]);
-
   // RESET ALL MAPS
   const onResetAllFilters = () => {
-    setMapFalse(filterOrquestrasMap, filterOrquestrasActions.setAll);
-    setMapFalse(filterSingersMap, filterSingersActions.setAll);
     setMapFalse(filterStyleMap, filterStyleActions.setAll);
     setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
   };
@@ -114,14 +93,6 @@ function App() {
     <div>
       <NavBar />
       <SideBar
-        orchestrasOptions={{
-          optionsSetter: filterOrquestrasActions.set,
-          checkedFilters: filterOrquestrasMap,
-        }}
-        singersOptions={{
-          optionsSetter: filterSingersActions.set,
-          checkedFilters: filterSingersMap,
-        }}
         stylesOptions={{
           optionsSetter: filterStyleActions.set,
           checkedFilters: filterStyleMap,
@@ -133,14 +104,6 @@ function App() {
         resetAllFilters={onResetAllFilters}
       />
       <div className="main-content">
-        <div>
-          <h3 className="cardlistHeading">Orchestras</h3>
-          <CardList titles={allOrquestras} />
-        </div>
-        <div>
-          <h3 className="cardlistHeading">Singers</h3>
-          <CardList titles={allSingers} />
-        </div>
       </div>
       <Footer />
     </div>
