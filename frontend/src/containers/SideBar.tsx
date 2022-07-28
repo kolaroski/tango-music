@@ -1,9 +1,6 @@
 import CategoryItem from "../components/CategoryItem";
 import Button from "../components/Button";
-import {
-  StyleIcon,
-  PeriodIcon,
-} from "../assets/SideBarIcons";
+import { StyleIcon, PeriodIcon } from "../assets/SideBarIcons";
 import "./SideBar.css";
 
 interface OptionsCoreItem {
