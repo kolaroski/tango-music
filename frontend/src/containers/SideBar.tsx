@@ -10,8 +10,8 @@ import {
 import "./SideBar.css";
 
 interface OptionsCoreItem {
-  options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
+  checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
 
 export interface SideBarProps {
@@ -19,6 +19,7 @@ export interface SideBarProps {
   singersOptions: OptionsCoreItem;
   stylesOptions: OptionsCoreItem;
   periodsOptions: OptionsCoreItem;
+  resetAllFilters: () => void;
 }
 
 const SideBar: React.FC<SideBarProps> = ({
@@ -26,6 +27,7 @@ const SideBar: React.FC<SideBarProps> = ({
   singersOptions,
   stylesOptions,
   periodsOptions,
+  resetAllFilters,
 }): JSX.Element => {
   const categoriesArr: Array<{
     icon: JSX.Element;
@@ -72,8 +74,8 @@ const SideBar: React.FC<SideBarProps> = ({
               key={index}
               icon={option.icon}
               heading={option.heading}
-              options={option.optionsCoreItem.options}
               optionsSetter={option.optionsCoreItem.optionsSetter}
+              checkedFilters={option.optionsCoreItem.checkedFilters}
             />
           )
         )}
@@ -89,6 +91,7 @@ const SideBar: React.FC<SideBarProps> = ({
           buttonName="Reset all filters"
           className="btn resetBtn"
           imgSrc={require("../assets/reloadImg.svg")}
+          onClick={resetAllFilters}
         />
       </div>
     </div>

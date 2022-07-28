@@ -15,28 +15,30 @@
   padding-right: 20px;
 }
 
-.toggleBtn {
-  padding: 10px;
-  font-size: 1.2em;
-  color: #7b7878;
-  border: none;
-}
-
 .searchBtn {
-  background-color: rgb(252, 175, 92);
+  background-color: var(--secondary);
   color: white;
   border: none;
 }
 
 .searchBtn:hover {
-  background-color: rgb(241, 129, 9);
+  background-color: var(--secondary-hover);
 }
 
 .searchBtn:active {
-  background-color: rgb(193, 102, 6);
+  background-color: var(--secondary-active);
 }
 
 .resetBtn {
-  color: #7b7878;
+  color: var(--neutral-dark);
+  background-color: var(--neutral-button);
   border: none;
+}
+
+.resetBtn:hover {
+  background-color: var(--neutral-hover);
+}
+
+.resetBtn:active {
+  background-color: var(--neutral-active);
 }

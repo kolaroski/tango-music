@@ -5,15 +5,15 @@ import { useState } from "react";
 export interface CategoryItemProps {
   heading: string;
   icon: JSX.Element;
-  options: Array<string>;
   optionsSetter: (key: string, value: boolean) => void;
+  checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
   heading,
   icon,
-  options,
   optionsSetter,
+  checkedFilters,
 }): JSX.Element => {
   // Setup states
   const [displaySubOptions, setDisplaySubOptions] = useState(false);
@@ -23,31 +23,33 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   let viewOptions: Array<JSX.Element> = [];
 
   // Populate 'view options'
-  for (const option of options) {
+  checkedFilters.forEach((value, key) => {
     let option_hidden_state: boolean = false;
-    if (!option.toLowerCase().includes(searchText.toLowerCase())) {
+
+    if (!key.toLowerCase().includes(searchText.toLowerCase())) {
       option_hidden_state = true;
     }
     viewOptions.push(
       <div
         hidden={option_hidden_state}
         className="checkbox-single_submenu"
-        key={option}
+        key={key}
       >
         <label className="custom-checkmark">
           <input
             type="checkbox"
-            name={option}
-            onClick={(e) => {
+            name={key}
+            onChange={(e) => {
               const target: HTMLInputElement = e.target as HTMLInputElement;
               optionsSetter(target.name, target.checked);
             }}
+            checked={value}
           />
-          {option}
+          {key}
         </label>
       </div>
     );
-  }
+  });
 
   return (
     <>
@@ -60,7 +62,9 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         <div className="icon-categories">{icon}</div>
 
         <div className={`optionHeading`}>{heading}</div>
-        <button className={`arrowDown`}></button>
+        <button
+          className={displaySubOptions ? `arrowDown expanded` : `arrowDown`}
+        ></button>
         <br />
       </div>
 

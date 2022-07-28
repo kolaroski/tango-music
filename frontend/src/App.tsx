@@ -22,7 +22,7 @@ function getAllSingers(): Promise<Array<string>> {
   });
 }
 
-function intializeMap(
+function initializeMap(
   array: Array<string>,
   default_value: boolean = false
 ): Map<string, boolean> {
@@ -31,6 +31,17 @@ function intializeMap(
     map.set(val, default_value);
   }
   return map;
+}
+
+function setMapFalse(
+  map: Omit<Map<string, boolean>, "set" | "clear" | "delete">,
+  action: (map: Map<string, boolean>) => void
+): void {
+  const entries = new Map(map);
+  entries.forEach((value, key) => {
+    entries.set(key, false);
+  });
+  action(entries);
 }
 
 function App() {
@@ -61,10 +72,10 @@ function App() {
   ]);
 
   // Maps initial values
-  const initialFOMap = intializeMap(allOrquestras);
-  const initialFSMap = intializeMap(allSingers);
-  const initialFStyleMap = intializeMap(allStyles);
-  const initialFPMap = intializeMap(allPeriods);
+  let initialFOMap = initializeMap(allOrquestras);
+  let initialFSMap = initializeMap(allSingers);
+  const initialFStyleMap = initializeMap(allStyles);
+  const initialFPMap = initializeMap(allPeriods);
 
   // Map hooks
   const [filterOrquestrasMap, filterOrquestrasActions] = useMap<
@@ -80,27 +91,46 @@ function App() {
   const [filterPeriodMap, filterPeriodActions] = useMap<string, boolean>(
     initialFPMap
   );
-  
+
+  useEffect(() => {
+    initialFOMap = initializeMap(allOrquestras);
+    filterOrquestrasActions.setAll(initialFOMap);
+  }, [allOrquestras]);
+
+  useEffect(() => {
+    initialFSMap = initializeMap(allSingers);
+    filterSingersActions.setAll(initialFSMap);
+  }, [allSingers]);
+
+  // RESET ALL MAPS
+  const onResetAllFilters = () => {
+    setMapFalse(filterOrquestrasMap, filterOrquestrasActions.setAll);
+    setMapFalse(filterSingersMap, filterSingersActions.setAll);
+    setMapFalse(filterStyleMap, filterStyleActions.setAll);
+    setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
+  };
+
   return (
     <div>
       <NavBar />
       <SideBar
         orchestrasOptions={{
-          options: allOrquestras,
           optionsSetter: filterOrquestrasActions.set,
+          checkedFilters: filterOrquestrasMap,
         }}
         singersOptions={{
-          options: allSingers,
           optionsSetter: filterSingersActions.set,
+          checkedFilters: filterSingersMap,
         }}
         stylesOptions={{
-          options: allStyles,
           optionsSetter: filterStyleActions.set,
+          checkedFilters: filterStyleMap,
         }}
         periodsOptions={{
-          options: allPeriods,
           optionsSetter: filterPeriodActions.set,
+          checkedFilters: filterPeriodMap,
         }}
+        resetAllFilters={onResetAllFilters}
       />
       <div className="main-content">
         <div>
