@@ -2,8 +2,6 @@
   position: absolute;
   margin-left: 345px;
   margin-right: 50px;
-  display: flex;
-  flex-wrap: wrap;
 }
 
 .displayStyle {

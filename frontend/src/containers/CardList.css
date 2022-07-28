@@ -1,29 +1,78 @@
 .CardList {
   display: flex;
-  height: 10rem;
+  /* width: 1100px; */
+  height: 12rem;
+  /* margin-left: 345px;
+  margin-right: 50px; */
   align-items: center;
   margin-bottom: 2rem;
   padding: 10px;
   margin-top: 0;
   padding-top: 0;
   justify-content: space-between;
+  border: 1.5px dashed #009688;
+  border-radius: 4px;
+}
+
+.CardListInside{
+  display: flex;
+  /* width: 1100px; */
+  height: 12rem;
+  width: 78rem;
+  /* margin-left: 345px;
+  margin-right: 50px; */
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  padding: 10px;
+  margin-top: 2.6rem;
+  padding-top: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  overflow-wrap: wrap;
+  transition: calc() 1s;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #009688; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #04675d; 
 }
 
 .arrows {
   width: 25px;
   height: 25px;
-  color: var(--primary-dark);
+  color: #04675d;
   background-color: white;
   border: none;
+  /* border-color: #009688;; */
+  /* position: absolute; */
   top: 50%;
+  /* margin-top: -31px; */
 }
 
 .arrows:hover {
-  color: var(--primary);
+  color: #009688;
 }
 
 .arrows:active {
-  color: var(--primary-light);
+  color: #65a5a1;
 }
 
 .prev {
@@ -39,3 +88,5 @@
   transform: rotate(-135deg);
   right: 10px;
 }
+
+

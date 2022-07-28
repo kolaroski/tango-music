@@ -1,3 +1,13 @@
+
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: normal;
+  src:
+    url('../fonts/RobotoCondensed.woff2') format('woff2'),
+    url('../fonts/RobotoCondensed.woff') format('woff');
+}
+
 /* Add a background color to the top navigation bar */
 .topnav {
   overflow: hidden;
