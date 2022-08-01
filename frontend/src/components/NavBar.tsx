@@ -1,19 +1,43 @@
-import React from "react";
-import "./NavBar.css";
+import React from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './NavBar.css';
 
 export const NavBar: React.FC<{}> = ({}): JSX.Element => {
+  const [navMenuIsActive, setNavMenuIsActive] = useState(false);
+  const toggleNavMenu = () => {
+    setNavMenuIsActive(current => !current);
+  };
   return (
-    <div className="topnav">
-      <a className="title">tango-music-project</a>
-      <div className="nav-container-right">
-        <div className="nav-links">
-          <a>Orchestras</a>
-          <a>Singers</a>
-          <a>Style</a>
-          <a>Period</a>
-        </div>
-        <input type="text" placeholder="Search.."></input>
+    <nav className="navbar">
+      <div className="navbar__title-box">
+        <Link to="/" className="navbar__link-home">
+          <a className="navbar__title">tango-music-project</a>
+        </Link>
       </div>
-    </div>
+      <input id="menu-toggle" type="checkbox" checked={navMenuIsActive} />
+      <label
+        className="menu-button-container"
+        htmlFor="menu-toggle"
+        onClick={toggleNavMenu}
+      >
+        <div className="menu-button"></div>
+      </label>
+
+      <div className="links active" onClick={() => setNavMenuIsActive(false)}>
+        <Link to="/orchestra" className="navbar__link">
+          Orchestras
+        </Link>
+        <Link to="/singers" className="navbar__link">
+          Singers
+        </Link>
+        <Link to="/tango-origin" className="navbar__link">
+          Origin of tango
+        </Link>
+        <Link to="/epocas" className="navbar__link">
+          Epocas
+        </Link>
+      </div>
+    </nav>
   );
 };

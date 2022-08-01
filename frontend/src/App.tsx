@@ -1,14 +1,22 @@
-import "./App.css";
-import { NavBar } from "./components/NavBar";
-import { CardList } from "./containers/CardList";
-import SideBar from "./containers/SideBar";
-import Footer from "./components/Footer";
-import axios from "../node_modules/axios/index";
-import { useEffect, useState } from "react";
-import useMap from "./utils";
+import './App.css';
+import './variables.css';
+import { NavBar } from './components/NavBar';
+import { SearchBar } from './components/SearchBar';
+import { CardList } from './containers/CardList';
+import SideBar from './containers/SideBar';
+import Footer from './components/Footer';
+import axios from '../node_modules/axios/index';
+import { useEffect, useState } from 'react';
+import useMap from './utils';
 
-const ORQUESTRAS_URL = "http://localhost:8000/all/orquestras";
-const SINGERS_URL = "http://localhost:8000/all/singers";
+// routing draft:
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Epocas from './routes/epocas';
+import TangoOrigin from './routes/tango-origin';
+// ---------------
+
+const ORQUESTRAS_URL = 'http://localhost:8000/all/orquestras';
+const SINGERS_URL = 'http://localhost:8000/all/singers';
 
 function getAllOrquestras(): Promise<Array<string>> {
   return axios.get(ORQUESTRAS_URL).then(function (response) {
@@ -34,7 +42,7 @@ function initializeMap(
 }
 
 function setMapFalse(
-  map: Omit<Map<string, boolean>, "set" | "clear" | "delete">,
+  map: Omit<Map<string, boolean>, 'set' | 'clear' | 'delete'>,
   action: (map: Map<string, boolean>) => void
 ): void {
   const entries = new Map(map);
@@ -61,14 +69,14 @@ function App() {
   }, []);
 
   const [allPeriods, setAllPeriods] = useState<Array<string>>([
-    "Guardia Vieja",
-    "Golden Age",
-    "Contemporary",
+    'Guardia Vieja',
+    'Golden Age',
+    'Contemporary',
   ]);
   const [allStyles, setAllStyles] = useState<Array<string>>([
-    "Milonga",
-    "Tango",
-    "Vals",
+    'Milonga',
+    'Tango',
+    'Vals',
   ]);
 
   // Maps initial values
@@ -90,23 +98,32 @@ function App() {
   };
 
   return (
-    <div>
-      <NavBar />
-      <SideBar
-        stylesOptions={{
-          optionsSetter: filterStyleActions.set,
-          checkedFilters: filterStyleMap,
-        }}
-        periodsOptions={{
-          optionsSetter: filterPeriodActions.set,
-          checkedFilters: filterPeriodMap,
-        }}
-        resetAllFilters={onResetAllFilters}
-      />
-      <div className="main-content">
+    <Router>
+      <div>
+        <div>
+          <NavBar />
+          <SearchBar />
+          <Routes>
+            {/* <Route path="/" element={<HomePage />} /> */}
+            <Route path="tango-origin" element={<TangoOrigin />} />
+            <Route path="epocas" element={<Epocas />} />
+          </Routes>
+        </div>
+        {/* <SideBar
+          stylesOptions={{
+            optionsSetter: filterStyleActions.set,
+            checkedFilters: filterStyleMap,
+          }}
+          periodsOptions={{
+            optionsSetter: filterPeriodActions.set,
+            checkedFilters: filterPeriodMap,
+          }}
+          resetAllFilters={onResetAllFilters}
+        />
+        <div className="main-content"></div>
+        <Footer /> */}
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 }
 
