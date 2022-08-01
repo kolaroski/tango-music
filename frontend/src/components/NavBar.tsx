@@ -8,9 +8,13 @@ export const NavBar: React.FC<{}> = ({}): JSX.Element => {
   const toggleNavMenu = () => {
     setNavMenuIsActive(current => !current);
   };
+
+  const closeMenu = () => {
+    setNavMenuIsActive(false);
+  };
   return (
     <nav className="navbar">
-      <div className="navbar__title-box">
+      <div className="navbar__title-box" onClick={closeMenu}>
         <Link to="/" className="navbar__link-home">
           <a className="navbar__title">tango-music-project</a>
         </Link>
@@ -24,18 +28,18 @@ export const NavBar: React.FC<{}> = ({}): JSX.Element => {
         <div className="menu-button"></div>
       </label>
 
-      <div className="links active" onClick={() => setNavMenuIsActive(false)}>
+      <div className="links" onClick={closeMenu}>
+        <Link to="/tango-history" className="navbar__link">
+          History of tango
+        </Link>
         <Link to="/orchestra" className="navbar__link">
           Orchestras
         </Link>
         <Link to="/singers" className="navbar__link">
           Singers
         </Link>
-        <Link to="/tango-origin" className="navbar__link">
-          Origin of tango
-        </Link>
-        <Link to="/epocas" className="navbar__link">
-          Epocas
+        <Link to="/blog" className="navbar__link">
+          Articles
         </Link>
       </div>
     </nav>

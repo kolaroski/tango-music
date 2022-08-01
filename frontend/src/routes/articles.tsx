@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-const Epocas: React.FC = (): JSX.Element => {
+const Articles: React.FC = (): JSX.Element => {
   return (
     <>
       TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
@@ -8,4 +8,4 @@ const Epocas: React.FC = (): JSX.Element => {
   );
 };
 
-export default Epocas;
+export default Articles;

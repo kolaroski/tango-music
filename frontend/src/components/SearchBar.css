@@ -9,9 +9,10 @@
   height: 80px;
   padding: 1em;
   box-sizing: border-box;
+  padding-bottom: 40px;
 }
 .search {
-  width: 80%;
+  width: 40%;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -119,4 +120,10 @@
 .search-field > div > input:focus,
 .search-field > div > input:not(:placeholder-shown) {
   width: 200px;
+}
+
+@media (max-width: 800px) {
+  .search {
+    width: 96%;
+  }
 }

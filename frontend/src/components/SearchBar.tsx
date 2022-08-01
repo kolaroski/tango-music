@@ -20,13 +20,13 @@ export const SearchBar: React.FC<{}> = ({}): JSX.Element => {
         </div>
       </div>
 
-      <div className="search-container">
+      {/* <div className="search-container">
         <div className="search-field">
           <div>
             <input type="text" placeholder="Search..." />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

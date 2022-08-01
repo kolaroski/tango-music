@@ -11,7 +11,7 @@ import useMap from './utils';
 
 // routing draft:
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Epocas from './routes/epocas';
+import Articles from './routes/articles';
 import TangoOrigin from './routes/tango-origin';
 // ---------------
 
@@ -104,9 +104,8 @@ function App() {
           <NavBar />
           <SearchBar />
           <Routes>
-            {/* <Route path="/" element={<HomePage />} /> */}
-            <Route path="tango-origin" element={<TangoOrigin />} />
-            <Route path="epocas" element={<Epocas />} />
+            <Route path="tango-history" element={<TangoOrigin />} />
+            <Route path="blog" element={<Articles />} />
           </Routes>
         </div>
         {/* <SideBar
