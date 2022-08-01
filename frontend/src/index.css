@@ -90,10 +90,22 @@
 body {
   margin: 0;
   padding: 0;
-  background: #fff;
+  /* background: #fff; */
   box-sizing: inherit;
   font-family: 'Roboto Condensed', sans-serif;
   /* root font size of 10px = 62.5%- to use rem units easier in other css files */
   font-size: 62.5%;
   font-weight: 400;
+
+  background: #dad299; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #b0dab9,
+    #dad299
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #b0dab9,
+    #dad299
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
