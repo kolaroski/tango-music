@@ -1,44 +1,47 @@
 .btn {
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 1.2em;
-  width: 75%;
+  padding: 7px;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  width: 170px;
   display: flex;
   align-items: center;
+  border-radius: 100px;
   /* justify-content: space-evenly; */
 }
 
 .iconBtn {
-  width: 30px;
+  width: 25px;
   color: grey;
-  padding-left: 15px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  filter: invert();
 }
 
-.searchBtn {
+/* .searchBtn {
   background-color: var(--secondary);
   color: white;
   border: none;
-}
+} */
 
-.searchBtn:hover {
+/* .searchBtn:hover {
   background-color: var(--secondary-hover);
 }
 
 .searchBtn:active {
   background-color: var(--secondary-active);
-}
+} */
 
 .resetBtn {
-  color: var(--neutral-dark);
-  background-color: var(--neutral-button);
+  background-color: rgba(0, 0, 0, 0.35);
+  color: white;
   border: none;
 }
 
 .resetBtn:hover {
-  background-color: var(--neutral-hover);
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
 }
 
 .resetBtn:active {
-  background-color: var(--neutral-active);
+  background-color: rgba(0, 0, 0, 0.35);
 }

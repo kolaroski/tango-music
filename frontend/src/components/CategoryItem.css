@@ -1,76 +1,30 @@
-/* MAIN OPTION ITEM CATEGORY STYLE
-(for icon, heading, arrow to expand)   */
+/* MAIN OPTION ITEM CATEGORY STYLE */
 
 .CategoryItemBox {
-  padding: 10px;
-  height: 8vh;
-  font-size: 1.5em;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 200px;
+}
+
+.category-heading-container {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  box-sizing: border-box;
-  width: 100%;
-  align-items: center;
-  width: 50%;
-  border-top: 2px solid var(--secondary);
-}
-
-.CategoryItemBox:hover {
-  background-color: var(--secondary-lighter);
-}
-
-.icon-categories {
-  width: 50px;
-  text-align: center;
+  padding: 10px 0;
 }
 
 .optionHeading {
-  margin-left: 20px;
-  width: 12rem;
+  display: flex;
+  padding-left: 20px;
+  font-size: 1rem;
+  align-items: center;
 }
-
-/* SUBMENU STYLES: -------------- */
-/* 
-.hidden {
-  display: none;
-} */
-/* 
-.box_submenu {
-  box-sizing: border-box;
-  margin-left: 1rem;
-  width: 85%;
-  padding-bottom: 15px;
-} */
-/* 
-.search-input_submenu {
-  box-sizing: border-box;
-  padding: 8px;
-  width: 100%;
-  border-radius: 6px;
-  border: 1px solid var(--secondary);
-  margin: 15px 0 5px 0;
-}
-
-.search-input_submenu:focus {
-  outline: none;
-  border: 1px solid var(--secondary);
-  box-shadow: 0 0 7px var(--secondary-light);
-}
-
-.search-input_submenu::placeholder {
-  color: var(--secondary-dark);
-}
-
-.search-input_submenu:focus::placeholder {
-  color: var(--secondary);
-} */
 
 .checkboxes_submenu {
   box-sizing: border-box;
   font-weight: 100;
   font-size: 15px;
   max-height: 200px;
-  width: 50%;
+  width: 100%;
   flex-direction: row;
   /* overflow-y: scroll;
   scrollbar-color: var(--secondary) var(--neutral-lighter);
@@ -80,8 +34,12 @@
 
 .checkbox-single_submenu {
   box-sizing: border-box;
-  width: 50%;
+  width: 70%;
   padding: 4px 0;
+}
+
+.checkbox-single_submenu:hover {
+  background: linear-gradient(to right, #28372b80, #4d564f63);
 }
 
 .checkbox-single_submenu label {
@@ -89,10 +47,6 @@
   align-items: center;
   overflow-wrap: anywhere;
   cursor: pointer;
-}
-
-.checkbox-single_submenu label:hover {
-  background-color: var(--neutral-lighter);
 }
 
 .checkbox-single_submenu input {
@@ -104,11 +58,11 @@
 input[type='checkbox'] {
   appearance: none;
   background-color: white;
-  margin-right: 5px;
+  margin-right: 24px;
   font: inherit;
   width: 1.1em;
   height: 1.1em;
-  border: 0.1em solid var(--neutral-dark);
+  border: 0.12em solid rgb(54, 48, 48);
   /* OPTION 1) border radius to form a circle: */
   border-radius: 0.5em;
   /* OPTION 2) border radius to form a rounded square: */
@@ -126,7 +80,7 @@ input[type='checkbox']::before {
   transform: scale(0);
   transform-origin: bottom left;
   transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--neutral-dark);
+  box-shadow: inset 1em 1em rgb(72, 67, 67);
 }
 
 input[type='checkbox']:checked::before {

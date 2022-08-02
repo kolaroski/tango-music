@@ -19,13 +19,13 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   // const [displaySubOptions, setDisplaySubOptions] = useState(false);
 
   // Instantiate options view
-  let viewOptions: Array<JSX.Element> = [];
+  let categoryOptions: Array<JSX.Element> = [];
 
-  // Populate 'view options'
+  // Populate 'category options'
   checkedFilters.forEach((value, key) => {
     let option_hidden_state: boolean = false;
 
-    viewOptions.push(
+    categoryOptions.push(
       <div
         hidden={option_hidden_state}
         className="checkbox-single_submenu"
@@ -56,11 +56,13 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
         onClick={() => setDisplaySubOptions(!displaySubOptions)}
       > */}
       <div className="CategoryItemBox">
-        <div className="icon-categories">{icon}</div>
+        <div className="category-heading-container">
+          <div className="icon-categories">{icon}</div>
 
-        <div className={`optionHeading`}>{heading}</div>
+          <div className={`optionHeading`}>{heading}</div>
+        </div>
+        <div className="checkboxes_submenu">{categoryOptions}</div>
       </div>
-      <div className="checkboxes_submenu">{viewOptions}</div>
     </>
   );
 };
