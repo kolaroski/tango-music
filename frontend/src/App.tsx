@@ -1,7 +1,7 @@
 import './App.css';
 import './variables.css';
-import NavBar from './components/NavBar';
-import SearchBar from './components/SearchBar';
+import NavBar from './containers/NavBar';
+import SearchBar from './containers/SearchBar';
 import { CardList } from './containers/CardList';
 // import SideBar from './containers/SideBar';
 import Footer from './components/Footer';
