@@ -13,6 +13,7 @@ import useMap from './utils';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Articles from './routes/articles';
 import TangoOrigin from './routes/tango-origin';
+import MainContent from './routes/MainContent';
 // ---------------
 
 const ORQUESTRAS_URL = 'http://localhost:8000/all/orquestras';
@@ -116,6 +117,8 @@ function App() {
           <Routes>
             <Route path="tango-history" element={<TangoOrigin />} />
             <Route path="blog" element={<Articles />} />
+            <Route path="/" element={<MainContent />} />
+            {/* <div className="main-content">MAIN CONTENT</div> */}
           </Routes>
         </div>
         {/* <SideBar
@@ -129,8 +132,8 @@ function App() {
           }}
           resetAllFilters={onResetAllFilters}
         /> */}
-        <div className="main-content"></div>
-        <Footer />
+
+        {/* <Footer /> */}
       </div>
     </Router>
   );
