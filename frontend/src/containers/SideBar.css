@@ -1,13 +1,4 @@
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: normal;
-  src:
-    url('../fonts/RobotoCondensed.woff2') format('woff2'),
-    url('../fonts/RobotoCondensed.woff') format('woff');
-}
-
-.sideBarBox {
+/* .sideBarBox {
   position: fixed;
   box-sizing: border-box;
   left: 0;
@@ -20,7 +11,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   height: 80vh;
   width: 330px;
   transition: width ease-in 0.3s;
@@ -58,4 +49,4 @@
   align-items: center;
   padding-bottom: 30px;
   padding-top: 30px;
-}
+} */

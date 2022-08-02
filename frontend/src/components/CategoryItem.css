@@ -4,26 +4,19 @@
 .CategoryItemBox {
   padding: 10px;
   height: 8vh;
-  font-size: 1em;
+  font-size: 1.5em;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   box-sizing: border-box;
   width: 100%;
   align-items: center;
-  width: 100%;
+  width: 50%;
   border-top: 2px solid var(--secondary);
 }
 
 .CategoryItemBox:hover {
   background-color: var(--secondary-lighter);
-}
-
-.CategoryItemBox.open {
-  background-color: var(--secondary-light);
-  border-bottom: none;
-}
-
-.CategoryItemBox.open:hover {
-  background-color: var(--secondary-light2);
 }
 
 .icon-categories {
@@ -36,35 +29,19 @@
   width: 12rem;
 }
 
-.arrowDown {
-  border: solid var(--neutral-dark);
-  background-color: transparent;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-  transform: rotate(45deg);
-  margin-right: 15px;
-  margin-left: 15px;
-  transition: 0.16s;
-}
-
-.arrowDown.expanded {
-  transform: rotate(135deg);
-}
-
 /* SUBMENU STYLES: -------------- */
-
+/* 
 .hidden {
   display: none;
-}
-
+} */
+/* 
 .box_submenu {
   box-sizing: border-box;
   margin-left: 1rem;
   width: 85%;
   padding-bottom: 15px;
-}
-
+} */
+/* 
 .search-input_submenu {
   box-sizing: border-box;
   padding: 8px;
@@ -86,22 +63,24 @@
 
 .search-input_submenu:focus::placeholder {
   color: var(--secondary);
-}
+} */
 
 .checkboxes_submenu {
   box-sizing: border-box;
   font-weight: 100;
   font-size: 15px;
   max-height: 200px;
-  overflow-y: scroll;
+  width: 50%;
+  flex-direction: row;
+  /* overflow-y: scroll;
   scrollbar-color: var(--secondary) var(--neutral-lighter);
   scrollbar-width: thin;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: stable; */
 }
 
 .checkbox-single_submenu {
   box-sizing: border-box;
-  width: 100%;
+  width: 50%;
   padding: 4px 0;
 }
 
@@ -122,7 +101,7 @@
 }
 
 /* custom checkmark */
-input[type="checkbox"] {
+input[type='checkbox'] {
   appearance: none;
   background-color: white;
   margin-right: 5px;
@@ -139,8 +118,8 @@ input[type="checkbox"] {
   place-content: center;
 }
 
-input[type="checkbox"]::before {
-  content: "";
+input[type='checkbox']::before {
+  content: '';
   width: 0.65em;
   height: 0.65em;
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
@@ -150,6 +129,6 @@ input[type="checkbox"]::before {
   box-shadow: inset 1em 1em var(--neutral-dark);
 }
 
-input[type="checkbox"]:checked::before {
+input[type='checkbox']:checked::before {
   transform: scale(1);
 }

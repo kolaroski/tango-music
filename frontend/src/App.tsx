@@ -1,9 +1,9 @@
 import './App.css';
 import './variables.css';
-import { NavBar } from './components/NavBar';
-import { SearchBar } from './components/SearchBar';
+import NavBar from './components/NavBar';
+import SearchBar from './components/SearchBar';
 import { CardList } from './containers/CardList';
-import SideBar from './containers/SideBar';
+// import SideBar from './containers/SideBar';
 import Footer from './components/Footer';
 import axios from '../node_modules/axios/index';
 import { useEffect, useState } from 'react';
@@ -102,7 +102,17 @@ function App() {
       <div>
         <div>
           <NavBar />
-          <SearchBar />
+          <SearchBar
+            stylesOptions={{
+              optionsSetter: filterStyleActions.set,
+              checkedFilters: filterStyleMap,
+            }}
+            periodsOptions={{
+              optionsSetter: filterPeriodActions.set,
+              checkedFilters: filterPeriodMap,
+            }}
+            resetAllFilters={onResetAllFilters}
+          />
           <Routes>
             <Route path="tango-history" element={<TangoOrigin />} />
             <Route path="blog" element={<Articles />} />
@@ -118,9 +128,9 @@ function App() {
             checkedFilters: filterPeriodMap,
           }}
           resetAllFilters={onResetAllFilters}
-        />
+        /> */}
         <div className="main-content"></div>
-        <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

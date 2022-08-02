@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
-export const NavBar: React.FC<{}> = ({}): JSX.Element => {
+const NavBar: React.FC<{}> = ({}): JSX.Element => {
   const [navMenuIsActive, setNavMenuIsActive] = useState(false);
   const toggleNavMenu = () => {
     setNavMenuIsActive(current => !current);
@@ -32,7 +32,7 @@ export const NavBar: React.FC<{}> = ({}): JSX.Element => {
         <Link to="/tango-history" className="navbar__link">
           History of tango
         </Link>
-        <Link to="/orchestra" className="navbar__link">
+        <Link to="/orchestras" className="navbar__link">
           Orchestras
         </Link>
         <Link to="/singers" className="navbar__link">
@@ -45,3 +45,5 @@ export const NavBar: React.FC<{}> = ({}): JSX.Element => {
     </nav>
   );
 };
+
+export default NavBar;
