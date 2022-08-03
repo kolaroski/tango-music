@@ -2,6 +2,7 @@ import './SearchBar.css';
 import CategoryItem from '../components/CategoryItem';
 import Button from '../components/Button';
 import { StyleIcon, PeriodIcon } from '../assets/SideBarIcons';
+import { useState, KeyboardEvent } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 interface OptionsCoreItem {
@@ -13,12 +14,14 @@ export interface SearchBarProps {
   stylesOptions: OptionsCoreItem;
   periodsOptions: OptionsCoreItem;
   resetAllFilters: () => void;
+  getSearchTerm: (term: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   stylesOptions,
   periodsOptions,
   resetAllFilters,
+  getSearchTerm,
 }): JSX.Element => {
   const categoriesArr: Array<{
     icon: JSX.Element;
@@ -37,10 +40,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
   ];
 
+  // Get search keyword from user
+  const [query, setQuery] = useState('');
+
+  // Navigate to search results and send search term up
   const navigate = useNavigate();
   const navigateToResults = () => {
-    // add logic to send keyword for searching...?
+    getSearchTerm(query);
     navigate('/results');
+  };
+
+  // Detect when ENTER key is pressed when typing in input field
+  const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      navigateToResults();
+    }
   };
 
   return (
@@ -51,6 +65,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
             type="text"
             className="searchTerm"
             placeholder="What are you looking for?"
+            onChange={event => setQuery(event.target.value)}
+            onKeyDown={handleEnterKey}
           />
           <button
             type="submit"

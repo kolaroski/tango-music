@@ -2,7 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { categoriesInfo } from '../DUMMY_DATA';
 
-const SearchCategories: React.FC = (): JSX.Element => {
+export interface SearchCategoriesProps {
+  keyword: string;
+}
+
+const SearchCategories: React.FC<SearchCategoriesProps> = ({
+  keyword,
+}): JSX.Element => {
   return (
     <>
       <div>
@@ -13,7 +19,8 @@ const SearchCategories: React.FC = (): JSX.Element => {
                 {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
               </h1>
               <Link to={`/results/${category.name.toLowerCase()}list`}>
-                Show results for {category.name.toLowerCase()}
+                Show results {keyword ? `for '${keyword}'` : ''} in category '
+                {category.name.toLowerCase()}'
               </Link>
             </div>
           );

@@ -101,6 +101,12 @@ function App() {
     setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
   };
 
+  // user input query
+  const [searchTerm, setSearchTerm] = useState('');
+  const getSearchTerm = (term: string) => {
+    setSearchTerm(term);
+  };
+
   return (
     <>
       <Routes>
@@ -119,6 +125,7 @@ function App() {
                   checkedFilters: filterPeriodMap,
                 }}
                 resetAllFilters={onResetAllFilters}
+                getSearchTerm={getSearchTerm}
               />
             </>
           }
@@ -129,8 +136,11 @@ function App() {
             <Route path=":articleId" element={<SingleArticle />} />
           </Route>
           <Route path="results" element={<MainContent />}>
-            <Route index element={<SearchCategories />} />
-            <Route path=":categoryId" element={<SearchResults />} />
+            <Route index element={<SearchCategories keyword={searchTerm} />} />
+            <Route
+              path=":categoryId"
+              element={<SearchResults keyword={searchTerm} />}
+            />
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
