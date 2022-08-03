@@ -14,6 +14,16 @@ export const dummyResults = [
     name: 'tracks',
     content: ['track', 'track', 'track'],
   },
+  {
+    id: 'composerslist',
+    name: 'tracks',
+    content: ['composer', 'composer', 'composer'],
+  },
+  {
+    id: 'instrumentalistslist',
+    name: 'tracks',
+    content: ['instrumentalist', 'instrumentalist', 'instrumentalist'],
+  },
 ];
 
 export const categoriesInfo = [
