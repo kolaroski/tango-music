@@ -1,19 +1,20 @@
 import './App.css';
 import './variables.css';
+import useMap from './utils';
+import { useEffect, useState } from 'react';
+import axios from '../node_modules/axios/index';
 import NavBar from './containers/NavBar';
 import SearchBar from './containers/SearchBar';
-import { CardList } from './containers/CardList';
-// import SideBar from './containers/SideBar';
 import Footer from './components/Footer';
-import axios from '../node_modules/axios/index';
-import { useEffect, useState } from 'react';
-import useMap from './utils';
 
 // routing draft:
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Articles from './routes/articles';
-import TangoOrigin from './routes/tango-origin';
-import MainContent from './routes/MainContent';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import HomePage from './routes/HomePage';
+import ArticlesContainer from './containers/ArticleContainer';
+import Articles from './routes/Articles';
+import SingleArticle from './routes/SingleArticle';
+import SearchResults from './routes/SearchResults';
+import ErrorPage from './routes/ErrorPage';
 // ---------------
 
 const ORQUESTRAS_URL = 'http://localhost:8000/all/orquestras';
@@ -99,43 +100,38 @@ function App() {
   };
 
   return (
-    <Router>
-      <div>
-        <div>
-          <NavBar />
-          <SearchBar
-            stylesOptions={{
-              optionsSetter: filterStyleActions.set,
-              checkedFilters: filterStyleMap,
-            }}
-            periodsOptions={{
-              optionsSetter: filterPeriodActions.set,
-              checkedFilters: filterPeriodMap,
-            }}
-            resetAllFilters={onResetAllFilters}
-          />
-          <Routes>
-            <Route path="tango-history" element={<TangoOrigin />} />
-            <Route path="blog" element={<Articles />} />
-            <Route path="/" element={<MainContent />} />
-            {/* <div className="main-content">MAIN CONTENT</div> */}
-          </Routes>
-        </div>
-        {/* <SideBar
-          stylesOptions={{
-            optionsSetter: filterStyleActions.set,
-            checkedFilters: filterStyleMap,
-          }}
-          periodsOptions={{
-            optionsSetter: filterPeriodActions.set,
-            checkedFilters: filterPeriodMap,
-          }}
-          resetAllFilters={onResetAllFilters}
-        /> */}
-
-        {/* <Footer /> */}
-      </div>
-    </Router>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <NavBar />
+              <SearchBar
+                stylesOptions={{
+                  optionsSetter: filterStyleActions.set,
+                  checkedFilters: filterStyleMap,
+                }}
+                periodsOptions={{
+                  optionsSetter: filterPeriodActions.set,
+                  checkedFilters: filterPeriodMap,
+                }}
+                resetAllFilters={onResetAllFilters}
+              />
+            </>
+          }
+        >
+          <Route index element={<HomePage />} />
+          <Route path="articles" element={<ArticlesContainer />}>
+            <Route index element={<Articles />} />
+            <Route path=":articleId" element={<SingleArticle />} />
+          </Route>
+          <Route path="results" element={<SearchResults />} />
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import './SearchBar.css';
 import CategoryItem from '../components/CategoryItem';
 import Button from '../components/Button';
 import { StyleIcon, PeriodIcon } from '../assets/SideBarIcons';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 interface OptionsCoreItem {
   optionsSetter: (key: string, value: boolean) => void;
@@ -36,6 +37,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
     },
   ];
 
+  const navigate = useNavigate();
+  const navigateToResults = () => {
+    // add logic to send keyword for searching...?
+    navigate('/results');
+  };
+
   return (
     <>
       <div className="wrap">
@@ -45,7 +52,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
             className="searchTerm"
             placeholder="What are you looking for?"
           />
-          <button type="submit" className="searchButton">
+          <button
+            type="submit"
+            className="searchButton"
+            onClick={navigateToResults}
+          >
             <img
               src={require('../assets/searchImg.svg')}
               alt="search-icon"
@@ -82,14 +93,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onClick={resetAllFilters}
         />
       </div>
-
-      {/* <div className="search-container">
-        <div className="search-field">
-          <div>
-            <input type="text" placeholder="Search..." />
-          </div>
-        </div>
-      </div> */}
+      <Outlet />
     </>
   );
 };
