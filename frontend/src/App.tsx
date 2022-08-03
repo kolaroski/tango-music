@@ -13,7 +13,9 @@ import HomePage from './routes/HomePage';
 import ArticlesContainer from './containers/ArticleContainer';
 import Articles from './routes/Articles';
 import SingleArticle from './routes/SingleArticle';
-import SearchResults from './routes/SearchResults';
+import MainContent from './containers/MainContent';
+import SearchCategories from './routes/SearchCategories';
+import SearchResults from './containers/SearchResults';
 import ErrorPage from './routes/ErrorPage';
 // ---------------
 
@@ -126,7 +128,10 @@ function App() {
             <Route index element={<Articles />} />
             <Route path=":articleId" element={<SingleArticle />} />
           </Route>
-          <Route path="results" element={<SearchResults />} />
+          <Route path="results" element={<MainContent />}>
+            <Route index element={<SearchCategories />} />
+            <Route path=":categoryId" element={<SearchResults />} />
+          </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

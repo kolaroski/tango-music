@@ -16,11 +16,16 @@ const NavBar: React.FC<{}> = ({}): JSX.Element => {
     <div>
       <nav className="navbar">
         <div className="navbar__title-box" onClick={closeMenu}>
-          <Link to="/" className="navbar__link-home">
-            <a className="navbar__title">tango-music-project</a>
+          <Link to="/" className="navbar__link-home navbar__title">
+            tango-music-project
           </Link>
         </div>
-        <input id="menu-toggle" type="checkbox" checked={navMenuIsActive} />
+        <input
+          id="menu-toggle"
+          type="checkbox"
+          checked={navMenuIsActive}
+          readOnly
+        />
         <label
           className="menu-button-container"
           htmlFor="menu-toggle"
