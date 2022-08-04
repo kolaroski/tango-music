@@ -20,6 +20,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({
       {category.content.map(result => {
         return <p>{result}</p>;
       })}
+      <Link to="/results">Back to categories</Link>
     </>
   );
 };

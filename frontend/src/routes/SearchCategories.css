@@ -1,0 +1,46 @@
+.search-category__box {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search-category__card {
+  box-sizing: border-box;
+  width: 300px;
+  margin: 15px 50px;
+  font-size: 1rem;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* color: white; */
+  /* background-image: url('../assets/img/track.jpg');
+  background-position: center;
+  background-size: cover; */
+  border-radius: 5px;
+}
+
+.search-category__card h5 {
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.55);
+
+  /* filter: grayscale(100%); */
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  /* color: white; */
+}
+
+.search-category__link {
+  /* border: 1px solid black; */
+  font-size: 0.9rem;
+  text-decoration: none;
+}

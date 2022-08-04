@@ -81,7 +81,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           </button>
         </div>
       </div>
-      <div className="categories-wrapper">
+      {/* <div className="categories-wrapper">
         {categoriesArr.map(
           (
             option: {
@@ -108,7 +108,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           imgSrc={require('../assets/reloadImg.svg')}
           onClick={resetAllFilters}
         />
-      </div>
+      </div> */}
       <Outlet />
     </>
   );
