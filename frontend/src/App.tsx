@@ -1,14 +1,26 @@
-import "./App.css";
-import { NavBar } from "./components/NavBar";
-import { CardList } from "./containers/CardList";
-import SideBar from "./containers/SideBar";
-import Footer from "./components/Footer";
-import axios from "../node_modules/axios/index";
-import { useEffect, useState } from "react";
-import useMap from "./utils";
+import './App.css';
+import './variables.css';
+import useMap from './utils';
+import { useEffect, useState } from 'react';
+import axios from '../node_modules/axios/index';
+import NavBar from './containers/NavBar';
+import SearchBar from './containers/SearchBar';
+import Footer from './components/Footer';
 
-const ORQUESTRAS_URL = "http://localhost:8000/all/orquestras";
-const SINGERS_URL = "http://localhost:8000/all/singers";
+// routing draft:
+import { Routes, Route, Outlet } from 'react-router-dom';
+import HomePage from './routes/HomePage';
+import ArticlesContainer from './containers/ArticleContainer';
+import Articles from './routes/Articles';
+import SingleArticle from './routes/SingleArticle';
+import MainContent from './containers/MainContent';
+import SearchCategories from './routes/SearchCategories';
+import SearchResults from './containers/SearchResults';
+import ErrorPage from './routes/ErrorPage';
+// ---------------
+
+const ORQUESTRAS_URL = 'http://localhost:8000/all/orquestras';
+const SINGERS_URL = 'http://localhost:8000/all/singers';
 
 function getAllOrquestras(): Promise<Array<string>> {
   return axios.get(ORQUESTRAS_URL).then(function (response) {
@@ -34,7 +46,7 @@ function initializeMap(
 }
 
 function setMapFalse(
-  map: Omit<Map<string, boolean>, "set" | "clear" | "delete">,
+  map: Omit<Map<string, boolean>, 'set' | 'clear' | 'delete'>,
   action: (map: Map<string, boolean>) => void
 ): void {
   const entries = new Map(map);
@@ -61,14 +73,14 @@ function App() {
   }, []);
 
   const [allPeriods, setAllPeriods] = useState<Array<string>>([
-    "Guardia Vieja",
-    "Golden Age",
-    "Contemporary",
+    'Guardia Vieja',
+    'Golden Age',
+    'Contemporary',
   ]);
   const [allStyles, setAllStyles] = useState<Array<string>>([
-    "Milonga",
-    "Tango",
-    "Vals",
+    'Milonga',
+    'Tango',
+    'Vals',
   ]);
 
   // Maps initial values
@@ -89,24 +101,52 @@ function App() {
     setMapFalse(filterPeriodMap, filterPeriodActions.setAll);
   };
 
+  // user input query
+  const [searchTerm, setSearchTerm] = useState('');
+  const getSearchTerm = (term: string) => {
+    setSearchTerm(term);
+  };
+
   return (
-    <div>
-      <NavBar />
-      <SideBar
-        stylesOptions={{
-          optionsSetter: filterStyleActions.set,
-          checkedFilters: filterStyleMap,
-        }}
-        periodsOptions={{
-          optionsSetter: filterPeriodActions.set,
-          checkedFilters: filterPeriodMap,
-        }}
-        resetAllFilters={onResetAllFilters}
-      />
-      <div className="main-content">
-      </div>
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <NavBar />
+              <SearchBar
+                stylesOptions={{
+                  optionsSetter: filterStyleActions.set,
+                  checkedFilters: filterStyleMap,
+                }}
+                periodsOptions={{
+                  optionsSetter: filterPeriodActions.set,
+                  checkedFilters: filterPeriodMap,
+                }}
+                resetAllFilters={onResetAllFilters}
+                getSearchTerm={getSearchTerm}
+              />
+            </>
+          }
+        >
+          <Route index element={<HomePage />} />
+          <Route path="articles" element={<ArticlesContainer />}>
+            <Route index element={<Articles />} />
+            <Route path=":articleId" element={<SingleArticle />} />
+          </Route>
+          <Route path="results" element={<MainContent />}>
+            <Route index element={<SearchCategories keyword={searchTerm} />} />
+            <Route
+              path=":categoryId"
+              element={<SearchResults keyword={searchTerm} />}
+            />
+          </Route>
+        </Route>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
       <Footer />
-    </div>
+    </>
   );
 }
 

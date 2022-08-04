@@ -1,12 +1,12 @@
-import "./CategoryItem.css";
-import "../variables.css";
-import { useState } from "react";
+import './CategoryItem.css';
+import '../variables.css';
+import { useState } from 'react';
 
 export interface CategoryItemProps {
   heading: string;
   icon: JSX.Element;
   optionsSetter: (key: string, value: boolean) => void;
-  checkedFilters: Omit<Map<string, boolean>, "set" | "clear" | "delete">;
+  checkedFilters: Omit<Map<string, boolean>, 'set' | 'clear' | 'delete'>;
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({
@@ -16,20 +16,16 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
   checkedFilters,
 }): JSX.Element => {
   // Setup states
-  const [displaySubOptions, setDisplaySubOptions] = useState(false);
-  const [searchText, setSearchText] = useState<string>("");
+  // const [displaySubOptions, setDisplaySubOptions] = useState(false);
 
   // Instantiate options view
-  let viewOptions: Array<JSX.Element> = [];
+  let categoryOptions: Array<JSX.Element> = [];
 
-  // Populate 'view options'
+  // Populate 'category options'
   checkedFilters.forEach((value, key) => {
     let option_hidden_state: boolean = false;
 
-    if (!key.toLowerCase().includes(searchText.toLowerCase())) {
-      option_hidden_state = true;
-    }
-    viewOptions.push(
+    categoryOptions.push(
       <div
         hidden={option_hidden_state}
         className="checkbox-single_submenu"
@@ -39,7 +35,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
           <input
             type="checkbox"
             name={key}
-            onChange={(e) => {
+            onChange={e => {
               const target: HTMLInputElement = e.target as HTMLInputElement;
               optionsSetter(target.name, target.checked);
             }}
@@ -53,39 +49,19 @@ const CategoryItem: React.FC<CategoryItemProps> = ({
 
   return (
     <>
-      <div
+      {/* <div
         className={
           displaySubOptions ? `CategoryItemBox open` : `CategoryItemBox`
         }
         onClick={() => setDisplaySubOptions(!displaySubOptions)}
-      >
-        <div className="icon-categories">{icon}</div>
+      > */}
+      <div className="CategoryItemBox">
+        <div className="category-heading-container">
+          <div className="icon-categories">{icon}</div>
 
-        <div className={`optionHeading`}>{heading}</div>
-        <button
-          className={displaySubOptions ? `arrowDown expanded` : `arrowDown`}
-        ></button>
-        <br />
-      </div>
-
-      <div>
-        <div
-          className={displaySubOptions ? "box_submenu" : "box_submenu hidden"}
-        >
-          <div>
-            <input
-              type="text"
-              className="search-input_submenu"
-              value={searchText}
-              onChange={(e) => {
-                const target: HTMLInputElement = e.target as HTMLInputElement;
-                setSearchText(target.value);
-              }}
-              placeholder=" Start typing for more options..."
-            />
-            <div className="checkboxes_submenu">{viewOptions}</div>
-          </div>
+          <div className={`optionHeading`}>{heading}</div>
         </div>
+        <div className="checkboxes_submenu">{categoryOptions}</div>
       </div>
     </>
   );
