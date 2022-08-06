@@ -135,12 +135,24 @@ function App() {
             <Route index element={<Articles />} />
             <Route path=":articleId" element={<SingleArticle />} />
           </Route>
-          <Route path="results" element={<MainContent />}>
-            <Route index element={<SearchCategories keyword={searchTerm} />} />
+          <Route
+            path="results"
+            element={
+              <>
+                <SearchCategories keyword={searchTerm} />
+                <MainContent />
+              </>
+            }
+          >
+            {/* <Route
+              path="resultss"
+              element={<SearchCategories keyword={searchTerm} />}
+            > */}
             <Route
               path=":categoryId"
               element={<SearchResults keyword={searchTerm} />}
             />
+            {/* </Route> */}
           </Route>
         </Route>
         <Route path="*" element={<ErrorPage />} />
