@@ -1,50 +1,32 @@
 export const dummyResults = [
   {
-    id: 'orchestraslist',
-    name: 'orchestras',
+    id: 'tab-orchestras',
+    name: 'Orchestras',
     content: ['orchestra', 'orchestra', 'orchestra'],
   },
   {
-    id: 'singerslist',
-    name: 'singers',
+    id: 'tab-singers',
+    name: 'Singers',
     content: ['singer', 'singer', 'singer'],
   },
   {
-    id: 'trackslist',
-    name: 'tracks',
+    id: 'tab-tracks',
+    name: 'Tracks',
     content: ['track', 'track', 'track'],
-  },
-  {
-    id: 'composerslist',
-    name: 'tracks',
-    content: ['composer', 'composer', 'composer'],
-  },
-  {
-    id: 'instrumentalistslist',
-    name: 'tracks',
-    content: ['instrumentalist', 'instrumentalist', 'instrumentalist'],
   },
 ];
 
 export const categoriesInfo = [
   {
-    id: 111,
-    name: 'orchestras',
+    id: 'tab-orchestras',
+    name: 'Orchestras',
   },
   {
-    id: 222,
-    name: 'singers',
+    id: 'tab-singers',
+    name: 'Singers',
   },
   {
-    id: 333,
-    name: 'tracks',
-  },
-  {
-    id: 444,
-    name: 'composers',
-  },
-  {
-    id: 555,
-    name: 'instrumentalists',
+    id: 'tab-tracks',
+    name: 'Tracks',
   },
 ];
