@@ -26,7 +26,8 @@
 
 .results-tabs__nav li {
   border: 2px solid #505e53;
-  background: #869b8b;
+  color: #374239;
+  background: #505e5379;
   width: 50%;
   padding: 7px;
   list-style: none;
@@ -35,7 +36,6 @@
   border-radius: 0;
   font-size: 0.9rem;
   text-align: center;
-  color: #374239;
 }
 
 .results-tabs__nav li:first-child {
@@ -52,7 +52,6 @@
 }
 
 .results-tabs__nav li:hover {
-  background: #505e5379;
   color: white;
 }
 
@@ -61,8 +60,13 @@
 }
 
 .results-tabs__nav li.active {
-  background: #505e53;
+  background: #505e53aa;
   color: white;
+  font-weight: 700;
+}
+
+.results-tabs__nav li.active:hover {
+  background: #505e53ec;
 }
 
 .results-tabs__outlet {
