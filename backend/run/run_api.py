@@ -1,10 +1,12 @@
 import uvicorn
 from api.tango_all import all_router
+from api.tango_filter import filter_router
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 app.include_router(all_router)
+app.include_router(filter_router)
 
 origins = [
     "http://localhost",

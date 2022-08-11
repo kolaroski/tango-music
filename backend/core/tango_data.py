@@ -1,20 +1,11 @@
 from datetime import datetime
 from typing import Optional
 
+import numpy
 import pandas
 from fuzzywuzzy import fuzz
 
-from core.config import Config
-
-
-class _Columns:
-    ORQUESTRA = "Orquestra"
-    DATE = "Date"
-    TITLE = "Title"
-    SINGER = "Singer"
-    STYLE = "Style"
-    COMPOSER = "Composer"
-    AUTHOR = "Author"
+from core.config import Columns, Config
 
 
 class TangoData:
@@ -29,19 +20,21 @@ class TangoData:
         else:
             self.data = data
             assert (
-                isinstance(self.data.index, pandas.DatetimeIndex) is True,
-                "The index must be datetime",
-            )
+                isinstance(self.data.index, pandas.DatetimeIndex) is True
+            ), "The index must be datetime"
         # Sort by the index
         self.data.sort_index(inplace=True)
         all_columns = list(self.data.columns)
         self.data = self.data[all_columns].astype(str)
+        self.data[Columns.DATE] = [
+            x.date() for x in pandas.to_datetime(self.data.index)
+        ]
 
     def get_pandas_dataframe(self) -> pandas.DataFrame:
         return self.data
 
     def all_orquestras(self) -> list[str]:
-        orquestras = set(self.data[_Columns.ORQUESTRA].values)
+        orquestras = set(self.data[Columns.ORCHESTRA].values)
         if " " in orquestras:
             orquestras.remove(" ")
         if "nan" in orquestras:
@@ -54,7 +47,7 @@ class TangoData:
         return min_date, max_date
 
     def all_singers(self) -> list[str]:
-        singers = set(self.data[_Columns.SINGER].values)
+        singers = set(self.data[Columns.SINGER].values)
         if " " in singers:
             singers.remove(" ")
         if "nan" in singers:
@@ -62,35 +55,49 @@ class TangoData:
         return sorted(list(singers))
 
     def all_styles(self) -> list[str]:
-        return sorted(list(set(self.data[_Columns.STYLE].values)))
+        return sorted(list(set(self.data[Columns.STYLE].values)))
 
-    @staticmethod
     def filter_by_date(
-        data: pandas.DataFrame, start_date: datetime.date, end_date: datetime.date
+        self, start_date: datetime.date, end_date: datetime.date
     ) -> pandas.DataFrame:
-        return data.loc[start_date:end_date]
+        return self.data.loc[start_date:end_date]
 
-    @staticmethod
-    def filter_by_orquestra(
-        data: pandas.DataFrame, orquestra_name: str
-    ) -> pandas.DataFrame:
-        orquestras = data[_Columns.ORQUESTRA]
-        orquestras_selected = set()
-        for val in orquestras:
-            if fuzz.ratio(val, orquestra_name) > 0.9:
-                orquestras_selected.add(orquestras)
-        return data[data[_Columns.ORQUESTRA].isin(orquestras_selected)]
+    def filter_by_search(self, search_term: str, search_column: str):
+        search_data = self.data[search_column].values
+        data_selected = set()
+        for val in search_data:
+            if (
+                fuzz.ratio(val.lower(), search_term.lower()) > 80
+                or search_term.lower() in val.lower()
+            ):
+                data_selected.add(val)
+        return list(data_selected)
 
-    @staticmethod
-    def filter_by_singer(data: pandas.DataFrame, singer: str) -> pandas.DataFrame:
-        singers = data[_Columns.SINGER]
-        singers_selected = set()
-        for val in singers:
-            if fuzz.ratio(val, singer) > 0.9:
-                singers_selected.add(singers)
-        return data[data[_Columns.SINGER].isin(singers_selected)]
+    def filter_by_orquestra(self, orquestra_name: str) -> pandas.DataFrame:
+        return self.filter_by_search(orquestra_name, Columns.ORCHESTRA)
 
-    @staticmethod
-    def filter_by_style(data: pandas.DataFrame, style: str) -> pandas.DataFrame:
+    def filter_by_singer(self, singer: str) -> pandas.DataFrame:
+        return self.filter_by_search(singer, Columns.SINGER)
+
+    def filter_by_title(self, title: str) -> pandas.DataFrame:
+        return self.filter_by_search(title, Columns.TITLE)
+
+    def filter_rows_by_idx(self, filter_column: str, filter_values: list[str]):
+        return numpy.where(self.data[filter_column].isin(filter_values))
+
+    def filter_by_config(
+        self, filter_columns: str, filter_values: dict[str, list[str]]
+    ):
+        idxs = set()
+        for column in filter_columns:
+            column_values = filter_values[column]
+            column_rows_idxs = self.filter_rows_by_idx(
+                column, filter_values=column_values
+            )[0]
+            idxs.update(column_rows_idxs)
+
+        return self.data.iloc[sorted(list(idxs)), :]
+
+    def filter_by_style(self, style: str) -> pandas.DataFrame:
         capitalized_style = style.capitalize()
-        return data[data[_Columns.STYLE] == capitalized_style]
+        return self.data[self.data[Columns.STYLE] == capitalized_style]
