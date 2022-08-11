@@ -5,17 +5,15 @@ import { useEffect, useState } from 'react';
 import axios from '../node_modules/axios/index';
 import NavBar from './containers/NavBar';
 import SearchBar from './containers/SearchBar';
+import ArticlesContainer from './containers/ArticleContainer';
 import Footer from './components/Footer';
 
-// routing draft:
+// routes:
 import { Routes, Route, Outlet } from 'react-router-dom';
 import HomePage from './routes/HomePage';
-import ArticlesContainer from './containers/ArticleContainer';
-import Articles from './routes/Articles';
+import AllArticles from './routes/AllArticles';
 import SingleArticle from './routes/SingleArticle';
-import MainContent from './containers/MainContent';
-import SearchCategories from './routes/SearchCategories';
-import SearchResults from './containers/SearchResults';
+import Results from './routes/Results';
 import ErrorPage from './routes/ErrorPage';
 // ---------------
 
@@ -132,16 +130,10 @@ function App() {
         >
           <Route index element={<HomePage />} />
           <Route path="articles" element={<ArticlesContainer />}>
-            <Route index element={<Articles />} />
+            <Route index element={<AllArticles />} />
             <Route path=":articleId" element={<SingleArticle />} />
           </Route>
-          <Route path="results" element={<MainContent />}>
-            <Route index element={<SearchCategories keyword={searchTerm} />} />
-            <Route
-              path=":categoryId"
-              element={<SearchResults keyword={searchTerm} />}
-            />
-          </Route>
+          <Route path="results" element={<Results keyword={searchTerm} />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

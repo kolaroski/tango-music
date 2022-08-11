@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import articles_data from '../articles_data';
 
-const Articles: React.FC = (): JSX.Element => {
+const AllArticles: React.FC = (): JSX.Element => {
   return (
     <>
       {/* Show card list of articles */}
@@ -20,4 +20,4 @@ const Articles: React.FC = (): JSX.Element => {
   );
 };
 
-export default Articles;
+export default AllArticles;
