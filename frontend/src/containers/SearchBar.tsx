@@ -3,7 +3,7 @@ import CategoryItem from '../components/CategoryItem';
 import Button from '../components/Button';
 import { StyleIcon, PeriodIcon } from '../assets/SideBarIcons';
 import { useState, KeyboardEvent } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { createSearchParams, Outlet, useNavigate } from 'react-router-dom';
 
 interface OptionsCoreItem {
   optionsSetter: (key: string, value: boolean) => void;
@@ -48,6 +48,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const navigateToResults = () => {
     setSearchTerm(query);
     navigate(`/search/${query}`);
+    // navigate({
+    //   pathname: '/search/',
+    //   search: `${createSearchParams(query)}`,
+    // });
   };
 
   // Detect when ENTER key is pressed when typing in input field

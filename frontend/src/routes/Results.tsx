@@ -1,5 +1,6 @@
 import '../components/Results/Results.css';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 import ResultsTabsNavItem from '../components/Results/ResultsTabsNavItem';
 import ResultsTabContent from '../components/Results/ResultsTabContent';
 
@@ -8,24 +9,12 @@ import SingersTab from '../components/Results/AllTabs/SingersTab';
 import TracksTab from '../components/Results/AllTabs/TracksTab';
 
 import { categoriesInfo, dummyResults } from '../DUMMY_DATA';
-import axios from 'axios';
-
-interface SearchResults {
-  orquestras: Array<string>;
-  singers: Array<string>;
-  decades: Array<string>;
-  styles: Array<string>;
-}
 
 export interface ResultsProps {
   keyword: string;
-  searchResults?: SearchResults;
 }
 
-const Results: React.FC<ResultsProps> = ({
-  keyword,
-  searchResults,
-}): JSX.Element => {
+const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
   const [activeTab, setActiveTab] = useState('tab-orchestras');
 
   // make API call for searchTerm
