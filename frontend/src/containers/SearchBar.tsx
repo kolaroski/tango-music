@@ -14,14 +14,14 @@ export interface SearchBarProps {
   stylesOptions: OptionsCoreItem;
   periodsOptions: OptionsCoreItem;
   resetAllFilters: () => void;
-  getSearchTerm: (term: string) => void;
+  setSearchTerm: (term: string) => void;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   stylesOptions,
   periodsOptions,
   resetAllFilters,
-  getSearchTerm,
+  setSearchTerm,
 }): JSX.Element => {
   const categoriesArr: Array<{
     icon: JSX.Element;
@@ -46,8 +46,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
   // Navigate to search results and send search term up
   const navigate = useNavigate();
   const navigateToResults = () => {
-    getSearchTerm(query);
-    navigate('/results');
+    setSearchTerm(query);
+    navigate(`/search/${query}`);
   };
 
   // Detect when ENTER key is pressed when typing in input field

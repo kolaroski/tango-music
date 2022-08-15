@@ -15,7 +15,12 @@ const ResultsTabsNavItem: React.FC<ResultsTabsNavItemProps> = ({
     setActiveTab(id);
   };
   return (
-    <li onClick={handleClick} className={activeTab === id ? 'active' : ''}>
+    <li
+      // id={id}
+      id={Math.random().toString()}
+      onClick={handleClick}
+      className={activeTab === id ? 'active' : ''}
+    >
       {title}
     </li>
   );

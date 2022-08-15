@@ -10,7 +10,9 @@ const ResultsTabContent: React.FC<ResultsTabContentProps> = ({
   children,
 }): JSX.Element => {
   return activeTab === id ? (
-    <div className="tab-content">{children}</div>
+    <div id={id} className="tab-content">
+      {children}
+    </div>
   ) : null;
 };
 

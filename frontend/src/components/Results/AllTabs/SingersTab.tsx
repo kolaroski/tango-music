@@ -1,5 +1,5 @@
 export interface ResultsProps {
-  results: { id: string; name: string; content: string[] }[];
+  results: string[];
 }
 
 const SingersTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
@@ -7,7 +7,7 @@ const SingersTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
     <div className="single-tab singers">
       <ul className="list-results">
         {results.map(result => {
-          return result.content.map(res => {
+          return results.map(res => {
             return <li>{res}</li>;
           });
         })}
