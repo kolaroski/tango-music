@@ -25,18 +25,31 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
         return response.data;
       });
   }
+
+  interface TracksObject {
+    Orchestra: string[];
+    Title: string[];
+    Singer: string[];
+  }
   // manage state of search results
   const [allResults, setAllResults] = useState({
     Orchestra: [''],
     Singer: [''],
-    Title: [''],
+    Title: [{ Orchestra: [''], Title: [''], Singer: [''], Date: [''] }],
   });
   // fetch and set results
   useEffect(() => {
     getResultsByKeyword().then(function (results: {
       Orchestra: Array<string>;
       Singer: Array<string>;
-      Title: Array<string>;
+      Title: [
+        {
+          Orchestra: Array<string>;
+          Title: Array<string>;
+          Singer: Array<string>;
+          Date: Array<string>;
+        }
+      ];
     }) {
       setAllResults(results);
     });
@@ -53,6 +66,7 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
                 <ResultsTabsNavItem
                   title={category.name}
                   id={category.id}
+                  key={category.id}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
                 />

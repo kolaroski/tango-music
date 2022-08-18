@@ -75,4 +75,7 @@
 
 .list-results {
   list-style: none;
+  max-height: 300px;
+  overflow-y: scroll;
+  max-width: 60vw;
 }

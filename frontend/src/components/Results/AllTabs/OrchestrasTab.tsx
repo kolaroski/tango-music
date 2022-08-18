@@ -8,7 +8,7 @@ const OrchestrasTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
       <ul className="list-results">
         {results.map(result => {
           return results.map(res => {
-            return <li id={Math.random().toString()}>{res}</li>;
+            return <li key={Math.random().toString()}>{res}</li>;
           });
         })}
       </ul>

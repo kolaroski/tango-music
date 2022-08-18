@@ -7,9 +7,7 @@ const SingersTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
     <div className="single-tab singers">
       <ul className="list-results">
         {results.map(result => {
-          return results.map(res => {
-            return <li>{res}</li>;
-          });
+          return <li key={Math.random().toString()}>{result}</li>;
         })}
       </ul>
     </div>
