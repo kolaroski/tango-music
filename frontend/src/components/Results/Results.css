@@ -71,11 +71,37 @@
 
 .results-tabs__outlet {
   font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-tab {
+  width: 90vw;
+  box-sizing: border-box;
+  /* border: 2px solid purple; */
+  border-radius: 5px;
+  background-color: #505e53;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  border: 1px solid purple; */
 }
 
 .list-results {
   list-style: none;
   max-height: 300px;
   overflow-y: scroll;
-  max-width: 60vw;
+  /* max-width: 60vw; */
+}
+
+.list-results li {
+  /* border: 1px solid red; */
+  padding: 5px;
+  color: white;
+  border-bottom: 1px solid rgb(180, 178, 178);
 }
