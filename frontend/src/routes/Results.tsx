@@ -26,11 +26,6 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
       });
   }
 
-  interface TracksObject {
-    Orchestra: string[];
-    Title: string[];
-    Singer: string[];
-  }
   // manage state of search results
   const [allResults, setAllResults] = useState({
     Orchestra: [''],
