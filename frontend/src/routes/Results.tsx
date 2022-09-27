@@ -18,12 +18,16 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
   const [activeTab, setActiveTab] = useState('tab-orchestras');
 
   // make API call for searchTerm
-  function getResultsByKeyword(): Promise<{}> {
-    return axios
-      .get(`http://localhost:8000/filter/search/${keyword}`)
-      .then(function (response) {
-        return response.data;
-      });
+  async function getResultsByKeyword(): Promise<{}> {
+    ///// WIP: search params ------------------------------
+    // const encodedKeyword = encodeURIComponent(keyword);
+    console.log(keyword);
+    const response = await axios.get(
+      `http://localhost:8000/filter/search/${keyword}`
+      // `http://localhost:8000/?search=${keyword}`
+      ///// WIP: search params ------------------------------
+    );
+    return response.data;
   }
 
   // manage state of search results
@@ -32,6 +36,7 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
     Singer: [''],
     Title: [{ Orchestra: '', Title: '', Singer: '', Date: '' }],
   });
+
   // fetch and set results
   useEffect(() => {
     getResultsByKeyword().then(function (results: {
