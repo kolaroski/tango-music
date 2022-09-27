@@ -2,8 +2,10 @@ import React from 'react';
 
 const HomePage: React.FC = (): JSX.Element => {
   return (
-    <h2 className="article">
-      THIS IS THE HOME PAGE: Lorem ipsum dolor sit amet, consectetur adipiscing
+    <>
+      <h2 className="article">
+        The home page
+        {/* THIS IS THE HOME PAGE: Lorem ipsum dolor sit amet, consectetur adipiscing
       elit. Donec ipsum ipsum, bibendum at pretium a, mollis quis arcu. Aenean
       libero lorem, blandit ac mattis ultrices, faucibus ac magna. Pellentesque
       fringilla et nisl vel maximus. Vivamus tincidunt urna massa, vitae aliquam
@@ -33,8 +35,10 @@ const HomePage: React.FC = (): JSX.Element => {
       enim. Cras mattis, magna vel ultrices vulputate, ex ligula sagittis nisi,
       sit amet porta tellus nisi id dui. Curabitur eros neque, auctor vitae
       lacinia vitae, consectetur auctor risus. Phasellus vel faucibus libero,
-      blandit condimentum est. In eget consectetur sem.{' '}
-    </h2>
+      blandit condimentum est. In eget consectetur sem.{' '} */}
+      </h2>
+      <p>WWelcome to our tango music project</p>
+    </>
   );
 };
 
