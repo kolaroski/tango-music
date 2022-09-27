@@ -34,7 +34,17 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
   const [allResults, setAllResults] = useState({
     Orchestra: [''],
     Singer: [''],
-    Title: [{ Orchestra: '', Title: '', Singer: '', Date: '' }],
+    Title: [
+      {
+        Orchestra: '',
+        Title: '',
+        Singer: '',
+        Style: '',
+        Composer: '',
+        Author: '',
+        Date: '',
+      },
+    ],
   });
 
   // fetch and set results
@@ -47,6 +57,9 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
           Orchestra: string;
           Title: string;
           Singer: string;
+          Style: string;
+          Composer: string;
+          Author: string;
           Date: string;
         }
       ];
