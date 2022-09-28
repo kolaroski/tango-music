@@ -8,6 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
 
 // MUI table columns
 interface Column {
@@ -22,23 +23,23 @@ interface Column {
   label: string;
   width?: number;
   align?: 'right';
+  height?: number;
   format?: (value: number) => string;
 }
 
+// MUI table columns
 const columns: readonly Column[] = [
-  { id: 'Orchestra', label: 'Orchestra', width: 120 },
   { id: 'Title', label: 'Title', width: 120 },
-  { id: 'Singer', label: 'Singer', width: 120 },
-  { id: 'Style', label: 'Style', width: 120 },
-  { id: 'Composer', label: 'Composer', width: 120 },
-  { id: 'Author', label: 'Author', width: 120 },
-  { id: 'Date', label: 'Date', width: 120 },
+  { id: 'Orchestra', label: 'Orchestra', width: 120 },
+  { id: 'Style', label: 'Style', width: 80 },
+  // TBD: showing other available options in the table or on click/hover
+  // { id: 'Singer', label: 'Singer', width: 120 },
+  // { id: 'Composer', label: 'Composer', width: 120 },
+  // { id: 'Author', label: 'Author', width: 120 },
+  { id: 'Date', label: 'Date', width: 30 },
 ];
 
-// const createData(
-//   orchestra: string, title: string, singer: string, style: string, composer: string, author: string, date: string,):
-
-// props interface
+// props
 interface TracksObject {
   Orchestra: string;
   Title: string;
@@ -49,25 +50,25 @@ interface TracksObject {
   Date: string;
 }
 
+// props
 export interface ResultsProps {
   results: TracksObject[];
 }
 
 const TracksTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
-  const [filter, setFilter] = useState('');
   const [filteredTracks, setFilteredTracks] = useState(results);
 
   const handleFilter = (e: SyntheticEvent) => {
     const inputValue = (e.target as HTMLInputElement).value;
-    setFilter(inputValue.toLowerCase());
     setFilteredTracks(
       results.filter(result => {
         return result.Title.toLowerCase().includes(inputValue.toLowerCase());
       })
     );
+    setPage(0);
   };
 
-  // material UI data table:
+  // material UI data table state and handlers:
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -84,16 +85,22 @@ const TracksTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
     <>
       <input
         type="text"
-        placeholder="Search track title...."
+        placeholder="Search within tracks"
         onChange={e => handleFilter(e)}
-      ></input>
-      <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        <TableContainer sx={{ maxHeight: 440, minHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
+        className="results-tracks__input"
+      />
+      <Paper sx={{ width: '90vw', overflow: 'hidden' }}>
+        <TableContainer sx={{ maxHeight: 650, backgroundColor: '#87aa8f' }}>
+          <Table stickyHeader size="small" aria-label="sticky table">
             <TableHead>
               <TableRow>
                 {columns.map(column => (
                   <TableCell
+                    sx={{
+                      color: 'white',
+                      backgroundColor: '#505e53ec',
+                      zIndex: 0,
+                    }}
                     key={column.id}
                     align={column.align}
                     style={{ width: column.width }}
@@ -110,19 +117,36 @@ const TracksTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
                 .map(row => {
                   return (
                     <TableRow
-                      hover
-                      role="checkbox"
+                      hover={true}
                       tabIndex={-1}
                       key={`${row.Title}_${
                         row.Date
                       }_${Math.random().toString()}`}
                     >
                       {columns.map(column => {
-                        const value = row[column.id];
+                        const value: string = row[column.id];
+                        const isLongValue: boolean =
+                          value.length > 25 ? true : false;
                         return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value}
-                          </TableCell>
+                          <Tooltip
+                            title={isLongValue ? value : ''}
+                            enterDelay={200}
+                            placement="bottom-start"
+                            arrow
+                            key={column.id}
+                          >
+                            <TableCell
+                              sx={{
+                                color: 'white',
+                                backgroundColor: '#5f7264',
+                                zIndex: 0,
+                              }}
+                              key={column.id}
+                              align={column.align}
+                            >
+                              {isLongValue ? `${value.slice(0, 25)}...` : value}
+                            </TableCell>
+                          </Tooltip>
                         );
                       })}
                     </TableRow>
@@ -132,6 +156,7 @@ const TracksTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
           </Table>
         </TableContainer>
         <TablePagination
+          sx={{ color: 'white', backgroundColor: '#505e53ec' }}
           rowsPerPageOptions={[10, 25, 100]}
           component="div"
           count={filteredTracks.length}
@@ -141,18 +166,6 @@ const TracksTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      {/* <div className="single-tab tab__tracks">
-        <ul className="list-results">
-          {filteredTracks.map(result => {
-            return (
-              <li key={`${result.Title}-${result.Date}-${result.Orchestra}`}>
-                {result.Title}, by orchestra {result.Orchestra} (year{' '}
-                {result.Date.slice(0, 4)})
-              </li>
-            );
-          })}
-        </ul>
-      </div> */}
     </>
   );
 };

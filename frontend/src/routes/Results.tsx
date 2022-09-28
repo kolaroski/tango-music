@@ -8,8 +8,6 @@ import OrchestrasTab from '../components/Results/AllTabs/OrchestrasTab';
 import SingersTab from '../components/Results/AllTabs/SingersTab';
 import TracksTab from '../components/Results/AllTabs/TracksTab';
 
-import { categoriesInfo, dummyResults } from '../DUMMY_DATA';
-
 export interface ResultsProps {
   keyword: string;
 }
@@ -67,6 +65,22 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
       setAllResults(results);
     });
   }, [keyword]);
+
+  // data for the tabs
+  const categoriesInfo = [
+    {
+      id: 'tab-orchestras',
+      name: 'Orchestras',
+    },
+    {
+      id: 'tab-singers',
+      name: 'Singers',
+    },
+    {
+      id: 'tab-tracks',
+      name: 'Tracks',
+    },
+  ];
 
   return (
     <>
