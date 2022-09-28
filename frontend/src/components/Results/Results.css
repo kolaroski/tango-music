@@ -3,19 +3,19 @@
 }
 
 .results_nav-box {
-  background-color: rgba(0, 0, 0, 0.35);
+  /* TBD */
 }
 
 .results-tabs__nav {
   width: 450px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 2rem;
   padding-left: 0px;
   padding-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 @media (max-width: 800px) {
@@ -93,4 +93,23 @@
   padding: 5px;
   color: white;
   border-bottom: 1px solid rgb(180, 178, 178);
+}
+
+.results-tracks__input {
+  width: 100%;
+  border: 2px solid #4b6050;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  color: #191d1a;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.results-tracks__input:focus {
+  border-color: #e2ece5;
+  background: transparent;
 }
