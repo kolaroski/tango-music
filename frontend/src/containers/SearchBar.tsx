@@ -4,11 +4,11 @@ import Button from '../components/Button';
 import { StyleIcon, PeriodIcon } from '../assets/SideBarIcons';
 import { useState, KeyboardEvent } from 'react';
 import {
-  createSearchParams,
-  useSearchParams,
+  // createSearchParams,
+  // useSearchParams,
   Outlet,
   useNavigate,
-  Link,
+  // Link,
 } from 'react-router-dom';
 
 interface OptionsCoreItem {
@@ -146,7 +146,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onClick={resetAllFilters}
         />
       </div> */}
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 };

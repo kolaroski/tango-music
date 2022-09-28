@@ -118,14 +118,13 @@ function App() {
   console.log(searchTerm);
 
   return (
-    <>
+    <div className="app-main">
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <NavBar />
-              <SearchBar
+              <NavBar
                 stylesOptions={{
                   optionsSetter: filterStyleActions.set,
                   checkedFilters: filterStyleMap,
@@ -137,6 +136,18 @@ function App() {
                 resetAllFilters={onResetAllFilters}
                 setSearchTerm={setSearchTerm}
               />
+              {/* <SearchBar
+                stylesOptions={{
+                  optionsSetter: filterStyleActions.set,
+                  checkedFilters: filterStyleMap,
+                }}
+                periodsOptions={{
+                  optionsSetter: filterPeriodActions.set,
+                  checkedFilters: filterPeriodMap,
+                }}
+                resetAllFilters={onResetAllFilters}
+                setSearchTerm={setSearchTerm}
+              /> */}
             </>
           }
         >
@@ -157,7 +168,7 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 
