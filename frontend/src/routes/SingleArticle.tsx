@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import articles_data from '../articles_data';
 import parse from 'html-react-parser';
-// TODO: use DOMPurify with TypeScript:
-// import createPurify from 'dompurify';
+import * as createPurify from 'dompurify';
 import '../components/Articles.css';
 
 const SingleArticle: React.FC = (): JSX.Element => {
   const { articleId } = useParams();
   const article = articles_data.find(article => article.id === articleId);
 
-  // TODO: sanitize html before parsing:
-  // const cleanHTMLcontent = DOMPurify.sanitize(article.content, {
-  //   USE_PROFILES: { html: true },
-  // });
+  // sanitize html before parsing:
+  const purify = createPurify();
+  const cleanHTMLcontent = purify.sanitize(article.content, {
+    USE_PROFILES: { html: true },
+  });
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -26,9 +26,7 @@ const SingleArticle: React.FC = (): JSX.Element => {
     <div className="article__containter">
       <article>
         <h1 className="article__header">{article.title}</h1>
-        {/* TODO: use DOMPurify  */}
-        {/* <p className="article__content">{parse(cleanHTMLcontent)}</p> */}
-        <p className="article__content">{parse(article.content)}</p>
+        <p className="article__content">{parse(cleanHTMLcontent)}</p>
       </article>
       <div className="article__btns">
         <Link to="/articles">
