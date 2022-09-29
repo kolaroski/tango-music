@@ -2,13 +2,14 @@
 .wrap {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: #fff;
   box-sizing: border-box;
   width: 70%;
+  margin-left: 30px;
 }
 .search {
-  width: 100%;
+  width: 400px;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -58,12 +59,14 @@
   background-color: #7d8b80;
 }
 
-/*
-@media (max-width: 800px) {
+@media (max-width: 880px) {
   .search {
-     TBD 
+    width: 100%;
   }
-}*/
+  .wrap {
+    margin-left: 0;
+  }
+}
 
 /* WRAPPERS  */
 .categories-wrapper {

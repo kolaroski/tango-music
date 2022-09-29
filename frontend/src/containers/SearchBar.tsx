@@ -112,7 +112,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
               src={require('../assets/searchImg.svg')}
               alt="search-icon"
               className="search-bar__icon"
-            />
+            ></img>
           </button>
         </div>
       </div>
