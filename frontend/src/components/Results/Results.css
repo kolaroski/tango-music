@@ -113,3 +113,11 @@
   border-color: #e2ece5;
   background: transparent;
 }
+
+/* orchestras and singers cards mui  */
+.results__cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}

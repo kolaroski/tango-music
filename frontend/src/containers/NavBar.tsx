@@ -39,8 +39,8 @@ const NavBar: React.FC<NavBarProps> = ({
           <Link to="/" className="navbar__link-home ">
             <div className="navbar__logo">
               {/* TBD: OPTIONS FOR LOGOS AND/OR TEXT */}
-              {/* <LogoIcon1 color="white" size={80} /> */}
-              <LogoIcon2 color="white" size={80} />
+              <LogoIcon1 color="white" size={80} />
+              {/* <LogoIcon2 color="white" size={80} /> */}
               {/* <p className="navbar__title">tango-music-project</p> */}
             </div>
           </Link>
