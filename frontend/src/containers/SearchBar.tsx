@@ -5,8 +5,8 @@ import { StyleIcon, PeriodIcon } from '../assets/SideBarIcons';
 import { useState, KeyboardEvent } from 'react';
 import {
   // createSearchParams,
-  // useSearchParams,
-  Outlet,
+  useSearchParams,
+  // Outlet,
   useNavigate,
   // Link,
 } from 'react-router-dom';
@@ -62,9 +62,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
     // console.log(prebaruvanjeOdKorisnik);
     // const encodedQuery = encodeURIComponent(query);
     setSearchTerm(query);
-    // navigate(`/search/${query}`);
+    // navigate(`/search/${searchParams}`);
+    navigate(`/search/${query}`);
+
     // navigate(`?search=${query}`);
-    navigate(`/search/results`);
+    // navigate(`/search/results`);
     // navigate(`/?search=${prebaruvanjeOdKorisnik}`);
 
     // navigate({
@@ -78,6 +80,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       navigateToResults();
+      setQuery('');
     }
   };
 
@@ -89,6 +92,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
             type="text"
             className="searchTerm"
             placeholder="What are you looking for?"
+            value={decodeURIComponent(query)}
             onChange={event => setQuery(encodeURIComponent(event.target.value))}
             ///// WIP: search params ------------------------------
             // VARIJANTA SO SEARCH PARAMS, url e /?search={keywords}

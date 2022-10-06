@@ -158,9 +158,9 @@ function App() {
           </Route>
           <Route
             ///// WIP: search params ------------------------------
-            // path={`/search/:${searchTerm}`}
+            path={`/search/:${searchTerm}`}
             // path={`/?search=:${searchTerm}`}
-            path={`/search/results`}
+            // path={`/search/results`}
             ///// WIP: search params ------------------------------
             element={<Results keyword={searchTerm} />}
           />
