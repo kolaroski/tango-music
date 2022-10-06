@@ -26,7 +26,7 @@ const SingleArticle: React.FC = (): JSX.Element => {
     <div className="article__containter">
       <article>
         <h1 className="article__header">{article.title}</h1>
-        <p className="article__content">{parse(cleanHTMLcontent)}</p>
+        <div className="article__content">{parse(cleanHTMLcontent)}</div>
       </article>
       <div className="article__btns">
         <Link to="/articles">
