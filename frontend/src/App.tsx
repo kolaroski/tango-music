@@ -20,16 +20,30 @@ import ErrorPage from './routes/ErrorPage';
 const ORQUESTRAS_URL = 'http://localhost:8000/all/orquestras';
 const SINGERS_URL = 'http://localhost:8000/all/singers';
 
-function getAllOrquestras(): Promise<Array<string>> {
-  return axios.get(ORQUESTRAS_URL).then(function (response) {
-    return response.data as Array<string>;
-  });
+// A) handle request with .then()
+// function getAllOrquestras(): Promise<Array<string>> {
+//   return axios.get(ORQUESTRAS_URL).then(function (response) {
+//     return response.data as Array<string>;
+//   });
+// }
+
+// B) handle request with async/await
+async function getAllOrquestras(): Promise<Array<string>> {
+  const response = await axios.get(ORQUESTRAS_URL);
+  return response.data as Array<string>;
 }
 
-function getAllSingers(): Promise<Array<string>> {
-  return axios.get(SINGERS_URL).then(function (response) {
-    return response.data as Array<string>;
-  });
+// A) handle request with .then()
+// function getAllSingers(): Promise<Array<string>> {
+//   return axios.get(SINGERS_URL).then(function (response) {
+//     return response.data as Array<string>;
+//   });
+// }
+
+// B) handle request with async/await
+async function getAllSingers(): Promise<Array<string>> {
+  const response = await axios.get(SINGERS_URL);
+  return response.data as Array<string>;
 }
 
 function initializeMap(
@@ -101,19 +115,16 @@ function App() {
 
   // user input query
   const [searchTerm, setSearchTerm] = useState('');
-  const getSearchTerm = (term: string) => {
-    setSearchTerm(term);
-  };
+  console.log(searchTerm);
 
   return (
-    <>
+    <div className="app-main">
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <NavBar />
-              <SearchBar
+              <NavBar
                 stylesOptions={{
                   optionsSetter: filterStyleActions.set,
                   checkedFilters: filterStyleMap,
@@ -123,8 +134,20 @@ function App() {
                   checkedFilters: filterPeriodMap,
                 }}
                 resetAllFilters={onResetAllFilters}
-                getSearchTerm={getSearchTerm}
+                setSearchTerm={setSearchTerm}
               />
+              {/* <SearchBar
+                stylesOptions={{
+                  optionsSetter: filterStyleActions.set,
+                  checkedFilters: filterStyleMap,
+                }}
+                periodsOptions={{
+                  optionsSetter: filterPeriodActions.set,
+                  checkedFilters: filterPeriodMap,
+                }}
+                resetAllFilters={onResetAllFilters}
+                setSearchTerm={setSearchTerm}
+              /> */}
             </>
           }
         >
@@ -133,12 +156,19 @@ function App() {
             <Route index element={<AllArticles />} />
             <Route path=":articleId" element={<SingleArticle />} />
           </Route>
-          <Route path="results" element={<Results keyword={searchTerm} />} />
+          <Route
+            ///// WIP: search params ------------------------------
+            path={`/search/:${searchTerm}`}
+            // path={`/?search=:${searchTerm}`}
+            // path={`/search/results`}
+            ///// WIP: search params ------------------------------
+            element={<Results keyword={searchTerm} />}
+          />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 }
 

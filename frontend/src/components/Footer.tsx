@@ -1,15 +1,19 @@
-// import "./Footer.css";
+import './Footer.css';
 
 const Footer: React.FC = () => {
   return (
     <div className="footer-container">
-      <h1>FOOTER</h1>
+      <p className="footer-text">TANGO MUSIC PROJECT</p>
       <a
         className="contact-link"
         href="https://github.com/kolaroski/tango-music"
         target="blank"
       >
-        See our project on GitHub
+        <img
+          src={require('../assets/img/GitHub-Mark-Light-120px-plus.png')}
+          alt="github"
+          height={30}
+        />
       </a>
     </div>
   );

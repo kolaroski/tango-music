@@ -1,17 +1,15 @@
 /* SEARCH BAR No.1  ---------------------------------------------------*/
 .wrap {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.35);
+  justify-content: flex-start;
   color: #fff;
-  height: 50px;
-  padding: 1em;
   box-sizing: border-box;
+  width: 70%;
+  margin-left: 30px;
 }
 .search {
-  width: 450px;
+  width: 400px;
   position: relative;
   display: flex;
   box-sizing: border-box;
@@ -25,12 +23,12 @@
   height: 40px;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9dbfaf;
+  color: #5b7267;
   box-sizing: border-box;
 }
 
 .searchTerm:focus {
-  color: #3f5d46;
+  color: #2c342e;
 }
 
 .searchButton {
@@ -61,71 +59,15 @@
   background-color: #7d8b80;
 }
 
-/* SEARCH BAR No.2  ---------------------------------------------------*/
-.search-container {
-  background-color: rgba(0, 0, 0, 0.35);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 10px;
-}
-
-.search-field {
-  margin: 20px;
-}
-
-.search-field > div {
-  display: inline-block;
-  position: relative;
-  filter: drop-shadow(0 1px #5d5b4a);
-}
-
-.search-field > div:after {
-  content: '';
-  background: white;
-  width: 3px;
-  height: 20px;
-  position: absolute;
-  top: 32px;
-  right: 2px;
-  transform: rotate(135deg);
-}
-
-.search-field > div > input {
-  color: white;
-  font-size: 16px;
-  background: transparent;
-  width: 15px;
-  height: 15px;
-  padding: 10px;
-  border: solid 3px white;
-  outline: none;
-  border-radius: 35px;
-  transition: width 0.5s;
-}
-
-.search-field > div > input::placeholder {
-  color: #efefef;
-  opacity: 0;
-  transition: opacity 150ms ease-out;
-}
-
-.search-field > div > input:focus::placeholder {
-  opacity: 1;
-}
-
-.search-field > div > input:focus,
-.search-field > div > input:not(:placeholder-shown) {
-  width: 200px;
-}
-
-@media (max-width: 800px) {
+@media (max-width: 880px) {
   .search {
-    width: 96%;
+    width: 100%;
+  }
+  .wrap {
+    margin-left: 0;
   }
 }
+
 /* WRAPPERS  */
 .categories-wrapper {
   background-color: rgba(0, 0, 0, 0.35);

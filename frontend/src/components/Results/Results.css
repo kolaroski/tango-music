@@ -3,19 +3,19 @@
 }
 
 .results_nav-box {
-  background-color: rgba(0, 0, 0, 0.35);
+  /* TBD */
 }
 
 .results-tabs__nav {
   width: 450px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 2rem;
   padding-left: 0px;
   padding-bottom: 20px;
-  padding-top: 10px;
+  padding-top: 20px;
 }
 
 @media (max-width: 800px) {
@@ -60,7 +60,7 @@
 }
 
 .results-tabs__nav li.active {
-  background: #505e53aa;
+  background: #505e53ec;
   color: white;
   font-weight: 700;
 }
@@ -71,8 +71,53 @@
 
 .results-tabs__outlet {
   font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-tab {
+  width: 90vw;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #505e53;
 }
 
 .list-results {
   list-style: none;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.list-results li {
+  padding: 5px;
+  color: white;
+  border-bottom: 1px solid rgb(180, 178, 178);
+}
+
+.results-tracks__input {
+  width: 100%;
+  border: 2px solid #4b6050;
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  color: #191d1a;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.results-tracks__input:focus {
+  border-color: #e2ece5;
+  background: transparent;
+}
+
+/* orchestras and singers cards mui  */
+.results__cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
 }

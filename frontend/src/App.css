@@ -1,16 +1,5 @@
-.main-content {
-  position: absolute;
-  margin-left: 345px;
-  margin-right: 50px;
-}
-
-.displayStyle {
+.app-main {
   display: flex;
-}
-
-.cardlistHeading {
-  margin-left: 50px;
-  margin-bottom: 0;
-  font-weight: 100;
-  color: var(--primary);
+  flex-direction: column;
+  min-height: 100vh;
 }
