@@ -1,5 +1,6 @@
 class Config:
     PATH = "./data/all_orquestras_data.csv"
+    OVERVIEW_PATH = "./data/overview_data.json"
 
 
 class Columns:

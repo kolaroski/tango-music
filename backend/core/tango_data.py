@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from typing import Optional
 
@@ -29,6 +30,8 @@ class TangoData:
         self.data[Columns.DATE] = [
             x.date() for x in pandas.to_datetime(self.data.index)
         ]
+        with open(Config.OVERVIEW_PATH, "rt") as rf:
+            self.info: dict[str, str] = json.load(rf)
 
     def get_pandas_dataframe(self) -> pandas.DataFrame:
         return self.data
@@ -82,7 +85,7 @@ class TangoData:
     def filter_by_title(self, title: str) -> pandas.DataFrame:
         return self.filter_by_search(title, Columns.TITLE)
 
-    def filter_rows_by_idx(self, filter_column: str, filter_values: list[str]):
+    def _filter_rows_by_idx(self, filter_column: str, filter_values: list[str]):
         return numpy.where(self.data[filter_column].isin(filter_values))
 
     def filter_by_config(
@@ -91,12 +94,25 @@ class TangoData:
         idxs = set()
         for column in filter_columns:
             column_values = filter_values[column]
-            column_rows_idxs = self.filter_rows_by_idx(
+            column_rows_idxs = self._filter_rows_by_idx(
                 column, filter_values=column_values
             )[0]
             idxs.update(column_rows_idxs)
 
         return self.data.iloc[sorted(list(idxs)), :]
+
+    def get_artist_info(self, artist: str) -> dict[str, str]:
+        data_selected = []
+        for val in self.info.keys():
+            fuzz_ratio = fuzz.ratio(val.lower(), artist.lower())
+            if fuzz_ratio > 80:
+                data_selected.append((val, fuzz_ratio))
+
+        if len(data_selected) > 0:
+            data_selected = sorted(data_selected, key=lambda x: x[1])
+            return self.info[data_selected[-1][0]]
+        else:
+            return {}
 
     def filter_by_style(self, style: str) -> pandas.DataFrame:
         capitalized_style = style.capitalize()

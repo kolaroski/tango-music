@@ -26,3 +26,25 @@ async def filter_by_search(
     )
     result[Columns.TITLE] = additional_track_data.to_dict("records")
     return result
+
+
+@filter_router.get("/{orchestra_id}/singers")
+async def fetch_singers_from_orchestra(orchestra_id: str) -> list[str]:
+    data = TangoData()
+    orchestras = data.filter_by_orquestra(orchestra_id)
+    orchestras_data = data.filter_by_config(
+        filter_columns=[Columns.ORCHESTRA],
+        filter_values={Columns.ORCHESTRA: orchestras},
+    )
+    return sorted(list(set(orchestras_data["Singer"].values)))
+
+
+@filter_router.get("/{singer_id}/orchestras")
+async def fetch_orchestras_from_singers(singer_id: str) -> list[str]:
+    data = TangoData()
+    singers = data.filter_by_singer(singer_id)
+    singers_data = data.filter_by_config(
+        filter_columns=[Columns.SINGER],
+        filter_values={Columns.SINGER: singers},
+    )
+    return sorted(list(set(singers_data["Orchestra"].values)))
