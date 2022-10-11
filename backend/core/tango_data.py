@@ -4,6 +4,7 @@ from typing import Optional
 
 import numpy
 import pandas
+from api.parameters import ArtistInfo
 from fuzzywuzzy import fuzz
 
 from core.config import Columns, Config
@@ -101,7 +102,7 @@ class TangoData:
 
         return self.data.iloc[sorted(list(idxs)), :]
 
-    def get_artist_info(self, artist: str) -> dict[str, str]:
+    def get_artist_info(self, artist: str) -> ArtistInfo:
         data_selected = []
         for val in self.info.keys():
             fuzz_ratio = fuzz.ratio(val.lower(), artist.lower())
@@ -110,7 +111,7 @@ class TangoData:
 
         if len(data_selected) > 0:
             data_selected = sorted(data_selected, key=lambda x: x[1])
-            return self.info[data_selected[-1][0]]
+            return ArtistInfo(**self.info[data_selected[-1][0]])
         else:
             return {}
 
