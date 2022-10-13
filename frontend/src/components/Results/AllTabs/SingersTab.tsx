@@ -16,6 +16,8 @@ const SingersTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [selectedArtist, setSelectedArtist] = useState('');
+
   return (
     <div className="results__cards-container">
       {results.map(result => {
@@ -35,18 +37,25 @@ const SingersTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
               <Typography variant="body2">{result}</Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={handleOpen}>
+              <Button
+                size="small"
+                onClick={() => {
+                  handleOpen();
+                  setSelectedArtist(result);
+                }}
+                value={result}
+              >
                 Learn More
               </Button>
-              <ModalAdditionalInfo
-                open={open}
-                handleClose={handleClose}
-                artist={result}
-              />
             </CardActions>
           </Card>
         );
       })}
+      <ModalAdditionalInfo
+        open={open}
+        handleClose={handleClose}
+        selectedArtist={selectedArtist}
+      />
     </div>
   );
 };

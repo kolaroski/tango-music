@@ -20,13 +20,13 @@ const style = {
 export interface ModalProps {
   open: boolean;
   handleClose: () => void;
-  artist: string;
+  selectedArtist: string;
 }
 
 const ModalAdditionalInfo: React.FC<ModalProps> = ({
   open,
   handleClose,
-  artist,
+  selectedArtist,
 }): JSX.Element => {
   // state for additional info for artist
   const [info, setInfo] = useState({
@@ -39,33 +39,28 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
   });
 
   // API call for additional info for artist
-  async function getAdditionalInfo(): Promise<{}> {
-    const response = await axios.get(
-      `http://localhost:8000/info/artist/${artist}`
-    );
-    return response.data;
-  }
-
   useEffect((): void | (() => void | undefined) => {
-    let isLoading = true;
-    getAdditionalInfo()
-      .then(function (data: {
-        real_name: string;
-        nickname: string;
-        category: string;
-        dates: string;
-        place_of_birth: string;
-        biography_link: string;
-      }) {
-        isLoading ? setInfo(data) : null;
-      })
-      .catch(err => console.error(err));
-    return () => (isLoading = false);
-  }, [artist]);
+    if (selectedArtist !== '') {
+      let isLoading = true;
+      const getAdditionalInfo = async () => {
+        try {
+          console.log('making api call');
+          const { data } = await axios.get(
+            `http://localhost:8000/info/artist/${selectedArtist}`
+          );
+          isLoading ? setInfo(data) : null;
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      if (open) getAdditionalInfo();
+      return () => (isLoading = false);
+    }
+  }, [selectedArtist, open]);
 
   return (
     <>
-      {artist && (
+      {selectedArtist && (
         <Modal
           open={open}
           onClose={handleClose}
@@ -78,7 +73,7 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
         >
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              ARTIST: {artist}
+              ARTIST: {selectedArtist}
             </Typography>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Category: {info.category}

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState, useRef } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -16,6 +15,8 @@ const OrchestrasTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [selectedArtist, setSelectedArtist] = useState('');
 
   return (
     <div className="results__cards-container">
@@ -36,18 +37,25 @@ const OrchestrasTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
               <Typography variant="body2">{result}</Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" onClick={handleOpen}>
+              <Button
+                size="small"
+                onClick={() => {
+                  handleOpen();
+                  setSelectedArtist(result);
+                }}
+                value={result}
+              >
                 Learn More
               </Button>
-              <ModalAdditionalInfo
-                open={open}
-                handleClose={handleClose}
-                artist={result}
-              />
             </CardActions>
           </Card>
         );
       })}
+      <ModalAdditionalInfo
+        open={open}
+        handleClose={handleClose}
+        selectedArtist={selectedArtist}
+      />
     </div>
   );
 };
