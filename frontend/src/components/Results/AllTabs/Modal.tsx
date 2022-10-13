@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -21,12 +23,14 @@ export interface ModalProps {
   open: boolean;
   handleClose: () => void;
   selectedArtist: string;
+  setArtistId: (artistId: string) => void;
 }
 
 const ModalAdditionalInfo: React.FC<ModalProps> = ({
   open,
   handleClose,
   selectedArtist,
+  setArtistId,
 }): JSX.Element => {
   // state for additional info for artist
   const [info, setInfo] = useState({
@@ -37,6 +41,12 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
     place_of_birth: '',
     biography_link: '',
   });
+
+  const navigate = useNavigate();
+  const navigateToArtistPage = () => {
+    setArtistId(encodeURIComponent(selectedArtist));
+    navigate(`/${encodeURIComponent(selectedArtist)}`);
+  };
 
   // API call for additional info for artist
   useEffect((): void | (() => void | undefined) => {
@@ -93,6 +103,10 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
                   {info.biography_link}
                 </a>
               </Typography>
+              <Button
+                onClick={navigateToArtistPage}
+                size="small"
+              >{`See artist's page >>>`}</Button>
             </div>
           </Box>
         </Modal>

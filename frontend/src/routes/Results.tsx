@@ -10,9 +10,13 @@ import TracksTab from '../components/Results/AllTabs/TracksTab';
 
 export interface ResultsProps {
   keyword: string;
+  setArtistId: (artistId: string) => void;
 }
 
-const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
+const Results: React.FC<ResultsProps> = ({
+  keyword,
+  setArtistId,
+}): JSX.Element => {
   const [activeTab, setActiveTab] = useState('tab-orchestras');
 
   // make API call for searchTerm
@@ -102,13 +106,23 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
           <ResultsTabContent
             id="tab-orchestras"
             activeTab={activeTab}
-            children={<OrchestrasTab results={allResults.Orchestra} />}
+            children={
+              <OrchestrasTab
+                results={allResults.Orchestra}
+                setArtistId={setArtistId}
+              />
+            }
           />
 
           <ResultsTabContent
             id="tab-singers"
             activeTab={activeTab}
-            children={<SingersTab results={allResults.Singer} />}
+            children={
+              <SingersTab
+                results={allResults.Singer}
+                setArtistId={setArtistId}
+              />
+            }
           />
           <ResultsTabContent
             id="tab-tracks"

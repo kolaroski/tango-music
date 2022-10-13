@@ -6,6 +6,7 @@ import axios from '../node_modules/axios/index';
 import NavBar from './containers/NavBar';
 import SearchBar from './containers/SearchBar';
 import ArticlesContainer from './containers/ArticleContainer';
+import ArtistPage from './routes/ArtistPage';
 import Footer from './components/Footer';
 
 // routes:
@@ -101,7 +102,9 @@ function App() {
 
   // user input query
   const [searchTerm, setSearchTerm] = useState('');
-  console.log(searchTerm);
+
+  // artist id for artist page
+  const [artistId, setArtistId] = useState('');
 
   return (
     <div className="app-main">
@@ -122,7 +125,6 @@ function App() {
                 resetAllFilters={onResetAllFilters}
                 setSearchTerm={setSearchTerm}
               />
-             
             </>
           }
         >
@@ -133,8 +135,9 @@ function App() {
           </Route>
           <Route
             path={`/search/:${searchTerm}`}
-            element={<Results keyword={searchTerm} />}
+            element={<Results keyword={searchTerm} setArtistId={setArtistId} />}
           />
+          <Route path={`:${artistId}`} element={<ArtistPage />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

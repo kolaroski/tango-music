@@ -9,9 +9,13 @@ import ModalAdditionalInfo from './Modal';
 
 export interface ResultsProps {
   results: string[];
+  setArtistId: (artistId: string) => void;
 }
 
-const OrchestrasTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
+const OrchestrasTab: React.FC<ResultsProps> = ({
+  results,
+  setArtistId,
+}): JSX.Element => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -55,6 +59,7 @@ const OrchestrasTab: React.FC<ResultsProps> = ({ results }): JSX.Element => {
         open={open}
         handleClose={handleClose}
         selectedArtist={selectedArtist}
+        setArtistId={setArtistId}
       />
     </div>
   );
