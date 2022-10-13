@@ -23,15 +23,19 @@ export interface ModalProps {
   open: boolean;
   handleClose: () => void;
   selectedArtist: string;
-  setArtistId: (artistId: string) => void;
 }
 
 const ModalAdditionalInfo: React.FC<ModalProps> = ({
   open,
   handleClose,
   selectedArtist,
-  setArtistId,
 }): JSX.Element => {
+  const navigate = useNavigate();
+  const navigateToArtistPage = () => {
+    navigate(`/${encodeURIComponent(selectedArtist)}`);
+  };
+  //////////////////////////////////////
+  // repetitive code in modal and artist page TODO: EXTRACT IN SEPARATE CONTROLLER COMPONENT:
   // state for additional info for artist
   const [info, setInfo] = useState({
     real_name: '',
@@ -42,19 +46,12 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
     biography_link: '',
   });
 
-  const navigate = useNavigate();
-  const navigateToArtistPage = () => {
-    setArtistId(encodeURIComponent(selectedArtist));
-    navigate(`/${encodeURIComponent(selectedArtist)}`);
-  };
-
   // API call for additional info for artist
   useEffect((): void | (() => void | undefined) => {
     if (selectedArtist !== '') {
       let isLoading = true;
       const getAdditionalInfo = async () => {
         try {
-          console.log('making api call');
           const { data } = await axios.get(
             `http://localhost:8000/info/artist/${selectedArtist}`
           );
@@ -67,6 +64,7 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
       return () => (isLoading = false);
     }
   }, [selectedArtist, open]);
+  //////////////////////////////////////
 
   return (
     <>
@@ -85,6 +83,10 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
             <Typography id="modal-modal-title" variant="h6" component="h2">
               ARTIST: {selectedArtist}
             </Typography>
+            <Button
+              onClick={navigateToArtistPage}
+              size="small"
+            >{`See artist's page >>>`}</Button>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Category: {info.category}
             </Typography>
@@ -103,10 +105,6 @@ const ModalAdditionalInfo: React.FC<ModalProps> = ({
                   {info.biography_link}
                 </a>
               </Typography>
-              <Button
-                onClick={navigateToArtistPage}
-                size="small"
-              >{`See artist's page >>>`}</Button>
             </div>
           </Box>
         </Modal>

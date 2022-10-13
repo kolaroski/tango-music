@@ -103,9 +103,6 @@ function App() {
   // user input query
   const [searchTerm, setSearchTerm] = useState('');
 
-  // artist id for artist page
-  const [artistId, setArtistId] = useState('');
-
   return (
     <div className="app-main">
       <Routes>
@@ -135,9 +132,9 @@ function App() {
           </Route>
           <Route
             path={`/search/:${searchTerm}`}
-            element={<Results keyword={searchTerm} setArtistId={setArtistId} />}
+            element={<Results keyword={searchTerm} />}
           />
-          <Route path={`:${artistId}`} element={<ArtistPage />} />
+          <Route path=":artistId" element={<ArtistPage />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
