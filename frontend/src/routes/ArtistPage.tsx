@@ -6,7 +6,7 @@ const ArtistPage: React.FC = (): JSX.Element => {
   const { artistId } = useParams();
 
   //////////////////////////////////////
-  // repetitive code from modal TODO: EXTRACT IN SEPARATE CONTROLLER COMPONENT:
+  // repetitive code from modal TODO: EXTRACT IN SEPARATE COMPONENT:
   // state for additional info for artist
   const [info, setInfo] = useState({
     real_name: '',
@@ -35,6 +35,58 @@ const ArtistPage: React.FC = (): JSX.Element => {
   }, [artistId]);
   ////////////////////////////////
 
+  ///////////////////////////////////
+  // repetitive code TODO: EXTRACT IN SEPARATE COMPONENT:
+
+  // state singers for an orchestra:
+  const [singers, setSingers] = useState([]);
+
+  // API call for singers for a selected orchestra
+  useEffect((): void | (() => void | undefined) => {
+    let isLoading = true;
+    const getSingersForOrchestra = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8000/filter/${artistId}/singers`
+        );
+        isLoading ? setSingers(data) : null;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getSingersForOrchestra();
+    return () => (isLoading = false);
+  }, [artistId]);
+
+  console.log(singers);
+  ////////////////////////////////
+
+  ///////////////////////////////////
+  // repetitive code TODO: EXTRACT IN SEPARATE COMPONENT:
+
+  // state orchestras for a singer:
+  const [orchestras, setOrchestras] = useState([]);
+
+  // API call for orchestras for a selected singer
+  useEffect((): void | (() => void | undefined) => {
+    let isLoading = true;
+    const getOrchestrasForSinger = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:8000/filter/${artistId}/orchestras`
+        );
+        isLoading ? setOrchestras(data) : null;
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getOrchestrasForSinger();
+    return () => (isLoading = false);
+  }, [artistId]);
+
+  console.log(orchestras);
+  ////////////////////////////////
+
   return (
     <div>
       <h1>INFO ABOUT ARTIST WITH ID: {artistId}</h1>
@@ -48,6 +100,8 @@ const ArtistPage: React.FC = (): JSX.Element => {
           {info.biography_link}
         </a>
       </p>
+      {singers.length > 0 && <h2>singers: {singers.join(', ')}</h2>}
+      {orchestras.length > 0 && <h2>orchestras: {orchestras.join(', ')}</h2>}
     </div>
   );
 };
