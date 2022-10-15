@@ -37,6 +37,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     // this places all images processed in an image folder
     assetModuleFilename: "images/[hash][ext][query]",
+    publicPath: '/'
   },
 
   resolve: {
@@ -102,6 +103,7 @@ module.exports = {
     open: true,
     static: "./dist",
     hot: true,
+    historyApiFallback: true,
   },
   
   devtool: "source-map",
