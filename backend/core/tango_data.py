@@ -67,12 +67,14 @@ class TangoData:
         return self.data.loc[start_date:end_date]
 
     def filter_by_search(self, search_term: str, search_column: str):
+        sorted_search_term: str = " ".join(sorted(search_term.split(" ")))
         search_data = self.data[search_column].values
         data_selected = set()
         for val in search_data:
+            sorted_val = " ".join(sorted(val.split(" ")))
             if (
-                fuzz.ratio(val.lower(), search_term.lower()) > 80
-                or search_term.lower() in val.lower()
+                fuzz.ratio(sorted_val.lower(), sorted_search_term.lower()) > 70
+                or sorted_search_term.lower() in sorted_val.lower()
             ):
                 data_selected.add(val)
         return list(data_selected)
