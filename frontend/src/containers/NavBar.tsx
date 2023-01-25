@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import './NavBar.css';
-import { LogoIcon1, LogoIcon2 } from '../assets/LogoIcon';
+import { LogoIcon } from '../assets/LogoIcon';
 
 import SearchBar from './SearchBar';
 
@@ -39,9 +39,7 @@ const NavBar: React.FC<NavBarProps> = ({
           <Link to="/" className="navbar__link-home ">
             <div className="navbar__logo">
               {/* TBD: OPTIONS FOR LOGOS AND/OR TEXT */}
-              <LogoIcon1 color="white" size={80} />
-              {/* <LogoIcon2 color="white" size={80} /> */}
-              {/* <p className="navbar__title">tango-music-project</p> */}
+              <LogoIcon color="white" size={80} />
             </div>
           </Link>
         </div>

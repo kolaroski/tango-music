@@ -17,13 +17,8 @@ const Results: React.FC<ResultsProps> = ({ keyword }): JSX.Element => {
 
   // make API call for searchTerm
   async function getResultsByKeyword(): Promise<{}> {
-    ///// WIP: search params ------------------------------
-    // const encodedKeyword = encodeURIComponent(keyword);
-    console.log(keyword);
     const response = await axios.get(
       `http://localhost:8000/filter/search/${keyword}`
-      // `http://localhost:8000/?search=${keyword}`
-      ///// WIP: search params ------------------------------
     );
     return response.data;
   }

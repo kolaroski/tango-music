@@ -17,8 +17,4 @@ const HomePage: React.FC = (): JSX.Element => {
   );
 };
 
-{
-  /* <span className="home__strong-text">your life</span> */
-}
-
 export default HomePage;
